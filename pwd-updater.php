@@ -22,7 +22,7 @@
     // Get information regarding our plugin from WordPress
     private function initPluginData() {
         $this->slug = plugin_basename( $this->pluginFile );
-                $this->pluginData = get_plugin_data( $this->pluginFile );
+        $this->pluginData = get_plugin_data( $this->pluginFile );
     }
  
     // Get information regarding our plugin from GitHub
