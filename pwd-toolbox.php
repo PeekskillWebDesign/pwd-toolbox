@@ -7,7 +7,31 @@ Version:1.02
 */
 
 
-// ********************** START SHORTCODES ********************** //
+// ********************** TABLE OF CONTENTS ********************** //
+
+// 1. SHORTCODES
+
+// 2. IGNORE WHITESPACE BETWEEN SHORTCODE AND CONTENT
+
+// 3. REGISTER ADMIN MENU
+
+// 4. ADMIN MENU
+
+// 5. ADMIN MENU FUNCTIONS
+
+// 6. PRINTED HTML FROM ADMIN
+
+// 7. IMAGE UPLOADER FOR ADMIN
+
+// 8. PLUGIN UPDATER
+
+// ********************** TABLE OF CONTENTS ********************** //
+
+
+
+
+
+// ********************** 1. START SHORTCODES ********************** //
 
 //----------CONTAINER--------------//
 function container_shortcode($atts,$content,$tags) {
@@ -54,7 +78,7 @@ add_shortcode('link','link_shortcode');
 
 // ********************** END SHORTCODES ********************** //
 
-// ********************** START IGNORE WHITESPACE BETWEEN SHORTCODE AND CONTENT **********************//
+// ********************** 2. START IGNORE WHITESPACE BETWEEN SHORTCODE AND CONTENT **********************//
 
 
 
@@ -81,7 +105,8 @@ function tgm_io_shortcode_empty_paragraph_fix( $content ) {
 
 // ********************** END IGNORE WHITESPACE BETWEEN SHORTCODE AND CONTENT **********************//
 
-// ********************** START REGISTER ADMIN MENU ********************** //
+
+// ********************** 3. START REGISTER ADMIN MENU ********************** //
 
 add_action( 'admin_menu', 'PWD_toolbox_menu' );
 add_action( 'admin_action_PWD', 'PWD_admin_action' );
@@ -91,7 +116,7 @@ add_menu_page( 'PWD Toolbox', 'PWD Toolbox', 'manage_options', 'pwdtoolbox', 'PW
 
 // ********************** END REGISTER ADMIN MENU ********************** //
 
-// ********************** START ADMIN MENU ********************** //
+// ********************** 4. START ADMIN MENU ********************** //
 
 function PWD_toolbox_options(){
   add_option('google_analytics', '');
@@ -124,7 +149,7 @@ function PWD_toolbox_options(){
 }
 // ********************** END ADMIN MENU ********************** //
 
-// ********************** END ADMIN MENU FUNCTIONS ********************** //
+// ********************** 5. START ADMIN MENU FUNCTIONS ********************** //
 function PWD_admin_action() {
    if ( !current_user_can( 'manage_options' ) )
    {
@@ -144,7 +169,7 @@ function PWD_admin_action() {
 
 // ********************** END ADMIN MENU FUNCTIONS ********************** //
 
-// ********************** START PRINTED HTML ********************** //
+// ********************** 6. START PRINTED HTML FROM ADMIN ********************** //
 
 function PWD_anaylitics_html(){ 
 	$google_analytics = get_option('google_analytics');
@@ -172,7 +197,7 @@ add_action('wp_head', 'PWD_favicon_html');
 add_action( 'admin_head', 'PWD_favicon_html' );
 // ********************** END PRINTED HTML ********************** //
 
-// ********************** START IMAGE UPLOADER ********************** //
+// ********************** 7. START IMAGE UPLOADER FOR ADMIN ********************** //
 add_image_size('favicon-16', 16, 16, true);
 add_image_size('favicon-32', 32, 32, true);
 add_image_size('favicon-152', 152, 152, true);
@@ -229,9 +254,9 @@ function pwd_load_wp_media_files() {
     wp_enqueue_media();
 }
 add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
-// ********************** END IMAGE UPLOADER ********************** //
+// ********************** END IMAGE UPLOADER FOR ADMIN********************** //
 
-// ********************** START PLUGIN UPDATER ********************** //
+// ********************** 8. START PLUGIN UPDATER ********************** //
 
 require_once( 'pwd-updater.php' );
 if ( is_admin() ) {
