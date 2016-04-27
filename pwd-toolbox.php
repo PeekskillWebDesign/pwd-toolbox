@@ -19,7 +19,10 @@ add_shortcode('container','container_shortcode');
 
 //-------------ROW-------------//
 function row_shortcode($atts,$content,$tags) {
-	return '<div class="row">'.do_shortcode($content).'</div>'; 
+    $value = shortcode_atts(array(
+    'class'=> '',
+    ), $atts);
+	return '<div class="row'.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
 add_shortcode('row','row_shortcode');
 
