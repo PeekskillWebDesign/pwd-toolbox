@@ -137,7 +137,7 @@ function PWD_admin_action() {
 
    //set favicon
    $favicon_original = $_POST['favicon'];
-   $favicon = str_replace( '.png', '-16x16.png', $favicon_original);
+   $favicon = str_replace( '.png', '-32x32.png', $favicon_original);
    update_option('favicon', $favicon);
  exit;
 }
@@ -173,7 +173,9 @@ add_action( 'admin_head', 'PWD_favicon_html' );
 // ********************** END PRINTED HTML ********************** //
 
 // ********************** START IMAGE UPLOADER ********************** //
-add_image_size('favicon', 16, 16, true);
+add_image_size('favicon-16', 16, 16, true);
+add_image_size('favicon-32', 32, 32, true);
+add_image_size('favicon-152', 152, 152, true);
 function pwd_media_uploader(){
 // jQuery
 wp_enqueue_script('jquery');
@@ -208,7 +210,7 @@ jQuery(document).ready(function($){
             // Output to the console uploaded_image
             console.log(uploaded_image);
             var image_url = uploaded_image.toJSON().url;
-            var favicon_url = image_url.replace('.png', '-16x16.png')
+            var favicon_url = image_url.replace('.png', '-32x32.png')
             // If the Image is a png use it. If not flash warning
             if(image_url.indexOf("png") < 0 ) {
             	jQuery('#png-warning').show();
