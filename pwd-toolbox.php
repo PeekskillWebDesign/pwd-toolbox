@@ -232,7 +232,7 @@ add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
 
 require_once( 'pwd-updater.php' );
 if ( is_admin() ) {
-    new BFIGitHubPluginUpdater( __FILE__, 'myGitHubUsername', "Repo-Name" );
+    new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
 }
 
 // ********************** END PLUGIN UPDATER ********************** //

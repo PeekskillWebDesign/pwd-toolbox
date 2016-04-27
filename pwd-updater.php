@@ -22,44 +22,44 @@
     // Get information regarding our plugin from WordPress
     private function initPluginData() {
         $this->slug = plugin_basename( $this->pluginFile );
-				$this->pluginData = get_plugin_data( $this->pluginFile );
+                $this->pluginData = get_plugin_data( $this->pluginFile );
     }
  
     // Get information regarding our plugin from GitHub
     private function getRepoReleaseInfo() {
         if ( ! empty( $this->githubAPIResult ) ) {
-    			return;
-				}
-				// Query the GitHub API
-				$url = "https://api.github.com/repos/{$this->username}/{$this->repo}/releases";
+                return;
+                }
+                // Query the GitHub API
+                $url = "https://api.github.com/repos/{$this->username}/{$this->repo}/releases";
  
-				// We need the access token for private repos
-				if ( ! empty( $this->accessToken ) ) {
-				    $url = add_query_arg( array( "access_token" => $this->accessToken ), $url );
-				}
-				 
-				// Get the results
-				$this->githubAPIResult = wp_remote_retrieve_body( wp_remote_get( $url ) );
-				if ( ! empty( $this->githubAPIResult ) ) {
-				    $this->githubAPIResult = @json_decode( $this->githubAPIResult );
-				}
-				// Use only the latest release
-				if ( is_array( $this->githubAPIResult ) ) {
-				    $this->githubAPIResult = $this->githubAPIResult[0];
-				}
+                // We need the access token for private repos
+                if ( ! empty( $this->accessToken ) ) {
+                    $url = add_query_arg( array( "access_token" => $this->accessToken ), $url );
+                }
+                 
+                // Get the results
+                $this->githubAPIResult = wp_remote_retrieve_body( wp_remote_get( $url ) );
+                if ( ! empty( $this->githubAPIResult ) ) {
+                    $this->githubAPIResult = @json_decode( $this->githubAPIResult );
+                }
+                // Use only the latest release
+                if ( is_array( $this->githubAPIResult ) ) {
+                    $this->githubAPIResult = $this->githubAPIResult[0];
+                }
     }
  
     // Push in plugin version information to get the update notification
     public function setTransitent( $transient ) {
         // If we have checked the plugin data before, don't re-check
-				if ( empty( $transient->checked ) ) {
-				    return $transient;
-				}
-				// Get plugin & GitHub release information
-				$this->initPluginData();
-				$this->getRepoReleaseInfo();
-				// Check the versions if we need to do an update
-				$doUpdate = version_compare( $this->githubAPIResult->tag_name, $transient->checked[$this->slug] );
+                if ( empty( $transient->checked ) ) {
+                    return $transient;
+                }
+                // Get plugin & GitHub release information
+                $this->initPluginData();
+                $this->getRepoReleaseInfo();
+                // Check the versions if we need to do an update
+                $doUpdate = version_compare( $this->githubAPIResult->tag_name, $transient->checked[$this->slug] );
 
         // Update the transient to include our updated plugin data
         if ( $doUpdate == 1 ) {
@@ -146,21 +146,18 @@
     // Perform additional actions to successfully install our plugin
     public function postInstall( $true, $hook_extra, $result ) {
         // Get plugin information
-				$this->initPluginData();
-				// Remember if our plugin was previously activated
-				$wasActivated = is_plugin_active( $this->slug );
-				// Since we are hosted in GitHub, our plugin folder would have a dirname of
-				// reponame-tagname change it to our original one:
-				global $wp_filesystem;
-				$pluginFolder = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . dirname( $this->slug );
-				$wp_filesystem->move( $result['destination'], $pluginFolder );
-				$result['destination'] = $pluginFolder;
+                $this->initPluginData();
+                // Remember if our plugin was previously activated
+                $wasActivated = is_plugin_active( $this->slug );
+                // Since we are hosted in GitHub, our plugin folder would have a dirname of
+                // reponame-tagname change it to our original one:
+                global $wp_filesystem;
+                $pluginFolder = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . dirname( $this->slug );
+                $wp_filesystem->move( $result['destination'], $pluginFolder );
+                $result['destination'] = $pluginFolder;
+                            if ( $wasActivated ) {
+        $activate = activate_plugin( $this->slug );
+        }
         return $result;
     }
-    // Re-activate plugin if needed
-    if ( $wasActivated ) {
-        $activate = activate_plugin( $this->slug );
-    }
-     
-    return $result;
 } ?>
