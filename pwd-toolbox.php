@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: PWD Toolset
-Description: A plugin with shortcodes for websites developed by Peekskill Web Design.
+Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version:1.1
+Version:0.1
 */
 
 
@@ -137,7 +137,7 @@ function PWD_toolbox_options(){
 
 <h3><b>Google Analytics Code</b></h3>
 <p>Enter your Google Analytics ID here</p>
-<p><input type="text" name="google_analytics" value="<?php echo get_option('google_analytics'); ?>"></p>
+<p><input type="text" name="google_analytics" placeholder="UA-********-*" value="<?php echo get_option('google_analytics'); ?>"></p>
 
 <?php pwd_media_uploader(); ?>
 <p class="submit">
@@ -277,7 +277,7 @@ function pwd_enqueue_plugin_scripts($plugin_array)
 add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
 function pwd_register_buttons_editor($buttons)
 {
-    //register buttons with their id.
+    //add each button here and on js page
     array_push($buttons, "container_button", "row_button", "column_button", "link_button" );
     return $buttons;
 }

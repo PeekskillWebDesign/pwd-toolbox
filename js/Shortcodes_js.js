@@ -1,3 +1,5 @@
+//To add a button to the wordpress editor copy the button and button functionality code. Edit all of the fields to match your button. Then add it to the array_push in the main plugin file.
+
 (function() {
     tinymce.create("tinymce.plugins.shortcode_plugin", {
 
