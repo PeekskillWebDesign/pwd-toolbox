@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.3.1
+Version: 0.1
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
@@ -272,11 +272,14 @@ add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
 
 // ********************** 8. START PLUGIN UPDATER ********************** //
 
+
+add_action( 'admin_init', 'pwd_handle_updates' );
+function pwd_handle_updates(){
 require_once( 'pwd-updater.php' );
 if ( is_admin() ) {
     new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
 }
-
+}
 // ********************** END PLUGIN UPDATER ********************** //
 
 // ********************** 9. START SHORTCODES DROPDOWN ********************** //

@@ -49,9 +49,6 @@
                 if ( is_array( $this->githubAPIResult ) ) {
                     $this->githubAPIResult = $this->githubAPIResult[0];
                 }
-                  echo '<script>';
-  echo 'console.log('. json_encode( $this->githubAPIResult) .')';
-  echo '</script>';
     }
  
     // Push in plugin version information to get the update notification
