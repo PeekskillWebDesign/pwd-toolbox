@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A plugin with shortcodes for websites developed by Peekskill Web Design.
 Author:      Peekskill Web Design
-Version:1.02
+Version:1.1
 */
 
 
