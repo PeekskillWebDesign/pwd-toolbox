@@ -26,6 +26,10 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 
 // 8. PLUGIN UPDATER
 
+// 9. SHORTCODE BUTTONS
+
+//10. SOCIAL WIDGET
+
 // ********************** TABLE OF CONTENTS ********************** //
 
 
@@ -282,7 +286,7 @@ if ( is_admin() ) {
 }
 // ********************** END PLUGIN UPDATER ********************** //
 
-// ********************** 9. START SHORTCODES DROPDOWN ********************** //
+// ********************** 9. START SHORTCODE BUTTONS ********************** //
 
 function pwd_enqueue_plugin_scripts($plugin_array)
 {
@@ -300,6 +304,101 @@ function pwd_register_buttons_editor($buttons)
 }
 
 add_filter("mce_buttons_3", "pwd_register_buttons_editor");
-// ********************** 9. END SHORTCODES DROPDOWN ********************** //
+// ********************** 9. END SHORTCODE BUTTONS ********************** //
 
+// ********************** 10. START SOCIAL WIDGET ********************** //
+
+class Social_Widget extends WP_Widget {
+
+  /**
+   * Sets up the widgets name etc
+   */
+  public function __construct() {
+    $widget_ops = array( 
+      'classname' => 'social_widget',
+      'description' => 'Social Link For Footer',
+    );
+    parent::__construct( 'social_widget', 'Social Widget', $widget_ops );
+  }
+
+  /**
+   * Outputs the content of the widget
+   *
+   * @param array $args
+   * @param array $instance
+   */
+ 
+  public function widget( $args, $instance ) {
+    echo $args['before_widget'];
+    if ( ! empty( $instance['social_site'] ) ) {
+      echo $args['before_widget'] ?><a href="http://<?php echo $instance['social_site'] ?>" target="_blank"><i class="fa fa-<?php echo $instance['font_awesome'] ?>"></i></a><?php $args['after_widget'];
+    }
+  }
+
+
+  /**
+   * Outputs the options form on admin
+   *
+   * @param array $instance The widget options
+   */
+  public function form( $instance ) {
+    $social_site = ! empty( $instance['social_site'] ) ? $instance['social_site'] : __( 'Social Website Address', 'text_domain' );
+    $font_awesome = ! empty( $instance['font_awesome'] ) ? $instance['font_awesome'] : __( 'Font Awesome Name', 'text_domain' );
+    ?>
+    <p>
+    <label for="<?php echo $this->get_field_id( 'social_site' ); ?>"><?php _e( 'Social Website Address (ex. www.instagram.com/yourusername):' ); ?></label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'social_site' ); ?>" name="<?php echo $this->get_field_name( 'social_site' ); ?>" type="text" value="<?php echo esc_attr( $social_site ); ?>">
+    </p>
+    <p>
+    <label for="<?php echo $this->get_field_id( 'font_awesome' ); ?>"><?php _e( 'Social Media Logo:' ); ?></label> 
+    <select class="widefat" id="<?php echo $this->get_field_id( 'font_awesome' ); ?>" name="<?php echo $this->get_field_name( 'font_awesome' ); ?>"  value="<?php echo esc_attr( $font_awesome ); ?>">
+    
+    <?php if ($font_awesome == 'instagram') : ?>
+      <option value="instagram" selected>Instagram</option>
+    <?php else : ?>
+      <option value="instagram">Instagram</option>
+    <?php endif; ?>
+          
+    <?php if ($font_awesome == 'facebook') : ?>
+      <option value="facebook" selected>Facebook</option>
+    <?php else : ?>
+      <option value="facebook">Facebook</option>
+    <?php endif; ?>
+
+    <?php if ($font_awesome == 'pinterest') : ?>
+      <option value="pinterest" selected>Pinterest</option>
+    <?php else : ?>
+      <option value="pinterest">Pinterest</option>
+    <?php endif; ?>
+
+    <?php if ($font_awesome == 'twitter') : ?>
+      <option value="twitter" selected>Twitter</option>
+    <?php else : ?>
+      <option value="twitter">Twitter</option>
+    <?php endif; ?>
+
+    </select>
+    </p>
+    <?php 
+
+  }
+
+  /**
+   * Processing widget options on save
+   *
+   * @param array $new_instance The new options
+   * @param array $old_instance The previous options
+   */
+  public function update( $new_instance, $old_instance ) {
+    $instance = array();
+    $instance['social_site'] = ( ! empty( $new_instance['social_site'] ) ) ? strip_tags( $new_instance['social_site'] ) : '';
+    $instance['font_awesome'] = ( ! empty( $new_instance['font_awesome'] ) ) ? strip_tags( $new_instance['font_awesome'] ) : '';
+    return $instance;
+  }
+}
+function register_social_widget() {
+    register_widget( 'social_widget' );
+}
+add_action( 'widgets_init', 'register_social_widget' );
+// ********************** 10. END SOCIAL WIDGET ********************** //
 ?>
