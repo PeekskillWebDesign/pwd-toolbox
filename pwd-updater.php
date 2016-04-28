@@ -7,10 +7,12 @@
     private $pluginFile; // __FILE__ of our plugin
     private $githubAPIResult; // holds data from GitHub
     private $accessToken; // GitHub private repo token
+    private $pluginActivated; /////
  
     function __construct( $pluginFile, $gitHubUsername, $gitHubProjectName, $accessToken = '' ) {
         add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransitent" ) );
         add_filter( "plugins_api", array( $this, "setPluginInfo" ), 10, 3 );
+        add_filter('upgrader_pre_install', array($this, 'preInstall'), 10, 3);
         add_filter( "upgrader_post_install", array( $this, "postInstall" ), 10, 3 );
  
         $this->pluginFile = $pluginFile;
@@ -62,7 +64,7 @@
                 $doUpdate = version_compare( $this->githubAPIResult->tag_name, $transient->checked[$this->slug] );
 
         // Update the transient to include our updated plugin data
-        if ( $doUpdate == 1 ) {
+        if ( $doUpdate) {
             $package = $this->githubAPIResult->zipball_url;
          
             // Include the access token for private GitHub repos
