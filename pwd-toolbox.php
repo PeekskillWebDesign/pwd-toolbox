@@ -56,7 +56,7 @@ function row_shortcode($atts,$content,$tags) {
     $value = shortcode_atts(array(
     'class'=> '',
     ), $atts);
-	return '<div class="row'.$value['class'].'">'.do_shortcode($content).'</div>'; 
+	return '<div class="row '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
 add_shortcode('row','row_shortcode');
 
@@ -68,7 +68,11 @@ function col_shortcode($atts,$content,$tags) {
 		'class'=> '',
 		), $atts);
 
+  if (!$value['offset'] == ''){
 	$result = $value['columns']." offset-by-".$value['offset'];
+}else {
+  $result = $value['columns'];
+}
 
 	return '<div class="'.$result.' '.$value['class'].' columns">'.do_shortcode($content).'</div>';
 }
@@ -81,7 +85,7 @@ function link_shortcode($atts,$content,$tags) {
 		'link-to' => '',
 		'content' => ''
 		), $atts);
-	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.$value['content'].'</a>'; 
+	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.do_shortcode($content).'</a>'; 
 }
 add_shortcode('link','link_shortcode');
 
