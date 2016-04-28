@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: PWD Toolset
-Description: A plugin with shortcodes for websites developed by Peekskill Web Design.
+Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version:1.1
+Version:0.1
 */
 
 
@@ -54,12 +54,12 @@ add_shortcode('row','row_shortcode');
 //--------------COLUMNS-------------//
 function col_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
-		'cols' => '',
+		'columns' => '',
 		'offset' => '',
 		'class'=> '',
 		), $atts);
 
-	$result = $value['cols']." offset-by-".$value['offset'];
+	$result = $value['columns']." offset-by-".$value['offset'];
 
 	return '<div class="'.$result.' '.$value['class'].' columns">'.do_shortcode($content).'</div>';
 }
@@ -69,10 +69,10 @@ add_shortcode('col','col_shortcode');
 function link_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
 		'class' => '',
-		'href' => '',
+		'link-to' => '',
 		'content' => ''
 		), $atts);
-	return '<a href="'.$value['href'].'" class="'.$value['class'].'">'.$value['content'].'</a>'; 
+	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.$value['content'].'</a>'; 
 }
 add_shortcode('link','link_shortcode');
 
@@ -137,7 +137,7 @@ function PWD_toolbox_options(){
 
 <h3><b>Google Analytics Code</b></h3>
 <p>Enter your Google Analytics ID here</p>
-<p><input type="text" name="google_analytics" value="<?php echo get_option('google_analytics'); ?>"></p>
+<p><input type="text" name="google_analytics" placeholder="UA-********-*" value="<?php echo get_option('google_analytics'); ?>"></p>
 
 <?php pwd_media_uploader(); ?>
 <p class="submit">
@@ -264,4 +264,25 @@ if ( is_admin() ) {
 }
 
 // ********************** END PLUGIN UPDATER ********************** //
+
+// ********************** 9. START SHORTCODES DROPDOWN ********************** //
+
+function pwd_enqueue_plugin_scripts($plugin_array)
+{
+    //enqueue TinyMCE plugin script with its ID.
+    $plugin_array["shortcode_plugin"] =  plugin_dir_url( __FILE__) . "js/Shortcodes_js.js";
+    return $plugin_array;
+}
+
+add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
+function pwd_register_buttons_editor($buttons)
+{
+    //add each button here and on js page
+    array_push($buttons, "container_button", "row_button", "column_button", "link_button" );
+    return $buttons;
+}
+
+add_filter("mce_buttons_3", "pwd_register_buttons_editor");
+// ********************** 9. END SHORTCODES DROPDOWN ********************** //
+
 ?>
