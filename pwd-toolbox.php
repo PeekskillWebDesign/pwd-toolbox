@@ -272,11 +272,14 @@ add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
 
 // ********************** 8. START PLUGIN UPDATER ********************** //
 
+
+add_action( 'admin_init', 'pwd_handle_updates' );
+function pwd_handle_updates(){
 require_once( 'pwd-updater.php' );
 if ( is_admin() ) {
     new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
 }
-
+}
 // ********************** END PLUGIN UPDATER ********************** //
 
 // ********************** 9. START SHORTCODES DROPDOWN ********************** //
