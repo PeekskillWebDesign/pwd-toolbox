@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version:0.1
+Version:0.2
 */
 
 
@@ -33,6 +33,15 @@ Version:0.1
 
 // ********************** 1. START SHORTCODES ********************** //
 
+//----------SECTION--------------//
+function section_shortcode($atts,$content,$tags) {
+$value = shortcode_atts(array(
+    'class' => ''
+    ), $atts);
+  return '<section class="'.$value['class'].'">'.do_shortcode($content).'</section>'; 
+}
+add_shortcode('section','section_shortcode');
+
 //----------CONTAINER--------------//
 function container_shortcode($atts,$content,$tags) {
 $value = shortcode_atts(array(
@@ -47,7 +56,7 @@ function row_shortcode($atts,$content,$tags) {
     $value = shortcode_atts(array(
     'class'=> '',
     ), $atts);
-	return '<div class="row'.$value['class'].'">'.do_shortcode($content).'</div>'; 
+	return '<div class="row '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
 add_shortcode('row','row_shortcode');
 
@@ -59,7 +68,11 @@ function col_shortcode($atts,$content,$tags) {
 		'class'=> '',
 		), $atts);
 
+  if (!$value['offset'] == ''){
 	$result = $value['columns']." offset-by-".$value['offset'];
+}else {
+  $result = $value['columns'];
+}
 
 	return '<div class="'.$result.' '.$value['class'].' columns">'.do_shortcode($content).'</div>';
 }
@@ -72,7 +85,7 @@ function link_shortcode($atts,$content,$tags) {
 		'link-to' => '',
 		'content' => ''
 		), $atts);
-	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.$value['content'].'</a>'; 
+	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.do_shortcode($content).'</a>'; 
 }
 add_shortcode('link','link_shortcode');
 
@@ -278,7 +291,7 @@ add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
 function pwd_register_buttons_editor($buttons)
 {
     //add each button here and on js page
-    array_push($buttons, "container_button", "row_button", "column_button", "link_button" );
+    array_push($buttons, "section_button", "container_button", "row_button", "column_button", "link_button" );
     return $buttons;
 }
 

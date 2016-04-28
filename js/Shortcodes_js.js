@@ -48,6 +48,20 @@
                 ed.execCommand("mceInsertContent", 0, return_text);
             });
 
+            //-----------------------------------container button   
+            ed.addButton("section_button", {
+                title : "Section",
+                cmd : "section_command",
+                text : 'Section'
+            });
+
+            //-----------------------------------container button functionality
+            ed.addCommand("section_command", function() {
+                var selected_text = ed.selection.getContent();
+                var return_text = '[section class=""]' + selected_text + "[/section]";
+                ed.execCommand("mceInsertContent", 0, return_text);
+            });
+
              //-----------------------------------link button   
             ed.addButton("link_button", {
                 title : "Link",
