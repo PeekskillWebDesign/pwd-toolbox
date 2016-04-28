@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version:0.1
+Version:0.2
 */
 
 
@@ -32,6 +32,15 @@ Version:0.1
 
 
 // ********************** 1. START SHORTCODES ********************** //
+
+//----------SECTION--------------//
+function section_shortcode($atts,$content,$tags) {
+$value = shortcode_atts(array(
+    'class' => ''
+    ), $atts);
+  return '<section class="'.$value['class'].'">'.do_shortcode($content).'</section>'; 
+}
+add_shortcode('section','section_shortcode');
 
 //----------CONTAINER--------------//
 function container_shortcode($atts,$content,$tags) {
@@ -278,7 +287,7 @@ add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
 function pwd_register_buttons_editor($buttons)
 {
     //add each button here and on js page
-    array_push($buttons, "container_button", "row_button", "column_button", "link_button" );
+    array_push($buttons, "section_button", "container_button", "row_button", "column_button", "link_button" );
     return $buttons;
 }
 
