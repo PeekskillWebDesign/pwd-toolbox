@@ -1,4 +1,16 @@
-PWD Shortcodes
+PWD Toolset is a custom plugin to aid in the development of wordpress sites built by Peekskill Web Design.
+
+This plugin includes:
+
+- Shortcodes for creating a grid structure in the wordpress editor
+- An admin menu that allows users to edit their favicon and google analytics
+- A widget for adding social buttons
+- a function to provide dynamic excerpt lengths
+- An updator class to allow the plugin to be updated via Github
+
+An explaination of each Tool is listed below:
+
+********************* PWD Shortcodes *************************
 
 ----------------------------------------------------
 
