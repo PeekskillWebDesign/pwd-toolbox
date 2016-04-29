@@ -59,13 +59,9 @@ Link
 
 	Required:
 
-		href
+		link-to
 			Default = ''
 			adds location for link to go to
-
-		content
-			Default = ''
-			adds the link text
 
 	Optional:
 
@@ -75,9 +71,25 @@ Link
 
 ----------------------------------------------------
 
+********************* Admin Menu *************************
 
+This allows users to dynamically add their google analytics information. A user can fill out this form and the correct analytics code will be printed on the front end pages.
 
+This also allows a user to dynamically upload a favicon image. The image will be resized to 32 x 32, a standard format for most browsers. Future support will include an apple touch icon.
 
+********************* Social Widget *************************
+
+This allows a user to add social buttons to a widget area. Font awesome must be installed for this to work.
+
+********************* Dynamic Excerpt Lenghts *************************
+
+using the pwd_excerpt() function in your theme files will print an excerpt with the number of words specified as a perameter. The default is 55 words.
+
+e.g. pwd_excerpt(5) will print an excerpt of five words. 
+
+********************* Updater *************************
+
+This function allows an admin to update the plugin via git hub. This happens via github releases.
 
 
 
