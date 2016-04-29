@@ -3,9 +3,11 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.2
+Version: 0.2.1
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
+
+
 
 
 // ********************** TABLE OF CONTENTS ********************** //
@@ -29,6 +31,8 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 // 9. SHORTCODE BUTTONS
 
 //10. SOCIAL WIDGET
+
+//11. CUSTOM EXCERPTS
 
 // ********************** TABLE OF CONTENTS ********************** //
 
@@ -329,9 +333,12 @@ class Social_Widget extends WP_Widget {
    */
  
   public function widget( $args, $instance ) {
+    if(strpos($instance['social_site'], 'https://') == false && strpos($instance['social_site'], 'http://') == false){
+      $instance['social_site'] = 'http://' . $instance['social_site'];
+    }
     echo $args['before_widget'];
     if ( ! empty( $instance['social_site'] ) ) {
-      echo $args['before_widget'] ?><a href="http://<?php echo $instance['social_site'] ?>" target="_blank"><i class="fa fa-<?php echo $instance['font_awesome'] ?>"></i></a><?php $args['after_widget'];
+      echo $args['before_widget'] ?><a href="<?php echo $instance['social_site'] ?>" target="_blank"><i class="fa fa-<?php echo $instance['font_awesome'] ?>"></i></a><?php $args['after_widget'];
     }
   }
 
@@ -353,30 +360,15 @@ class Social_Widget extends WP_Widget {
     <label for="<?php echo $this->get_field_id( 'font_awesome' ); ?>"><?php _e( 'Social Media Logo:' ); ?></label> 
     <select class="widefat" id="<?php echo $this->get_field_id( 'font_awesome' ); ?>" name="<?php echo $this->get_field_name( 'font_awesome' ); ?>"  value="<?php echo esc_attr( $font_awesome ); ?>">
     
-    <?php if ($font_awesome == 'instagram') : ?>
-      <option value="instagram" selected>Instagram</option>
-    <?php else : ?>
-      <option value="instagram">Instagram</option>
-    <?php endif; ?>
+    <?php pwd_social_widget_option($font_awesome, 'instagram', 'Instagram'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'facebook', 'Facebook'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'facebook-square', 'Facebook Square Logo'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'pinterest', 'Pinterest'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'pinterest-square', 'Pinterest Square Logo'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'twitter', 'Twitter'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'twitter-square', 'Twitter Square Logo'); ?>
+    <?php pwd_social_widget_option($font_awesome, 'youtube', 'YouTube'); ?>
           
-    <?php if ($font_awesome == 'facebook') : ?>
-      <option value="facebook" selected>Facebook</option>
-    <?php else : ?>
-      <option value="facebook">Facebook</option>
-    <?php endif; ?>
-
-    <?php if ($font_awesome == 'pinterest') : ?>
-      <option value="pinterest" selected>Pinterest</option>
-    <?php else : ?>
-      <option value="pinterest">Pinterest</option>
-    <?php endif; ?>
-
-    <?php if ($font_awesome == 'twitter') : ?>
-      <option value="twitter" selected>Twitter</option>
-    <?php else : ?>
-      <option value="twitter">Twitter</option>
-    <?php endif; ?>
-
     </select>
     </p>
     <?php 
@@ -389,16 +381,66 @@ class Social_Widget extends WP_Widget {
    * @param array $new_instance The new options
    * @param array $old_instance The previous options
    */
-  public function update( $new_instance, $old_instance ) {
+public function update( $new_instance, $old_instance ) {
     $instance = array();
     $instance['social_site'] = ( ! empty( $new_instance['social_site'] ) ) ? strip_tags( $new_instance['social_site'] ) : '';
     $instance['font_awesome'] = ( ! empty( $new_instance['font_awesome'] ) ) ? strip_tags( $new_instance['font_awesome'] ) : '';
     return $instance;
   }
 }
+
 function register_social_widget() {
     register_widget( 'social_widget' );
 }
 add_action( 'widgets_init', 'register_social_widget' );
+function pwd_social_widget_option($font_awesome, $input, $display_name){
+
+if ($font_awesome == $input) : ?>
+      <option value="<?php echo $input?>" selected><?php echo $display_name ?></option>
+    <?php else : ?>
+      <option value="<?php echo $input ?>"><?php echo $display_name ?></option>
+    <?php endif; 
+
+}
 // ********************** 10. END SOCIAL WIDGET ********************** //
+
+//Custom Post Excerpts
+
+function pwd_excerpt($excerpt_length = 55, $id = false, $echo = true) {
+    
+    $text = '';
+    
+    if($id) {
+      $the_post = & get_post( $my_id = $id );
+      $text = ($the_post->post_excerpt) ? $the_post->post_excerpt : $the_post->post_content;
+    } else {
+      global $post;
+      $text = ($post->post_excerpt) ? $post->post_excerpt : get_the_content('');
+    }
+    
+    $text = strip_shortcodes( $text );
+    $text = apply_filters('the_content', $text);
+    $text = str_replace(']]>', ']]&gt;', $text);
+    $text = strip_tags($text);
+  
+    $excerpt_more = ' ';
+    $words = preg_split("/[\n\r\t ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY);
+    if ( count($words) > $excerpt_length ) {
+      array_pop($words);
+      $text = implode(' ', $words);
+      $text = $text . $excerpt_more;
+    } else {
+      $text = implode(' ', $words);
+    }
+  if($echo)
+  echo apply_filters('the_content', $text.'...');
+  else
+  return $text;
+}
+
+function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
+ return pwd_excerpt($excerpt_length, $id, $echo);
+}
+
+
 ?>
