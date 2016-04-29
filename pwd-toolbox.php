@@ -8,6 +8,8 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
 
+
+
 // ********************** TABLE OF CONTENTS ********************** //
 
 // 1. SHORTCODES
@@ -29,6 +31,8 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 // 9. SHORTCODE BUTTONS
 
 //10. SOCIAL WIDGET
+
+//11. CUSTOM EXCERPTS
 
 // ********************** TABLE OF CONTENTS ********************** //
 
@@ -392,11 +396,51 @@ add_action( 'widgets_init', 'register_social_widget' );
 function pwd_social_widget_option($font_awesome, $input, $display_name){
 
 if ($font_awesome == $input) : ?>
-      <option value="<?php echo $input?>" selected><?php echo $display_name ?></p></option>
+      <option value="<?php echo $input?>" selected><?php echo $display_name ?></option>
     <?php else : ?>
       <option value="<?php echo $input ?>"><?php echo $display_name ?></option>
     <?php endif; 
 
 }
 // ********************** 10. END SOCIAL WIDGET ********************** //
+
+//Custom Post Excerpts
+
+function pwd_excerpt($excerpt_length = 55, $id = false, $echo = true) {
+    
+    $text = '';
+    
+    if($id) {
+      $the_post = & get_post( $my_id = $id );
+      $text = ($the_post->post_excerpt) ? $the_post->post_excerpt : $the_post->post_content;
+    } else {
+      global $post;
+      $text = ($post->post_excerpt) ? $post->post_excerpt : get_the_content('');
+    }
+    
+    $text = strip_shortcodes( $text );
+    $text = apply_filters('the_content', $text);
+    $text = str_replace(']]>', ']]&gt;', $text);
+    $text = strip_tags($text);
+  
+    $excerpt_more = ' ';
+    $words = preg_split("/[\n\r\t ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY);
+    if ( count($words) > $excerpt_length ) {
+      array_pop($words);
+      $text = implode(' ', $words);
+      $text = $text . $excerpt_more;
+    } else {
+      $text = implode(' ', $words);
+    }
+  if($echo)
+  echo apply_filters('the_content', $text.'...');
+  else
+  return $text;
+}
+
+function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
+ return pwd_excerpt($excerpt_length, $id, $echo);
+}
+
+
 ?>
