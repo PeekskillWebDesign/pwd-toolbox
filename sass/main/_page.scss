@@ -1,3 +1,25 @@
-.pwd_toolset_wrap .header_logo{
-	text-align:center;
+.pwd_admin-card{
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding:30px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height: 500px;
+	position:relative;
+	.submit{
+		position:absolute;
+		bottom:10px;
+		right:0;
+		width:100%;
+	}
+	.image-uploader-div{
+		position:absolute;
+		bottom:90px;
+		right:0;
+		width:100%;
+	}
+}
+#favicon-image{
+	margin-top:50px;
 }
