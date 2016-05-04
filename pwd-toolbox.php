@@ -145,7 +145,7 @@ add_menu_page( 'PWD Toolbox', 'PWD Toolbox', 'manage_options', 'pwdtoolbox', 'PW
 function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
-
+  add_option('login', '#');
     echo '<div class="wrap">';
 
     // header
@@ -163,7 +163,32 @@ function PWD_toolbox_options(){
 <p>Enter your Google Analytics ID here</p>
 <p><input type="text" name="google_analytics" placeholder="UA-********-*" value="<?php echo get_option('google_analytics'); ?>"></p>
 
-<?php pwd_media_uploader(); ?>
+<h3><b>Favicon</b></h3>
+<p>Upload an image to be used as a favicon. The image must be a <b>PNG</b> file and it will be resized to 16px x 16px</p> 
+<?php $favicon_settings = array (
+      'id' => 'favicon',
+      'added-scripts' => "var favicon_url = image_url.replace('.png', '-32x32.png')
+            // If the Image is a png use it. If not flash warning
+            if(image_url.indexOf('png') < 0 ) {
+              jQuery('#png-warning').show();
+            } else {
+              jQuery('#png-warning').hide();
+              jQuery('#image_url').val(image_url);
+              jQuery('#favicon-image').attr('src', favicon_url);
+              jQuery('#favicon-image').show(); 
+            }"
+      ); ?>
+<?php pwd_media_uploader($favicon_settings); ?>
+
+<h3><b>Login Page Logo</b></h3>
+<p>Upload an image to be used as the logo in the login page</p> 
+<?php $login_settings = array (
+      'id' => 'login',
+      'added-scripts' => "",
+      'image-size' => "medium"
+      ); ?>
+<?php pwd_media_uploader($login_settings); ?>
+
 <p class="submit">
 <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
 </p>
@@ -188,6 +213,7 @@ function PWD_admin_action() {
    $favicon_original = $_POST['favicon'];
    $favicon = str_replace( '.png', '-32x32.png', $favicon_original);
    update_option('favicon', $favicon);
+   update_option('login', $_POST['login']);
  exit;
 }
 
@@ -213,6 +239,12 @@ function PWD_anaylitics_html(){
 		}
 	}
 add_action('wp_head', 'PWD_anaylitics_html');
+
+add_image_size('favicon-16', 16, 16, true);
+add_image_size('favicon-32', 32, 32, true);
+add_image_size('favicon-152', 152, 152, true);
+add_image_size('login-logo', 300, 300, false);
+
 function PWD_favicon_html(){
 	$favicon_url = get_option('favicon');
 		echo '<link rel="shortcut icon" href="'.$favicon_url.'">';
@@ -222,30 +254,25 @@ add_action( 'admin_head', 'PWD_favicon_html' );
 // ********************** END PRINTED HTML ********************** //
 
 // ********************** 7. START IMAGE UPLOADER FOR ADMIN ********************** //
-add_image_size('favicon-16', 16, 16, true);
-add_image_size('favicon-32', 32, 32, true);
-add_image_size('favicon-152', 152, 152, true);
-function pwd_media_uploader(){
+
+function pwd_media_uploader($settings){
 // jQuery
 wp_enqueue_script('jquery');
 // This will enqueue the Media Uploader script
 wp_enqueue_media();
 ?>
     <div>
-    <label for="image_url"><h3><b>Favicon</b></h3></label>
-    <p>Upload an image to be used as a favicon. The image must be a <b>PNG</b> file and it will be resized to 16px x 16px</p> 
-    <input type="hidden" name="favicon" id="image_url" class="regular-text">
-    <img src="<?php echo get_option('favicon') ?>" id="favicon-image"><br><br>
-    <input type="button" name="upload-btn" id="upload-btn" class="button-secondary" value="Upload Image">
-    <p id="png-warning" style="color:red; display:none;">The image must be a PNG!</p>
+    <input type="hidden" name="<?php echo $settings['id'] ?>" id="<?php echo $settings['id'] ?>-image_url" class="regular-text" value="<?php echo get_option($settings['id']) ?>">
+    <img src="<?php echo get_option($settings['id']) ?>" id="<?php echo $settings['id'] ?>-image" style="max-width: 300px;"><br><br>
+    <input type="button" name="upload-btn" id="<?php echo $settings['id'] ?>-upload-btn" class="button-secondary" value="Upload Image">
 
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function($){
-	if(jQuery('#favicon-image').attr('src') == '#'){
-		jQuery('#favicon-image').hide();
+	if(jQuery('#<?php echo $settings['id'] ?>-image').attr('src') == '#'){
+		jQuery('#<?php echo $settings['id'] ?>-image').hide();
 	}
-    jQuery('#upload-btn').click(function(e) {
+    jQuery('#<?php echo $settings['id'] ?>-upload-btn').click(function(e) {
         e.preventDefault();
         var image = wp.media({ 
             title: 'Upload Image',
@@ -258,17 +285,15 @@ jQuery(document).ready(function($){
             // We convert uploaded_image to a JSON object to make accessing it easier
             // Output to the console uploaded_image
             console.log(uploaded_image);
-            var image_url = uploaded_image.toJSON().url;
-            var favicon_url = image_url.replace('.png', '-32x32.png')
-            // If the Image is a png use it. If not flash warning
-            if(image_url.indexOf("png") < 0 ) {
-            	jQuery('#png-warning').show();
-            } else {
-            	jQuery('#png-warning').hide();
-            	jQuery('#image_url').val(image_url);
-            	jQuery('#favicon-image').attr('src', favicon_url);
-            	jQuery('#favicon-image').show(); 
-            }
+            <?php if(isset($settings['image-size'])) : ?>
+              var image_url = uploaded_image.toJSON().sizes.<?php echo $settings['image-size'] ?>.url;
+            <?php else : ?>
+              var image_url = uploaded_image.toJSON().url;
+            <?php endif; ?>  
+            jQuery('#<?php echo $settings['id'] ?>-image').attr('src', image_url);
+            jQuery('#<?php echo $settings['id'] ?>-image_url').val(image_url);
+            <?php echo $settings['added-scripts'] ?>
+            jQuery('#<?php echo $settings['id'] ?>-image').show(); 
         });
     });
 });
@@ -446,14 +471,33 @@ function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
 // ********************** 11. END CUSTOM POST EXCERPTS ********************** //
 
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
-function pwd_login_css() { ?>
+function pwd_login_css() { 
+  $login_logo = get_option('login-logo');
+  if( $login_logo !== '#' ) {
+  ?>
     <style type="text/css">
+        #login, .login {
+          padding:0 !important;
+        }
+        #login h1, .login h1 {
+          width:300px;
+        }
+        
+
          #login h1 a, .login h1 a {
-             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
+             background-image: url(<?php echo get_option('login'); ?>);
             padding-bottom: 30px;
+            background-size: 100% auto;
+            background-position: bottom center;
+            width:300px;
+            height:300px;
+            padding:0;
+            margin:0;
          }
      </style>
- <?php }
+ <?php 
+  }
+}
 add_action( 'login_enqueue_scripts', 'pwd_login_css' );
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 ?>
