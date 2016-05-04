@@ -1,0 +1,41 @@
+ // Variables for colors etc -----------------------------
+
+$white: #fff;
+$black: #222;
+$grey: #ddd;
+$green:#95A693;
+$brown: #584034;
+$rouge:#AF5054;
+// Font Colors -------------------------------------------
+
+$font-color: #000;
+$accent:	$brown;
+
+// Anchor Variables --------------------------------------
+
+$links:  $accent;
+$links-hover:$black;
+
+// Navigation --------------------------------------------
+
+$menu-links: #fff;
+$menu-links-hover: #fff;
+$dropdown-links: #7d7d7d;
+$dropdown-links-hover: #444;
+
+// Typography Variables ----------------------------------
+
+$body-font: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$header-font: "Roboto Condensed","Helvetica Neue", Helvetica, Arial, sans-serif;
+$blockquote-font: serif;
+
+//html elements  -----------------------------------------
+
+$hr-color: #E1E1E1;
+
+//buttons-------------------------------------------------
+
+$primary-button: rgba($green, .8);
+$primary-button-hover:	rgba($green, .6);
+$primary-button-font-color: #FFF;
+$primary-button-font-color-hover: #FFF;
