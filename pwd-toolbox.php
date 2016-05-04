@@ -32,7 +32,9 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 
 //10. SOCIAL WIDGET
 
-//11. CUSTOM EXCERPTS
+//11. CUSTOM POST EXCERPTS
+
+//12. LOGIN PAGE EDITS
 
 // ********************** TABLE OF CONTENTS ********************** //
 
@@ -404,7 +406,7 @@ if ($font_awesome == $input) : ?>
 }
 // ********************** 10. END SOCIAL WIDGET ********************** //
 
-//Custom Post Excerpts
+// ********************** 11. START CUSTOM POST EXCERPTS ********************** //
 
 function pwd_excerpt($excerpt_length = 55, $id = false, $echo = true) {
     
@@ -441,6 +443,17 @@ function pwd_excerpt($excerpt_length = 55, $id = false, $echo = true) {
 function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
  return pwd_excerpt($excerpt_length, $id, $echo);
 }
+// ********************** 11. END CUSTOM POST EXCERPTS ********************** //
 
-
+// ********************** 12. START LOGIN PAGE EDITS ********************** //
+function pwd_login_css() { ?>
+    <style type="text/css">
+         #login h1 a, .login h1 a {
+             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
+            padding-bottom: 30px;
+         }
+     </style>
+ <?php }
+add_action( 'login_enqueue_scripts', 'pwd_login_css' );
+// ********************** 12. START LOGIN PAGE EDITS ********************** //
 ?>
