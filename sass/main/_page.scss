@@ -1,11 +1,10 @@
-.pwd_admin-card{
+.pwd_admin-card, .video-card{
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	padding:30px;
 	margin-top:10px;
 	margin-bottom:10px;
-	height: 500px;
 	position:relative;
 	.submit{
 		position:absolute;
@@ -19,6 +18,9 @@
 		right:0;
 		width:100%;
 	}
+}
+.pwd_admin-card{
+height: 500px;
 }
 #favicon-image{
 	margin-top:50px;

@@ -489,7 +489,7 @@
   .pwd_toolset_wrap .u-pull-left {
     float: left; }
   .pwd_toolset_wrap .accent {
-    color: #584034; }
+    color: #ddd; }
   .pwd_toolset_wrap .vert-middle {
     position: relative;
     top: 50%;
@@ -508,17 +508,6 @@
     width: 50%; }
   .pwd_toolset_wrap .rounded {
     border-radius: 100px !important; }
-  .pwd_toolset_wrap hr.yellow {
-    border: 3px solid #95A693;
-    width: 75px;
-    margin-top: -10px; }
-  .pwd_toolset_wrap hr.hr-services {
-    margin-top: 10px;
-    border: 1px solid #95A693;
-    width: 100%;
-    margin-bottom: 10px; }
-  .pwd_toolset_wrap hr.brown {
-    border-color: #584034; }
   .pwd_toolset_wrap .cursor {
     cursor: default; }
     .pwd_toolset_wrap .cursor:hover {
@@ -530,24 +519,6 @@
     object-fit: cover; }
   .pwd_toolset_wrap .round {
     border-radius: 100%; }
-  .pwd_toolset_wrap a.back-to-top {
-    background: none;
-    margin: 0;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    display: none;
-    text-decoration: none;
-    text-align: center;
-    color: #95A693;
-    /*background-color: $gold;*/ }
-    .pwd_toolset_wrap a.back-to-top img {
-      display: block;
-      opacity: .8;
-      margin: 0 auto; }
-    .pwd_toolset_wrap a.back-to-top:hover {
-      color: rgba(88, 64, 52, 0.8); }
   .pwd_toolset_wrap .container {
     position: relative;
     width: 100%;
@@ -721,7 +692,7 @@
       height: 3.5rem; }
       .pwd_toolset_wrap .field-wrap:not(:last-child) input:focus {
         outline: none;
-        border: 1px solid #584034; }
+        border: 1px solid #ddd; }
   .pwd_toolset_wrap #ninja_forms_field_8_div_wrap {
     margin-right: 1rem; }
   .pwd_toolset_wrap #ninja_forms_field_9_div_wrap {
@@ -729,36 +700,50 @@
   .pwd_toolset_wrap .ninja-forms-required-items {
     display: none; }
   .pwd_toolset_wrap .ninja-forms-req-symbol {
-    color: #584034 !important; }
-  .pwd_toolset_wrap .pwd_admin-card {
+    color: #ddd !important; }
+  .pwd_toolset_wrap .pwd_admin-card, .pwd_toolset_wrap .video-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 500px;
     position: relative; }
-    .pwd_toolset_wrap .pwd_admin-card .submit {
+    .pwd_toolset_wrap .pwd_admin-card .submit, .pwd_toolset_wrap .video-card .submit {
       position: absolute;
       bottom: 10px;
       right: 0;
       width: 100%; }
-    .pwd_toolset_wrap .pwd_admin-card .image-uploader-div {
+    .pwd_toolset_wrap .pwd_admin-card .image-uploader-div, .pwd_toolset_wrap .video-card .image-uploader-div {
       position: absolute;
       bottom: 90px;
       right: 0;
       width: 100%; }
+  .pwd_toolset_wrap .pwd_admin-card {
+    height: 500px; }
   .pwd_toolset_wrap #favicon-image {
     margin-top: 50px; }
-  .pwd_toolset_wrap .post-password-form {
-    text-align: center;
-    margin-top: 100px; }
-    .pwd_toolset_wrap .post-password-form input[type='password']:before {
-      content: "\a"; }
-    .pwd_toolset_wrap .post-password-form input[type="submit"] {
-      background-color: #95A693;
-      color: #fff;
-      margin-top: 20px; }
+  .pwd_toolset_wrap .pwd_toolset_navbar {
+    margin: 20px; }
+    .pwd_toolset_wrap .pwd_toolset_navbar a {
+      font-size: 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      margin-right: 10px;
+      margin-left: 10px; }
+      .pwd_toolset_wrap .pwd_toolset_navbar a.is-active {
+        background-color: #1379be;
+        color: #fff;
+        border: none; }
+      .pwd_toolset_wrap .pwd_toolset_navbar a:hover {
+        cursor: pointer !important; }
+      .pwd_toolset_wrap .pwd_toolset_navbar a:focus {
+        outline: none;
+        box-shadow: none; }
 
 /*# sourceMappingURL=style.css.map */
