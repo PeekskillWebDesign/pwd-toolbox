@@ -19,8 +19,12 @@
 		width:100%;
 	}
 }
+.login-logo-card img{
+	max-height:200px;
+	width:auto;
+}
 .pwd_admin-card{
-height: 500px;
+min-height: 500px;
 }
 #favicon-image{
 	margin-top:50px;

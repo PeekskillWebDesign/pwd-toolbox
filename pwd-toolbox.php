@@ -191,7 +191,7 @@ function PWD_admin_action() {
    print_r($_POST);
   //set analytics
    update_option('google_analytics', $_POST['google_analytics']);
-   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
+   
 
    //set favicon
    $favicon_original = $_POST['favicon'];
@@ -208,6 +208,7 @@ function PWD_admin_action() {
     foreach( $types as $type ) {
         update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
   }
+   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
  exit;
 }
 
@@ -284,10 +285,16 @@ jQuery(document).ready(function($){
             <?php else : ?>
               var image_url = uploaded_image.toJSON().url;
             <?php endif; ?>  
+            if(image_url.indexOf('png') < 0 ) {
+              alert('Image must be a png')
+            } else {
+              jQuery('#image_url').val(image_url);
+              jQuery('#<?php echo $settings['id'] ?>-image').attr('src', image_url);
+              jQuery('#<?php echo $settings['id'] ?>-image').show(); 
             jQuery('#<?php echo $settings['id'] ?>-image').attr('src', image_url);
             jQuery('#<?php echo $settings['id'] ?>-image_url').val(image_url);
-            <?php echo $settings['added-scripts'] ?>
             jQuery('#<?php echo $settings['id'] ?>-image').show(); 
+            }
         });
     });
 });
@@ -305,9 +312,9 @@ add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
 add_action( 'admin_init', 'pwd_handle_updates' );
 function pwd_handle_updates(){
 require_once( 'pwd-updater.php' );
-if ( is_admin() ) {
-    new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
-}
+  if ( is_admin() ) {
+      new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
+  }
 }
 // ********************** END PLUGIN UPDATER ********************** //
 
@@ -466,8 +473,9 @@ function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
 
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 function pwd_login_css() { 
-  $login_logo = get_option('login-logo');
+  $login_logo = get_option('login');
   if( $login_logo !== '#' ) {
+    $logo_size = get_string_between($login_logo, 'x', '.png');
   ?>
     <style type="text/css">
         #login, .login {
@@ -476,6 +484,7 @@ function pwd_login_css() {
         #login h1, .login h1 {
           width:300px;
           margin:0;
+          margin-top:50px;
               margin-left:10px;
         }
         
@@ -486,7 +495,8 @@ function pwd_login_css() {
             background-size: 100% auto;
             background-position: bottom center;
             width:300px;
-            height:300px;
+            height:<?php echo $logo_size ?>px;
+            min-height:100px;
             padding:0;
             margin:0;
             margin-bottom:10px;
@@ -496,6 +506,14 @@ function pwd_login_css() {
   }
 }
 add_action( 'login_enqueue_scripts', 'pwd_login_css' );
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 
 // ********************** 13. START FEATURED IMAGE SIZES ********************** //

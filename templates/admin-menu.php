@@ -18,9 +18,9 @@
   </div>
 </section>
 
-<section class="settings is-visible" id="settings">
   <form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
     <input type="hidden" name="action" value="PWD" />
+<section class="settings is-visible" id="settings">
     <div class="container">
       <div class="row">
         <div class="four columns text-center pwd_admin-card">
@@ -32,12 +32,11 @@
           <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
           </div>
         </div>
-        <div class="four columns text-center pwd_admin-card">
+        <div class="four columns text-center pwd_admin-card login-logo-card">
           <h5>Login Page Logo</h5>
           <p>Upload an image to be used as the logo in the login page</p> 
           <?php $login_settings = array (
                 'id' => 'login',
-                'added-scripts' => "",
                 'image-size' => "medium"
                 ); ?>
           <?php pwd_media_uploader($login_settings); ?>
@@ -50,19 +49,7 @@
           <p>A favicon is a small image that appears next to your website name in browser tabs</p>
           <p>Upload an image to be used as a favicon. The image must be a <b>PNG</b> file and it will be resized to 32px x 32px</p> 
           <?php $favicon_settings = array (
-                'id' => 'favicon',
-                'added-scripts' => "
-
-                    var favicon_url = image_url.replace('.png', '-32x32.png')
-                      // If the Image is a png use it. If not flash warning
-                      if(image_url.indexOf('png') < 0 ) {
-                        jQuery('#png-warning').show();
-                      } else {
-                        jQuery('#png-warning').hide();
-                        jQuery('#image_url').val(image_url);
-                        jQuery('#favicon-image').attr('src', favicon_url);
-                        jQuery('#favicon-image').show(); 
-                      }"
+                'id' => 'favicon'
                 ); ?>
           <?php pwd_media_uploader($favicon_settings); ?>
           <div class="submit text-center">
@@ -71,7 +58,6 @@
         </div>
       </div>
     </div>
-  </form>
 </section>
 <section class="videos" id="videos" style="display:none;">
   <div class="container">
@@ -138,8 +124,6 @@ if ( is_wp_error( $feed ) ) {
 </section>
 <section class='image-sizes' id="image-sizes" style="display:none;">
   <div class="container">
-  <form name="form2" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-    <input type="hidden" name="action" value="PWD" />
     <?php $types = get_post_types();
     $type_i = 0;
       foreach( $types as $type ) :
@@ -161,7 +145,7 @@ if ( is_wp_error( $feed ) ) {
       </div>
     <?php endif; ?>
   <?php $type_i++; endif; endforeach; ?>
-    </form>
   </div>
 </section>
+</form>
 </div><!--pwd_toolset_wrap-->
