@@ -162,6 +162,10 @@ echo '</div>';
 }
 //enqueue menu scripts
 function pwd_enqueue_admin_scripts($hook) {
+      if ( 'toplevel_page_pwdtoolbox' != $hook ) {
+        return;
+    }
+
   wp_enqueue_script( 'admin_menu_scripts', plugin_dir_url( __FILE__ ) . 'scripts/admin-menu.js');
 }
 add_action( 'admin_enqueue_scripts', 'pwd_enqueue_admin_scripts' );
