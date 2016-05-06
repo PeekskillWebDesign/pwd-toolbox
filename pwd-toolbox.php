@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.3.0
+Version: 0.3.1
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
@@ -152,6 +152,14 @@ function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
   add_option('login', '#');
+  //Loop through custom post types
+    $types = get_post_types();
+    $type_i = 0;
+    foreach( $types as $type ) {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+        add_option('pwd-'.$type.'-image-size');
+      }
+    }
     echo '<div class="wrap">';
 
     // settings form
@@ -183,7 +191,7 @@ function PWD_admin_action() {
    print_r($_POST);
   //set analytics
    update_option('google_analytics', $_POST['google_analytics']);
-   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
+   
 
    //set favicon
    $favicon_original = $_POST['favicon'];
@@ -194,6 +202,13 @@ function PWD_admin_action() {
   }
    update_option('favicon', $favicon);
    update_option('login', $_POST['login']);
+     //Loop through custom post types
+    $types = get_post_types();
+    $type_i = 0;
+    foreach( $types as $type ) {
+        update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
+  }
+   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
  exit;
 }
 
@@ -270,10 +285,16 @@ jQuery(document).ready(function($){
             <?php else : ?>
               var image_url = uploaded_image.toJSON().url;
             <?php endif; ?>  
+            if(image_url.indexOf('png') < 0 ) {
+              alert('Image must be a png')
+            } else {
+              jQuery('#image_url').val(image_url);
+              jQuery('#<?php echo $settings['id'] ?>-image').attr('src', image_url);
+              jQuery('#<?php echo $settings['id'] ?>-image').show(); 
             jQuery('#<?php echo $settings['id'] ?>-image').attr('src', image_url);
             jQuery('#<?php echo $settings['id'] ?>-image_url').val(image_url);
-            <?php echo $settings['added-scripts'] ?>
             jQuery('#<?php echo $settings['id'] ?>-image').show(); 
+            }
         });
     });
 });
@@ -291,9 +312,9 @@ add_action( 'admin_enqueue_scripts', 'pwd_load_wp_media_files' );
 add_action( 'admin_init', 'pwd_handle_updates' );
 function pwd_handle_updates(){
 require_once( 'pwd-updater.php' );
-if ( is_admin() ) {
-    new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
-}
+  if ( is_admin() ) {
+      new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
+  }
 }
 // ********************** END PLUGIN UPDATER ********************** //
 
@@ -452,8 +473,9 @@ function get_pwd_excerpt($excerpt_length = 55, $id = false, $echo = false) {
 
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 function pwd_login_css() { 
-  $login_logo = get_option('login-logo');
+  $login_logo = get_option('login');
   if( $login_logo !== '#' ) {
+    $logo_size = get_string_between($login_logo, 'x', '.png');
   ?>
     <style type="text/css">
         #login, .login {
@@ -462,6 +484,7 @@ function pwd_login_css() {
         #login h1, .login h1 {
           width:300px;
           margin:0;
+          margin-top:50px;
               margin-left:10px;
         }
         
@@ -472,7 +495,8 @@ function pwd_login_css() {
             background-size: 100% auto;
             background-position: bottom center;
             width:300px;
-            height:300px;
+            height:<?php echo $logo_size ?>px;
+            min-height:100px;
             padding:0;
             margin:0;
             margin-bottom:10px;
@@ -482,8 +506,45 @@ function pwd_login_css() {
   }
 }
 add_action( 'login_enqueue_scripts', 'pwd_login_css' );
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 
+// ********************** 13. START FEATURED IMAGE SIZES ********************** //
+
+function pwd_featured_image_setup($post_type, $pwd_text) {
+  add_meta_box('postimagediv', __('Featured Image'), 'pwd_featured_meta_box', $post_type, 'side', 'default', array('text'=>$pwd_text ));
+
+}
+function pwd_featured_meta_box($post, $metabox) {
+      $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
+    echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID );
+    echo '<p><b>'.$metabox['args']['text'].'</b><br> is the optimal size for this image. Any images larger than this will be cropped to this size at the center.</p>';
+}
+
+ //Loop through custom post types
+function pwd_featured_image() {
+  $types = get_post_types();
+  $type_i = 0;
+  foreach( $types as $type ) {
+    if(!get_option('pwd-'.$type.'-image-size') == '') {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+        pwd_featured_image_setup($type, get_option('pwd-'.$type.'-image-size'));
+      } 
+    }
+  }
+}
+add_action('do_meta_boxes', 'pwd_featured_image');
+
+
+
+// ********************** 13. END FEATURED IMAGE SIZES ********************** //
 
 
 ?>

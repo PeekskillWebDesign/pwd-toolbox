@@ -719,8 +719,11 @@
       bottom: 90px;
       right: 0;
       width: 100%; }
+  .pwd_toolset_wrap .login-logo-card img {
+    max-height: 200px;
+    width: auto; }
   .pwd_toolset_wrap .pwd_admin-card {
-    height: 500px; }
+    min-height: 500px; }
   .pwd_toolset_wrap #favicon-image {
     margin-top: 50px; }
   .pwd_toolset_wrap .video-sizing {
@@ -735,6 +738,8 @@
     left: 0;
     width: 100%;
     height: 100%; }
+  .pwd_toolset_wrap .image-size-card {
+    height: 400px; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {
