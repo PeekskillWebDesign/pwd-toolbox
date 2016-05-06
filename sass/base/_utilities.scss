@@ -79,23 +79,6 @@ a{
 .rounded{
   border-radius:100px !important;
 }
-hr.yellow{
-  border:3px solid $green;
-  width:75px;
-  margin-top:-10px;
-}
-// red highlights
-
-hr.hr-services{
-  margin-top:10px; 
-  border:1px solid $green;
-  width:100%;
-  margin-bottom:10px;
-}
-
-hr.brown{
-  border-color: $brown;
-}
 .cursor {
   cursor:default;
   &:hover{
@@ -113,30 +96,4 @@ hr.brown{
 }
 .round{
   border-radius:100%;
-}
-
-// Back to top
-
-a.back-to-top {
-  background: none;
-  margin: 0;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  display: none;
-  text-decoration: none;
-  text-align: center;
-  color: $green;
-  /*background-color: $gold;*/
-
-  img {
-    display: block;
-    opacity: .8;
-    margin: 0 auto;
-  }
-   
-    &:hover {
-      color: rgba($brown, .8);
-    }
 }

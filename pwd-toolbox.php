@@ -36,6 +36,8 @@ GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 
 //12. LOGIN PAGE EDITS
 
+//13. YOUTUBE FEED
+
 // ********************** TABLE OF CONTENTS ********************** //
 
 
@@ -154,75 +156,22 @@ function PWD_toolbox_options(){
 
     // settings form
     
-    ?>
-<div class ="pwd_toolset_wrap">
-  <div class="container">
-    <div class="row">
-      <div class="twelve columns text-center">
-        <img src="<?php echo plugin_dir_url( __FILE__) ?>/images/PWD-theme-options.png">
-      </div>
-    </div>
-  </div>
-        <form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-        <input type="hidden" name="action" value="PWD" />
-        
+    
+    include( plugin_dir_path( __FILE__ ) . 'templates/admin-menu.php'); 
 
-  <div class="container">
-    <div class="row">
-      <div class="four columns text-center pwd_admin-card">
-        <h5>Google Analytics</h5>
-        <p>Google Analytics can help you track who is visiting your site and how they are interacting with your site. Learn more about Google Analytics <a href="http://www.google.com/analytics/">here</a>.</p><br><br><br>
-        <p>Enter your Google Analytics ID here</p>
-        <p><input type="text" name="google_analytics" placeholder="UA-********-*" value="<?php echo get_option('google_analytics'); ?>"></p>
-        <div class="submit text-center">
-        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
-        </div>
-      </div>
-      <div class="four columns text-center pwd_admin-card">
-        <h5>Login Page Logo</h5>
-        <p>Upload an image to be used as the logo in the login page</p> 
-        <?php $login_settings = array (
-              'id' => 'login',
-              'added-scripts' => "",
-              'image-size' => "medium"
-              ); ?>
-        <?php pwd_media_uploader($login_settings); ?>
-        <div class="submit text-center">
-        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
-        </div>
-      </div>
-      <div class="four columns text-center pwd_admin-card">
-        <h5>Favicon</h5>
-        <p>A favicon is a small image that appears next to your website name in browser tabs</p>
-        <p>Upload an image to be used as a favicon. The image must be a <b>PNG</b> file and it will be resized to 32px x 32px</p> 
-        <?php $favicon_settings = array (
-              'id' => 'favicon',
-              'added-scripts' => "
 
-                  var favicon_url = image_url.replace('.png', '-32x32.png')
-                    // If the Image is a png use it. If not flash warning
-                    if(image_url.indexOf('png') < 0 ) {
-                      jQuery('#png-warning').show();
-                    } else {
-                      jQuery('#png-warning').hide();
-                      jQuery('#image_url').val(image_url);
-                      jQuery('#favicon-image').attr('src', favicon_url);
-                      jQuery('#favicon-image').show(); 
-                    }"
-              ); ?>
-        <?php pwd_media_uploader($favicon_settings); ?>
-        <div class="submit text-center">
-          <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
-        </div>
-      </div>
-    </div>
-  </div>
-        </form>
-
-</div><!--pwd_toolset_wrap-->
-</div>
-<?php
+echo '</div>';
 }
+//enqueue menu scripts
+function pwd_enqueue_admin_scripts($hook) {
+      if ( 'toplevel_page_pwdtoolbox' != $hook ) {
+        return;
+    }
+
+  wp_enqueue_script( 'admin_menu_scripts', plugin_dir_url( __FILE__ ) . 'scripts/admin-menu.js');
+}
+add_action( 'admin_enqueue_scripts', 'pwd_enqueue_admin_scripts' );
+
 // ********************** END ADMIN MENU ********************** //
 
 // ********************** 5. START ADMIN MENU FUNCTIONS ********************** //
@@ -534,6 +483,7 @@ function pwd_login_css() {
 }
 add_action( 'login_enqueue_scripts', 'pwd_login_css' );
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
+
 
 
 ?>
