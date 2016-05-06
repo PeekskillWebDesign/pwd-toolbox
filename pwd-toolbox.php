@@ -152,7 +152,14 @@ function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
   add_option('login', '#');
-  add_option('pwd-page-image-size');
+  //Loop through custom post types
+    $types = get_post_types();
+    $type_i = 0;
+    foreach( $types as $type ) {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+        add_option('pwd-'.$type.'-image-size');
+      }
+    }
     echo '<div class="wrap">';
 
     // settings form
@@ -195,8 +202,12 @@ function PWD_admin_action() {
   }
    update_option('favicon', $favicon);
    update_option('login', $_POST['login']);
-    update_option('pwd-page-image-size', $_POST['pwd-page-image']);
-
+     //Loop through custom post types
+    $types = get_post_types();
+    $type_i = 0;
+    foreach( $types as $type ) {
+        update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
+  }
  exit;
 }
 
@@ -499,10 +510,20 @@ function pwd_featured_meta_box($post, $metabox) {
     echo '<p><b>'.$metabox['args']['text'].'</b><br> is the optimal size for this image. Any images larger than this will be cropped to this size at the center.</p>';
 }
 
+ //Loop through custom post types
 function pwd_featured_image() {
-  pwd_featured_image_setup('page', get_option('pwd-page-image-size'));
+  $types = get_post_types();
+  $type_i = 0;
+  foreach( $types as $type ) {
+    if(!get_option('pwd-'.$type.'-image-size') == '') {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+        pwd_featured_image_setup($type, get_option('pwd-'.$type.'-image-size'));
+      } 
+    }
+  }
 }
 add_action('do_meta_boxes', 'pwd_featured_image');
+
 
 
 // ********************** 13. END FEATURED IMAGE SIZES ********************** //
