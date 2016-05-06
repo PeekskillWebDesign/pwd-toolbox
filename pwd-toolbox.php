@@ -152,6 +152,7 @@ function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
   add_option('login', '#');
+  add_option('pwd-page-image-text');
     echo '<div class="wrap">';
 
     // settings form
@@ -194,6 +195,8 @@ function PWD_admin_action() {
   }
    update_option('favicon', $favicon);
    update_option('login', $_POST['login']);
+    update_option('pwd-page-image-text', $_POST['pwd-page-image']);
+
  exit;
 }
 
@@ -484,6 +487,25 @@ function pwd_login_css() {
 add_action( 'login_enqueue_scripts', 'pwd_login_css' );
 // ********************** 12. START LOGIN PAGE EDITS ********************** //
 
+// ********************** 13. START FEATURED IMAGE SIZES ********************** //
+
+function pwd_featured_image_setup($post_type, $pwd_text) {
+  add_meta_box('postimagediv', __('Featured Image'), 'pwd_featured_meta_box', $post_type, 'side', 'default', array('text'=>$pwd_text ));
+
+}
+function pwd_featured_meta_box($post, $metabox) {
+      $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
+    echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID );
+    echo '<p>'.$metabox['args']['text'].'</p>';
+}
+
+function pwd_featured_image() {
+  pwd_featured_image_setup('page', get_option('pwd-page-image-text'));
+}
+add_action('do_meta_boxes', 'pwd_featured_image');
+
+
+// ********************** 13. END FEATURED IMAGE SIZES ********************** //
 
 
 ?>

@@ -16,6 +16,7 @@
     </div>
   </div>
 </section>
+
 <section class="settings is-visible" id="settings">
   <form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
     <input type="hidden" name="action" value="PWD" />
@@ -63,6 +64,16 @@
                       }"
                 ); ?>
           <?php pwd_media_uploader($favicon_settings); ?>
+          <div class="submit text-center">
+            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
+          </div>
+        </div>
+      </div>
+      <div class ="row">
+        <div class="four columns text-center pwd_admin-card">
+          <h5>Page Featured Image Help Text</h5>
+          <p>This will add text to the featured image metabox on pages</p>
+          <textarea type="text" name="pwd-page-image"><?php echo get_option('pwd-page-image-text') ?></textarea>
           <div class="submit text-center">
             <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
           </div>
