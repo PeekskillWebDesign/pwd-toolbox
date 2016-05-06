@@ -12,6 +12,7 @@
       <div class="text-center pwd_toolset_navbar">
         <a href="#" class="menu-link is-active" name="settings">Settings</a>
         <a href="#" class="menu-link" name="videos">Instructional Videos</a>
+        <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
       </div>
     </div>
   </div>
@@ -64,16 +65,6 @@
                       }"
                 ); ?>
           <?php pwd_media_uploader($favicon_settings); ?>
-          <div class="submit text-center">
-            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
-          </div>
-        </div>
-      </div>
-      <div class ="row">
-        <div class="four columns text-center pwd_admin-card">
-          <h5>Page Featured Image Help Text</h5>
-          <p>This will add text to the featured image metabox on pages</p>
-          <textarea type="text" name="pwd-page-image"><?php echo get_option('pwd-page-image-text') ?></textarea>
           <div class="submit text-center">
             <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
           </div>
@@ -143,6 +134,24 @@ if ( is_wp_error( $feed ) ) {
 <?php endif;
     endif;
 } ?>
+  </div>
+</section>
+<section class='image-sizes' id="image-sizes" style="display:none;">
+  <div class="container">
+  <form name="form2" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+    <input type="hidden" name="action" value="PWD" />
+    <div class ="row">
+      <div class="four columns text-center pwd_admin-card">
+        <h5>Featured Image</h5>
+        <h6>Page</h6>
+        <p>This will add text to the featured image metabox on pages</p>
+        <input type="text" name="pwd-page-image" value="<?php echo get_option('pwd-page-image-size') ?>" placeholder="500px x 500px">
+        <div class="submit text-center">
+          <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
+        </div>
+      </div>
+    </div>
+    </form>
   </div>
 </section>
 </div><!--pwd_toolset_wrap-->

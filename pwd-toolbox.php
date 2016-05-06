@@ -152,7 +152,7 @@ function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
   add_option('login', '#');
-  add_option('pwd-page-image-text');
+  add_option('pwd-page-image-size');
     echo '<div class="wrap">';
 
     // settings form
@@ -195,7 +195,7 @@ function PWD_admin_action() {
   }
    update_option('favicon', $favicon);
    update_option('login', $_POST['login']);
-    update_option('pwd-page-image-text', $_POST['pwd-page-image']);
+    update_option('pwd-page-image-size', $_POST['pwd-page-image']);
 
  exit;
 }
@@ -496,11 +496,11 @@ function pwd_featured_image_setup($post_type, $pwd_text) {
 function pwd_featured_meta_box($post, $metabox) {
       $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
     echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID );
-    echo '<p>'.$metabox['args']['text'].'</p>';
+    echo '<p><b>'.$metabox['args']['text'].'</b><br> is the optimal size for this image. Any images larger than this will be cropped to this size at the center.</p>';
 }
 
 function pwd_featured_image() {
-  pwd_featured_image_setup('page', get_option('pwd-page-image-text'));
+  pwd_featured_image_setup('page', get_option('pwd-page-image-size'));
 }
 add_action('do_meta_boxes', 'pwd_featured_image');
 
