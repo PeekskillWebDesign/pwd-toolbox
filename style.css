@@ -1,13 +1,5 @@
 @charset "UTF-8";
 .pwd_toolset_wrap {
-  /*
-  Theme Name: Doulas of Austin
-  Theme URI:
-  Author: Peekskill Web Design
-  Author URI: http://peekskillwebdesign.com/
-  Description: Designed specifically for Coming Soon.
-  Version: 1.0
-  */
   /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
   /**
    * 1. Set default font family to sans-serif.
@@ -740,6 +732,10 @@
     height: 100%; }
   .pwd_toolset_wrap .image-size-card {
     height: 400px; }
+  .pwd_toolset_wrap #custom-css-field {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 40px; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {

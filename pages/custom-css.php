@@ -1,0 +1,13 @@
+<section class="custom-css" id="custom-css" style="display:none;">
+  <div class="container">
+    <div class="row">
+    	<div class="twelve columns pwd_admin-card">
+    	<p class="text-center">Add your custom css styles here</p>
+	    <textarea name="custom-css-field" id="custom-css-field"><?php echo get_option('pwd-custom-css'); ?></textarea>
+	    	<div class="submit text-center">
+	    		<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
+	    	</div>
+    	</div>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@
   add_option('google_analytics', '');
   add_option('favicon', '#');
   add_option('login', '#');
+  add_option('pwd-custom-css', '');
   //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;
@@ -30,6 +31,7 @@
         <a href="#" class="menu-link is-active" name="settings">Settings</a>
         <a href="#" class="menu-link" name="videos">Instructional Videos</a>
         <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
+        <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
       </div>
     </div>
   </div>
@@ -41,7 +43,8 @@
     //PAGES  
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/settings.php'); 
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/videos.php'); 
-    include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php'); 
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');  
 
     //FOOTER
 
