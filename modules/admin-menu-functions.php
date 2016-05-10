@@ -16,6 +16,8 @@
     $favicon = $favicon_original;
   }
    update_option('favicon', $favicon);
+
+   //login image
    update_option('login', $_POST['login']);
      //Loop through custom post types
     $types = get_post_types();
@@ -23,10 +25,20 @@
     foreach( $types as $type ) {
         update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
   }
+
+  //custom-css
+    update_option('pwd-custom-css', $_POST['custom-css-field']); 
    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
  exit;
 } 
 //printed html 
+
+function pwd_custom_css() {
+  if(get_option('pwd-custom-css') !== '') {
+    echo '<style type="text/css">'.get_option('pwd-custom-css').'</style>';
+  } 
+}
+add_action('wp_head', 'pwd_custom_css');
 
 function PWD_anaylitics_html(){ 
   $google_analytics = get_option('google_analytics');
