@@ -399,13 +399,13 @@
     /* currently ems cause chrome bug misinterpreting rems on body element */
     line-height: 1.6;
     font-weight: 400;
-    font-family: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #000; }
   .pwd_toolset_wrap h1, .pwd_toolset_wrap h2, .pwd_toolset_wrap h3, .pwd_toolset_wrap h4, .pwd_toolset_wrap h5, .pwd_toolset_wrap h6 {
     margin-top: 0;
     margin-bottom: 2rem;
     font-weight: 300;
-    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
   .pwd_toolset_wrap h1 {
     font-size: 4.0rem;
     line-height: 1.2;
