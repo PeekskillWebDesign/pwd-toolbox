@@ -711,12 +711,12 @@
     position: relative; }
     .pwd_toolset_wrap .pwd_admin-card .submit, .pwd_toolset_wrap .video-wrapper .submit {
       position: absolute;
-      bottom: 10px;
+      bottom: 0;
       right: 0;
       width: 100%; }
     .pwd_toolset_wrap .pwd_admin-card .image-uploader-div, .pwd_toolset_wrap .video-wrapper .image-uploader-div {
       position: absolute;
-      bottom: 90px;
+      bottom: 60px;
       right: 0;
       width: 100%; }
   .pwd_toolset_wrap .login-logo-card img {

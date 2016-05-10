@@ -1,0 +1,25 @@
+<?php function pwd_featured_image_setup($post_type, $pwd_text) {
+  add_meta_box('postimagediv', __('Featured Image'), 'pwd_featured_meta_box', $post_type, 'side', 'default', array('text'=>$pwd_text ));
+
+}
+function pwd_featured_meta_box($post, $metabox) {
+      $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
+    echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID );
+    echo '<p><b>'.$metabox['args']['text'].'</b><br> is the optimal size for this image. Any images larger than this will be cropped to this size at the center.</p>';
+}
+
+ //Loop through custom post types
+function pwd_featured_image() {
+  $types = get_post_types();
+  $type_i = 0;
+  foreach( $types as $type ) {
+    if(!get_option('pwd-'.$type.'-image-size') == '') {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+        pwd_featured_image_setup($type, get_option('pwd-'.$type.'-image-size'));
+      } 
+    }
+  }
+}
+add_action('do_meta_boxes', 'pwd_featured_image');
+
+?>
