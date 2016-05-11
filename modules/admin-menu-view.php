@@ -36,21 +36,19 @@
     </div>
   </div>
 </section>
-<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-  <input type="hidden" name="action" value="PWD" />
+
 <?php
 
-    //PAGES  
-    include( plugin_dir_path(dirname(__FILE__)) . 'pages/settings.php'); 
-    include( plugin_dir_path(dirname(__FILE__)) . 'pages/videos.php'); 
+    //PAGES
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/settings.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/videos.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
-    include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');  
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');
 
     //FOOTER
 
 ?>
-</form>
-</div><!--pwd_toolset_wrap--> 
+</div><!--pwd_toolset_wrap-->
 </div>
 <?php
 }
@@ -65,8 +63,8 @@ function pwd_enqueue_admin_scripts($hook) {
 add_action( 'admin_enqueue_scripts', 'pwd_enqueue_admin_scripts' );
 
 //enqueue menu css
-add_action('admin_head', 'pwd_toolset_styling'); //enqueue styles
+add_action('admin_head', 'pwd_toolset_styling');
 
 function pwd_toolset_styling($hook) {
   wp_enqueue_style( 'pwd_toolset_css' , plugin_dir_url(dirname(__FILE__)) . '/style.css' );
-} ?>
+}?>
