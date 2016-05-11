@@ -36,8 +36,7 @@
     </div>
   </div>
 </section>
-<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-  <input type="hidden" name="action" value="PWD" />
+
 <?php
 
     //PAGES
@@ -49,7 +48,6 @@
     //FOOTER
 
 ?>
-</form>
 </div><!--pwd_toolset_wrap-->
 </div>
 <?php

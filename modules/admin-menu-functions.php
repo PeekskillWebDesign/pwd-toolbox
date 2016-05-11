@@ -1,4 +1,4 @@
-<?php function PWD_admin_action() {
+<?php function pwd_settings_admin_action() {
    if ( !current_user_can( 'manage_options' ) )
    {
       wp_die( 'You are not allowed to be on this page.' );
@@ -19,19 +19,34 @@
 
    //login image
    update_option('login', $_POST['login']);
+
+
+   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
+ exit;
+}
+function pwd_images_admin_action() {
+     if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
      //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;
     foreach( $types as $type ) {
         update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
   }
-
-  //custom-css
+     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=image-sizes') );
+ exit;
+}
+function pwd_css_admin_action() {
+     if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+//custom-css
     update_option('pwd-custom-css', $_POST['custom-css-field']);
 
-
-
-   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
+     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=custom-css') );
  exit;
 }
 //printed html

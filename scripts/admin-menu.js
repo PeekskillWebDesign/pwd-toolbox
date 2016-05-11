@@ -4,7 +4,7 @@ jQuery(document).ready(function(){
 	if(getURLParameter('loc') != active && getURLParameter('loc')) {
 		jQuery('.is-active').removeClass('is-active');
 		jQuery('.menu-link[name="'+loc+'"').addClass('is-active');
-		jQuery('.is-visible').fadeOut().removeClass('is-visible');
+		jQuery('.is-visible').hide().removeClass('is-visible');
 		jQuery('#' + loc).fadeIn().addClass('is-visible');
 	}
 
@@ -15,7 +15,7 @@ jQuery(document).ready(function(){
 			jQuery('.is-active').removeClass('is-active');
 			nav_this.addClass('is-active');
 			var tar = nav_this.attr('name');
-			jQuery('.is-visible').fadeOut().removeClass('is-visible');
+			jQuery('.is-visible').hide().removeClass('is-visible');
 			jQuery('#' + tar).fadeIn().addClass('is-visible');
 			changeUrlParam('loc' , tar);
 		}

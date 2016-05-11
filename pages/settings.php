@@ -1,4 +1,6 @@
 <section class="settings is-visible" id="settings">
+  <form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+  <input type="hidden" name="action" value="pwd_settings" />
     <div class="container">
       <div class="row">
         <div class="four columns text-center pwd_admin-card">
@@ -36,4 +38,5 @@
         </div>
       </div>
     </div>
+    </form>
 </section>

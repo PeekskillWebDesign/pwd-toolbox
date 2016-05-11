@@ -1,4 +1,6 @@
 <section class="custom-css" id="custom-css" style="display:none;">
+<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+  <input type="hidden" name="action" value="pwd_css" />
   <div class="container">
     <div class="row">
     	<div class="twelve columns pwd_admin-card">
@@ -10,4 +12,5 @@
     	</div>
     </div>
   </div>
+  </form>
 </section>
