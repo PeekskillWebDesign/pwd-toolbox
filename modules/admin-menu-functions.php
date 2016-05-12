@@ -1,4 +1,6 @@
-<?php function pwd_settings_admin_action() {
+<?php 
+
+function pwd_settings_admin_action() {
    if ( !current_user_can( 'manage_options' ) )
    {
       wp_die( 'You are not allowed to be on this page.' );
@@ -49,6 +51,20 @@ function pwd_css_admin_action() {
      wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=custom-css') );
  exit;
 }
+
+function cpt_add_button_admin_action() {
+  if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+   wp_insert_post(array(
+      'post_title'    => 'test',
+      'post_content' => 'test',
+      'post_type'=>'pwd_cpt',
+    ));
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+ exit;
+}
 //printed html
 
 function pwd_custom_css() {
@@ -87,4 +103,33 @@ function PWD_favicon_html(){
 }
 add_action('wp_head', 'PWD_favicon_html');
 add_action( 'admin_head', 'PWD_favicon_html' );
+
+
+add_action( 'init', 'pwd_cpt_init' );
+function pwd_cpt_init() {
+  global $post;
+  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1 );
+  $loop = new WP_Query( $args );
+  while ( $loop->have_posts() ) : $loop->the_post(); 
+    $labels = array(
+      'name'               => ( get_the_title() ),
+      'singular_name'      => ( get_the_title() ),
+      'menu_name'          => ( get_the_title() ),
+    );
+
+    $args = array(
+      'labels'             => $labels,
+      'public'             => true,
+      'rewrite'            => array( 'slug' => 'book' ),
+      'capability_type'    => 'post',
+      'has_archive'        => true,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+    );
+
+    register_post_type( get_the_title(), $args );
+  endwhile;
+}
+
 ?>

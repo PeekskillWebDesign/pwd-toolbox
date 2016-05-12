@@ -32,6 +32,7 @@
         <a href="#" class="menu-link" name="videos">Instructional Videos</a>
         <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
         <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
+        <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
       </div>
     </div>
   </div>
@@ -44,6 +45,7 @@
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/videos.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/cpt.php');
 
     //FOOTER
 

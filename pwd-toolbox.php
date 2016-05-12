@@ -35,9 +35,13 @@ include( plugin_dir_path( __FILE__ ) . 'modules/custom-excerpt.php');
 
 include( plugin_dir_path( __FILE__ ) . 'modules/login-page.php');
 
-// ********************** 13. IMAGE SIZE HELPERS ********************** //
+// ********************** IMAGE SIZE HELPERS ********************** //
 
 include( plugin_dir_path( __FILE__ ) . 'modules/image-size-helpers.php');
+
+// ********************** CUSTOM POST TYPES ********************** //
+
+include( plugin_dir_path( __FILE__ ) . 'modules/cpt-support.php');
 
 // ********************** PLUGIN UPDATER ********************** //
 
