@@ -671,28 +671,11 @@
     border-width: 0; }
   .pwd_toolset_wrap input[type="checkbox"],
   .pwd_toolset_wrap input[type="radio"] {
-    display: inline; }
+    display: inline-block; }
   .pwd_toolset_wrap label > .label-body {
     display: inline-block;
     margin-left: .5rem;
     font-weight: normal; }
-  .pwd_toolset_wrap #ninja_forms_form_1_all_fields_wrap {
-    padding-top: 2rem; }
-  .pwd_toolset_wrap .field-wrap:not(:last-child) {
-    display: inline-block; }
-    .pwd_toolset_wrap .field-wrap:not(:last-child) input {
-      height: 3.5rem; }
-      .pwd_toolset_wrap .field-wrap:not(:last-child) input:focus {
-        outline: none;
-        border: 1px solid #ddd; }
-  .pwd_toolset_wrap #ninja_forms_field_8_div_wrap {
-    margin-right: 1rem; }
-  .pwd_toolset_wrap #ninja_forms_field_9_div_wrap {
-    margin-left: 1rem; }
-  .pwd_toolset_wrap .ninja-forms-required-items {
-    display: none; }
-  .pwd_toolset_wrap .ninja-forms-req-symbol {
-    color: #ddd !important; }
   .pwd_toolset_wrap .pwd_admin-card, .pwd_toolset_wrap .video-wrapper {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -736,6 +719,12 @@
     height: 400px;
     width: 100%;
     margin-bottom: 40px; }
+  .pwd_toolset_wrap .checkbox_label {
+    display: inline; }
+  .pwd_toolset_wrap .cpt_input {
+    margin-bottom: 20px; }
+  .pwd_toolset_wrap .cpt_supports {
+    margin-bottom: 60px; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {

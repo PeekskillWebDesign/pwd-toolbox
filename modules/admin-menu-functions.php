@@ -58,13 +58,52 @@ function cpt_add_button_admin_action() {
       wp_die( 'You are not allowed to be on this page.' );
    }
    wp_insert_post(array(
-      'post_title'    => 'test',
-      'post_content' => 'test',
+      'post_title'    => 'new-cpt',
+      'post_content' => ' ',
       'post_type'=>'pwd_cpt',
     ));
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
  exit;
 }
+function cpt_delete_button_admin_action() {
+  if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+
+    wp_delete_post( $_POST['the-id'], true);
+    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+ exit;
+}
+function pwd_cpt_admin_action() {
+    if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+  global $post;
+  $index = 0;
+  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1 );
+  $loop = new WP_Query( $args );
+  while ( $loop->have_posts() ) : $loop->the_post(); 
+
+    if(isset($_POST['name'.$index])) {
+      wp_update_post(array('ID' => get_the_id(), 'post_title' => $_POST['name'.$index]));
+    }
+  if(isset($_POST['plural'.$index])) {
+    update_post_meta( get_the_id(), '_plural', sanitize_text_field( $_POST['plural'.$index] ) );
+  }
+  if(isset($_POST['single_cpt'.$index])) {
+    update_post_meta( get_the_id(), '_single', sanitize_text_field( $_POST['single_cpt'.$index] ) );
+  }
+  if(isset($_POST['dashicon'.$index])) {
+    update_post_meta( get_the_id(), '_dashicon', sanitize_text_field( $_POST['dashicon'.$index] ) );
+  }
+  $index++; endwhile;
+     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+ exit;
+}
+
+
 //printed html
 
 function pwd_custom_css() {
@@ -110,11 +149,15 @@ function pwd_cpt_init() {
   global $post;
   $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1 );
   $loop = new WP_Query( $args );
-  while ( $loop->have_posts() ) : $loop->the_post(); 
+  while ( $loop->have_posts() ) : $loop->the_post();
+  $plural_cpt = get_post_meta( $post->ID, '_plural', true );
+  $single_cpt = get_post_meta( $post->ID, '_single', true );
+  $dashicon_cpt = get_post_meta( $post->ID, '_dashicon', true ); 
+
     $labels = array(
       'name'               => ( get_the_title() ),
-      'singular_name'      => ( get_the_title() ),
-      'menu_name'          => ( get_the_title() ),
+      'singular_name'      => ( $single_cpt ),
+      'menu_name'          => ( $plural_cpt ),
     );
 
     $args = array(
@@ -125,6 +168,7 @@ function pwd_cpt_init() {
       'has_archive'        => true,
       'hierarchical'       => false,
       'menu_position'      => null,
+      'menu_icon'          => $dashicon_cpt,
       'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
     );
 

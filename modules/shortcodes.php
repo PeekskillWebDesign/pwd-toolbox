@@ -80,7 +80,7 @@ function tgm_io_shortcode_empty_paragraph_fix( $content ) {
 function pwd_enqueue_plugin_scripts($plugin_array)
 {
     //enqueue TinyMCE plugin script with its ID.
-    $plugin_array["shortcode_plugin"] =  plugin_dir_url( __FILE__) . "js/Shortcodes_js.js";
+    $plugin_array["shortcode_plugin"] =  plugin_dir_url(dirname(__FILE__)) . "js/Shortcodes_js.js";
     return $plugin_array;
 }
 
