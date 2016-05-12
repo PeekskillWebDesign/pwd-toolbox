@@ -7,7 +7,7 @@
     $types = get_post_types();
     $type_i = 0;
     foreach( $types as $type ) {
-      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf' && $type != 'pwd_cpt') {
         add_option('pwd-'.$type.'-image-size');
       }
     }

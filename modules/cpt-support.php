@@ -7,7 +7,7 @@ function plugin_create_post_type() {
         'name' => __( 'cpt' ),
         'singular_name' => __( 'cpt' )
       ),
-      'public' => true,
+      'public' => false,
       'has_archive' => true,
       'supports' => array('title')
     )
