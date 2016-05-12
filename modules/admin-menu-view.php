@@ -1,13 +1,13 @@
 <?php function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
-  add_option('login', '#');
+  add_option('login', 'images/wordpress-logo.svg?ver=20131107');
   add_option('pwd-custom-css', '');
   //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;
     foreach( $types as $type ) {
-      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf') {
+      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf' && $type != 'pwd_cpt') {
         add_option('pwd-'.$type.'-image-size');
       }
     }
@@ -32,6 +32,7 @@
         <a href="#" class="menu-link" name="videos">Instructional Videos</a>
         <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
         <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
+        <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
       </div>
     </div>
   </div>
@@ -44,6 +45,7 @@
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/videos.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/cpt.php');
 
     //FOOTER
 

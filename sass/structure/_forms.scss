@@ -62,37 +62,10 @@ fieldset {
   border-width: 0; }
 input[type="checkbox"],
 input[type="radio"] {
-  display: inline; }
+  display: inline-block; 
+  }
 label > .label-body {
   display: inline-block;
   margin-left: .5rem;
   font-weight: normal; }
 
-
-#ninja_forms_form_1_all_fields_wrap {
-  padding-top:2rem;
-}
-.field-wrap:not(:last-child){
-  display: inline-block;
-  input{
-    height: 3.5rem;
-    &:focus {
-      outline: none;
-      border: 1px solid $accent;
-    }
-  }
-}
-#ninja_forms_field_8_div_wrap {
-  margin-right: 1rem;
-}
-#ninja_forms_field_9_div_wrap {
-  margin-left: 1rem;
-}
-
-.ninja-forms-required-items {
-  display: none;
-}
-
-.ninja-forms-req-symbol {
-  color: $accent !important;
-}
