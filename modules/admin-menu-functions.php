@@ -82,7 +82,7 @@ function pwd_cpt_admin_action() {
    }
   global $post;
   $index = 0;
-  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1 );
+  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
   $loop = new WP_Query( $args );
   while ( $loop->have_posts() ) : $loop->the_post(); 
 
@@ -97,6 +97,54 @@ function pwd_cpt_admin_action() {
   }
   if(isset($_POST['dashicon'.$index])) {
     update_post_meta( get_the_id(), '_dashicon', sanitize_text_field( $_POST['dashicon'.$index] ) );
+  }
+    if(isset($_POST['dashicon'.$index])) {
+    update_post_meta( get_the_id(), '_dashicon', sanitize_text_field( $_POST['dashicon'.$index] ) );
+  }
+  if($_POST['public'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_public', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_public', ' ' );
+  }
+  if($_POST['hierarchial'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_hierarchial', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_hierarchial', ' ' );
+  }
+  if($_POST['archive'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_archive', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_archive', ' ' );
+  }
+    if($_POST['title'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_title', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_title', ' ' );
+  }
+  if($_POST['editor'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_editor', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_editor', ' ' );
+  }
+  if($_POST['author'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_author', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_author', ' ' );
+  }
+  if($_POST['thumbnail'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_thumbnail', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_thumbnail', ' ' );
+  }
+  if($_POST['excerpt'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_excerpt', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_excerpt', ' ' );
+  }
+    if($_POST['comments'.$index] == 'yes') {
+    update_post_meta( get_the_id(), '_comments', 'checked' );
+  } else {
+    update_post_meta( get_the_id(), '_comments', ' ' );
   }
   $index++; endwhile;
      wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
@@ -147,12 +195,59 @@ add_action( 'admin_head', 'PWD_favicon_html' );
 add_action( 'init', 'pwd_cpt_init' );
 function pwd_cpt_init() {
   global $post;
-  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1 );
+  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
   $loop = new WP_Query( $args );
   while ( $loop->have_posts() ) : $loop->the_post();
   $plural_cpt = get_post_meta( $post->ID, '_plural', true );
   $single_cpt = get_post_meta( $post->ID, '_single', true );
-  $dashicon_cpt = get_post_meta( $post->ID, '_dashicon', true ); 
+  $dashicon_cpt = get_post_meta( $post->ID, '_dashicon', true );
+  if(get_post_meta( $post->ID, '_public', true ) == 'checked'){
+    $public_cpt = true;
+  } else {
+    $public_cpt = false;
+  }
+  if(get_post_meta( $post->ID, '_hierarchial', true ) == 'checked'){
+    $hierarchial_cpt = true;
+  } else {
+    $hierarchial_cpt = false;
+  }
+  if(get_post_meta( $post->ID, '_archive', true ) == 'checked'){
+    $archive_cpt = true;
+  } else {
+    $archive_cpt = false;
+  }
+    if(get_post_meta( $post->ID, '_title', true ) == 'checked'){
+    $title_cpt = 'title';
+  } else {
+    $title_cpt = '';
+  }
+  if(get_post_meta( $post->ID, '_editor', true ) == 'checked'){
+    $editor_cpt = 'editor';
+  } else {
+    $editor_cpt = '';
+  }
+  if(get_post_meta( $post->ID, '_author', true ) == 'checked'){
+    $author_cpt = 'author';
+  } else {
+    $author_cpt = '';
+  }
+  if(get_post_meta( $post->ID, '_thumbnail', true ) == 'checked'){
+    $thumbnail_cpt = 'thumbnail';
+  } else {
+    $thumbnail_cpt = '';
+  }
+  if(get_post_meta( $post->ID, '_excerpt', true ) == 'checked'){
+    $excerpt_cpt = 'excerpt';
+  } else {
+    $excerpt_cpt = '';
+  }
+  if(get_post_meta( $post->ID, '_comments', true ) == 'checked'){
+    $comments_cpt = 'comments';
+  } else {
+    $comments_cpt = '';
+  }
+
+  if(get_the_title() !== 'new-cpt'){
 
     $labels = array(
       'name'               => ( get_the_title() ),
@@ -162,17 +257,18 @@ function pwd_cpt_init() {
 
     $args = array(
       'labels'             => $labels,
-      'public'             => true,
-      'rewrite'            => array( 'slug' => 'book' ),
+      'public'             => $public_cpt,
+      'rewrite'            => array( 'slug' => get_the_title() ),
       'capability_type'    => 'post',
-      'has_archive'        => true,
-      'hierarchical'       => false,
+      'has_archive'        => $archive_cpt,
+      'hierarchical'       => $hierarchial_cpt,
       'menu_position'      => null,
       'menu_icon'          => $dashicon_cpt,
-      'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+      'supports'           => array( $title_cpt, $editor_cpt, $author_cpt, $thumbnail_cpt, $excerpt_cpt, $comments_cpt )
     );
 
     register_post_type( get_the_title(), $args );
+  }
   endwhile;
 }
 
