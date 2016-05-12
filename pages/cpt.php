@@ -89,15 +89,25 @@
 	  <?php $index++; endwhile; ?> 
 		</form>
   </div>
-<!--   <div class="container">
+
+ <div class="container">
 	  <div class="row">
   		<form name="cpt-delete-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 		  <input type="hidden" name="action" value="cpt_delete_button" />
 		    <div class="text-center" style="margin-top:30px;">
+		    	<h5>Delete a Custom Post Type</h5>
+		    <select name="the-id" >
+		    <?php 
+					$index = 0;
+					$args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
+					$loop = new WP_Query( $args );
+					while ( $loop->have_posts() ) : $loop->the_post(); ?>
+					<option value="<?php echo get_the_id() ?>"><?php echo get_the_title(); ?></option>
+					<?php $index++; endwhile; ?> 
+		    </select><br><br>
 	          <input type="submit" name="Submit" class="button-warn" value="Delete" />
-	          	<input type="hidden" name="the-id" value="<?php echo get_the_id(); ?>" />
 	        </div>
 		  </form>
 		</div>
-	</div> -->
+	</div>
 </section>

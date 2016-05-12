@@ -1,7 +1,7 @@
 <?php function PWD_toolbox_options(){
   add_option('google_analytics', '');
   add_option('favicon', '#');
-  add_option('login', '#');
+  add_option('login', 'images/wordpress-logo.svg?ver=20131107');
   add_option('pwd-custom-css', '');
   //Loop through custom post types
     $types = get_post_types();
