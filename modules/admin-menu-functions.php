@@ -63,11 +63,17 @@ function cpt_add_button_admin_action() {
       wp_die( 'You are not allowed to be on this page.' );
    }
   if (!wp_verify_nonce($retrieved_nonce)){
-   wp_insert_post(array(
+    $args = array(
       'post_title'    => 'new-cpt',
       'post_content' => ' ',
       'post_type'=>'pwd_cpt',
-    ));
+    );
+   $pwd_new_post = wp_insert_post($args);
+
+    update_post_meta( $pwd_new_post, '_plural', 'New Cpts', true );
+    update_post_meta( $pwd_new_post, '_single', 'New Cpt', true );
+    update_post_meta( $pwd_new_post, '_dashicon', 'dashicions-admin-post', true );
+
  }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
  exit;
