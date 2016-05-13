@@ -1,6 +1,7 @@
 <section class='image-sizes' id="image-sizes" style="display:none;">
   <form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
   <input type="hidden" name="action" value="pwd_images" />
+  <?php wp_nonce_field()?>
   <div class="container">
     <?php $types = get_post_types();
     $type_i = 0;

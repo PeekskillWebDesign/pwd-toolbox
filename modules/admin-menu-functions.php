@@ -5,22 +5,24 @@ function pwd_settings_admin_action() {
    {
       wp_die( 'You are not allowed to be on this page.' );
    }
-   print_r($_POST);
-  //set analytics
-   update_option('google_analytics', $_POST['google_analytics']);
+   if (!wp_verify_nonce($retrieved_nonce)){
+     print_r($_POST);
+    //set analytics
+     update_option('google_analytics', $_POST['google_analytics']);
 
 
-   //set favicon
-   $favicon_original = $_POST['favicon'];
-   if(strpos($favicon_original, '32x32') == false) {
-    $favicon = str_replace( '.png', '-32x32.png', $favicon_original);
-  } else {
-    $favicon = $favicon_original;
+     //set favicon
+     $favicon_original = $_POST['favicon'];
+     if(strpos($favicon_original, '32x32') == false) {
+      $favicon = str_replace( '.png', '-32x32.png', $favicon_original);
+    } else {
+      $favicon = $favicon_original;
+    }
+     update_option('favicon', $favicon);
+
+     //login image
+     update_option('login', $_POST['login']);
   }
-   update_option('favicon', $favicon);
-
-   //login image
-   update_option('login', $_POST['login']);
 
 
    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox') );
@@ -31,12 +33,14 @@ function pwd_images_admin_action() {
    {
       wp_die( 'You are not allowed to be on this page.' );
    }
+   if (!wp_verify_nonce($retrieved_nonce)){
      //Loop through custom post types
-    $types = get_post_types();
-    $type_i = 0;
-    foreach( $types as $type ) {
-        update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
-  }
+      $types = get_post_types();
+      $type_i = 0;
+      foreach( $types as $type ) {
+          update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
+      }
+    }
      wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=image-sizes') );
  exit;
 }
@@ -45,10 +49,11 @@ function pwd_css_admin_action() {
    {
       wp_die( 'You are not allowed to be on this page.' );
    }
-//custom-css
+   if (!wp_verify_nonce($retrieved_nonce)){
+    //custom-css
     update_option('pwd-custom-css', $_POST['custom-css-field']);
-
-     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=custom-css') );
+  }
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=custom-css') );
  exit;
 }
 
@@ -57,11 +62,19 @@ function cpt_add_button_admin_action() {
    {
       wp_die( 'You are not allowed to be on this page.' );
    }
-   wp_insert_post(array(
+  if (!wp_verify_nonce($retrieved_nonce)){
+    $args = array(
       'post_title'    => 'new-cpt',
       'post_content' => ' ',
       'post_type'=>'pwd_cpt',
-    ));
+    );
+   $pwd_new_post = wp_insert_post($args);
+
+    update_post_meta( $pwd_new_post, '_plural', 'New Cpts', true );
+    update_post_meta( $pwd_new_post, '_single', 'New Cpt', true );
+    update_post_meta( $pwd_new_post, '_dashicon', 'dashicons-admin-post', true );
+
+ }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
  exit;
 }
@@ -69,10 +82,12 @@ function cpt_delete_button_admin_action() {
   if ( !current_user_can( 'manage_options' ) )
    {
       wp_die( 'You are not allowed to be on this page.' );
-   }
-
+  }
+  if (!wp_verify_nonce($retrieved_nonce)){
     wp_delete_post( $_POST['the-id'], true);
-    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+  }
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+
  exit;
 }
 function pwd_cpt_admin_action() {
@@ -80,44 +95,46 @@ function pwd_cpt_admin_action() {
    {
       wp_die( 'You are not allowed to be on this page.' );
    }
-  function pwd_cpt_action_checkbox($item, $index) {
-    if($_POST[$item.$index] == 'yes') {
-      update_post_meta( get_the_id(), '_'.$item, 'checked' );
-    } else {
-      update_post_meta( get_the_id(), '_'.$item, ' ' );
-    }
-   }
-  function pwd_cpt_action_text_field($item, $index) {
-    if(isset($_POST[$item.$index])) {
-      update_post_meta( get_the_id(), '_'.$item, sanitize_text_field( $_POST[$item.$index] ) );
-    }
+   if (!wp_verify_nonce($retrieved_nonce)){
+      function pwd_cpt_action_checkbox($item, $index) {
+        if($_POST[$item.$index] == 'yes') {
+          update_post_meta( get_the_id(), '_'.$item, 'checked' );
+        } else {
+          update_post_meta( get_the_id(), '_'.$item, ' ' );
+        }
+       }
+      function pwd_cpt_action_text_field($item, $index) {
+        if(isset($_POST[$item.$index])) {
+          update_post_meta( get_the_id(), '_'.$item, sanitize_text_field( $_POST[$item.$index] ) );
+        }
+      }
+      global $post;
+      $index = 0;
+      $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
+      $loop = new WP_Query( $args );
+      while ( $loop->have_posts() ) : $loop->the_post(); 
+
+      if(isset($_POST['name'.$index])) {
+          wp_update_post(array('ID' => get_the_id(), 'post_title' => $_POST['name'.$index]));
+        }
+
+      pwd_cpt_action_text_field('plural', $index);
+      pwd_cpt_action_text_field('single', $index);
+      pwd_cpt_action_text_field('dashicon', $index);
+      pwd_cpt_action_text_field('plural', $index);
+
+      pwd_cpt_action_checkbox('public', $index);
+      pwd_cpt_action_checkbox('hierarchial', $index);
+      pwd_cpt_action_checkbox('archive', $index);
+      pwd_cpt_action_checkbox('title', $index);
+      pwd_cpt_action_checkbox('editor', $index);
+      pwd_cpt_action_checkbox('author', $index);
+      pwd_cpt_action_checkbox('thumbnail', $index);
+      pwd_cpt_action_checkbox('excerpt', $index);
+      pwd_cpt_action_checkbox('comments', $index);
+      $index++; endwhile;
   }
-  global $post;
-  $index = 0;
-  $args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
-  $loop = new WP_Query( $args );
-  while ( $loop->have_posts() ) : $loop->the_post(); 
-
-  if(isset($_POST['name'.$index])) {
-      wp_update_post(array('ID' => get_the_id(), 'post_title' => $_POST['name'.$index]));
-    }
-
-  pwd_cpt_action_text_field('plural', $index);
-  pwd_cpt_action_text_field('single_cpt', $index);
-  pwd_cpt_action_text_field('dashicon', $index);
-  pwd_cpt_action_text_field('plural', $index);
-
-  pwd_cpt_action_checkbox('public', $index);
-  pwd_cpt_action_checkbox('hierarchial', $index);
-  pwd_cpt_action_checkbox('archive', $index);
-  pwd_cpt_action_checkbox('title', $index);
-  pwd_cpt_action_checkbox('editor', $index);
-  pwd_cpt_action_checkbox('author', $index);
-  pwd_cpt_action_checkbox('thumbnail', $index);
-  pwd_cpt_action_checkbox('excerpt', $index);
-  pwd_cpt_action_checkbox('comments', $index);
-  $index++; endwhile;
-     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
  exit;
 }
 
