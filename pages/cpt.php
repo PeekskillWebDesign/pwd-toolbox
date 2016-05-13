@@ -12,21 +12,21 @@
 		  <?php 
 		  	$index = 0;
 		  	$args = array( 'post_type' => 'pwd_cpt', 'posts_per_page' => -1, 'order' => 'ASC', 'orderby' => 'ID' );
-			$loop = new WP_Query( $args );
-			while ( $loop->have_posts() ) : $loop->the_post(); 
-			$plural_cpt = get_post_meta( get_the_id(), '_plural', true );
-			$single_cpt = get_post_meta( get_the_id(), '_single', true );
-			$dashicon_cpt = get_post_meta( get_the_id(), '_dashicon', true );
-			$public_cpt = get_post_meta( get_the_id(), '_public', true );
-			$hierarchial_cpt = get_post_meta( get_the_id(), '_hierarchial', true );
-			$archive_cpt = get_post_meta( get_the_id(), '_archive', true );
-			$title_cpt = get_post_meta( get_the_id(), '_title', true );
-			$editor_cpt = get_post_meta( get_the_id(), '_editor', true );
-			$author_cpt = get_post_meta( get_the_id(), '_author', true );
-			$thumbnail_cpt = get_post_meta( get_the_id(), '_thumbnail', true );
-			$excerpt_cpt = get_post_meta( get_the_id(), '_excerpt', true );
-			$comments_cpt = get_post_meta( get_the_id(), '_comments', true );
-			?>
+				$loop = new WP_Query( $args );
+				while ( $loop->have_posts() ) : $loop->the_post(); 
+					$plural_cpt = get_post_meta( get_the_id(), '_plural', true );
+					$single_cpt = get_post_meta( get_the_id(), '_single', true );
+					$dashicon_cpt = get_post_meta( get_the_id(), '_dashicon', true );
+					$public_cpt = get_post_meta( get_the_id(), '_public', true );
+					$hierarchial_cpt = get_post_meta( get_the_id(), '_hierarchial', true );
+					$archive_cpt = get_post_meta( get_the_id(), '_archive', true );
+					$title_cpt = get_post_meta( get_the_id(), '_title', true );
+					$editor_cpt = get_post_meta( get_the_id(), '_editor', true );
+					$author_cpt = get_post_meta( get_the_id(), '_author', true );
+					$thumbnail_cpt = get_post_meta( get_the_id(), '_thumbnail', true );
+					$excerpt_cpt = get_post_meta( get_the_id(), '_excerpt', true );
+					$comments_cpt = get_post_meta( get_the_id(), '_comments', true );
+					?>
 			<?php if($index % 4 == 0) :?>
 		    	<div class="row">
 		    <?php endif;?>
@@ -41,8 +41,8 @@
 				    		</div>
 
 				    		<div class="cpt_input">
-					    		<label for="single_cpt<?php echo $index ?>">Singular Name</label>
-					    		<input type="text" name="single_cpt<?php echo $index ?>" value="<?php echo $single_cpt ?>" />
+					    		<label for="single<?php echo $index ?>">Singular Name</label>
+					    		<input type="text" name="single<?php echo $index ?>" value="<?php echo $single_cpt ?>" />
 				    		</div>
 
 				    		<div class="cpt_input">
