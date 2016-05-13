@@ -72,7 +72,7 @@ function cpt_add_button_admin_action() {
 
     update_post_meta( $pwd_new_post, '_plural', 'New Cpts', true );
     update_post_meta( $pwd_new_post, '_single', 'New Cpt', true );
-    update_post_meta( $pwd_new_post, '_dashicon', 'dashicions-admin-post', true );
+    update_post_meta( $pwd_new_post, '_dashicon', 'dashicons-admin-post', true );
 
  }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
