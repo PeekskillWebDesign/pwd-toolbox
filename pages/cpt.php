@@ -99,18 +99,21 @@
 
  <div class="container">
 	  <div class="row">
-  		<form name="cpt-delete-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-		  <input type="hidden" name="action" value="cpt_delete_button" />
-		    <div class="text-center" style="margin-top:30px;">
-		    	<h5>Delete a Custom Post Type</h5>
-		    <select name="the-id" >
-					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-					<option value="<?php echo get_the_id() ?>"><?php echo get_the_title(); ?></option>
-					<?php $index++; endwhile; ?> 
-		    </select><br><br>
-	          <input type="submit" name="Submit" class="button-warn" value="Delete" />
-	        </div>
-		  </form>
+	  	<div class="twelve columns pwd_admin-card cpt_delete_section">
+	  		<form name="cpt-delete-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+			  <input type="hidden" name="action" value="cpt_delete_button" />
+			    <div class="text-center" style="margin-top:30px;">
+			    	<h6 style="display:inline;">Delete the</h6>
+			    <select name="the-id" >
+						<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+						<option value="<?php echo get_the_id() ?>"><?php echo get_the_title(); ?></option>
+						<?php $index++; endwhile; ?> 
+			    </select>
+			    <h6 style="display:inline;">custom post type</h6><br><br>
+		          <input type="submit" name="Submit" class="button-warn" value="Delete" />
+		        </div>
+			  </form>
+		  </div>
 		</div>
 	</div>
 

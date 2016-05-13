@@ -719,6 +719,8 @@
     height: 400px;
     width: 100%;
     margin-bottom: 40px; }
+  .pwd_toolset_wrap .cpt_delete_section {
+    min-height: 0; }
   .pwd_toolset_wrap .checkbox_label {
     display: inline; }
   .pwd_toolset_wrap .cpt_input {
@@ -747,5 +749,13 @@
       .pwd_toolset_wrap .pwd_toolset_navbar a:focus {
         outline: none;
         box-shadow: none; }
+  .pwd_toolset_wrap .pwd_toolset_admin_nav p {
+    display: inline;
+    color: #aaa;
+    margin-right: 10px; }
+  .pwd_toolset_wrap .pwd_toolset_admin_nav a {
+    color: #aaa;
+    text-decoration: underline;
+    margin-right: 10px; }
 
 /*# sourceMappingURL=style.css.map */

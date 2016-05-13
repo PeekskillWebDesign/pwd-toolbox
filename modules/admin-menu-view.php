@@ -30,9 +30,6 @@
       <div class="text-center pwd_toolset_navbar">
         <a href="#" class="menu-link is-active" name="settings">Settings</a>
         <a href="#" class="menu-link" name="videos">Instructional Videos</a>
-        <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
-        <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
-        <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
       </div>
     </div>
   </div>
@@ -50,6 +47,18 @@
     //FOOTER
 
 ?>
+<section id="admin-menu">
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns pwd_toolset_admin_nav">
+        <p>For developer use only:
+        <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
+        <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
+        <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
+      </div>
+    </div>
+  </div>
+</section>
 </div><!--pwd_toolset_wrap-->
 </div>
 <?php
