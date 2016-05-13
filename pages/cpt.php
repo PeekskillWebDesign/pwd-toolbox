@@ -1,6 +1,7 @@
 <section class="cpt" id="cpt" style="display:none;">
 	  <form name="cpt-add-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 	  <input type="hidden" name="action" value="cpt_add_button" />
+	  <?php wp_nonce_field()?>
 	    <div class="submit text-center">
           <input type="submit" name="Submit" class="button-primary" value="Add Custom Post Type" />
         </div>
@@ -8,6 +9,7 @@
 	
 		    		<form name="cpt_form_<?php echo $index ?>" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 	  					<input type="hidden" name="action" value="pwd_cpt" />
+	  						<?php wp_nonce_field()?>
 		  <div class="container">
 		  <?php 
 		  	$index = 0;
@@ -102,6 +104,7 @@
 	  	<div class="twelve columns pwd_admin-card cpt_delete_section">
 	  		<form name="cpt-delete-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 			  <input type="hidden" name="action" value="cpt_delete_button" />
+			  <?php wp_nonce_field()?>
 			    <div class="text-center" style="margin-top:30px;">
 			    	<h6 style="display:inline;">Delete the</h6>
 			    <select name="the-id" >
