@@ -3,6 +3,8 @@
   add_option('favicon', '#');
   add_option('login', 'images/wordpress-logo.svg?ver=20131107');
   add_option('pwd-custom-css', '');
+  add_option('maintenance-mode', '');
+  add_option('maintenance-mode-message', 'Maintenance Mode Message'); 
   //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;
@@ -43,6 +45,7 @@
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/cpt.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/maintenance-mode.php');
 
     //FOOTER
 
@@ -55,6 +58,7 @@
         <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
         <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
         <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
+        <a href="#" class="menu-link" name="maintenance">Maintenance Mode</a>
       </div>
     </div>
   </div>

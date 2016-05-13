@@ -53,3 +53,22 @@ min-height: 500px;
 .cpt_delete_section{
 	min-height:0;
 }
+.maintenance .pwd_admin-card{
+	padding-bottom: 90px;
+}
+.maintenance {
+textarea{
+	width: 70%;
+	height:300px;
+}
+img{
+	max-width: 50%;
+	max-height:300px;
+}
+	.image-uploader-div{
+		position:relative;
+		bottom:auto;
+		right:auto;
+		width:auto;
+	}
+}

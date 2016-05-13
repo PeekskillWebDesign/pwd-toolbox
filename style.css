@@ -721,6 +721,19 @@
     margin-bottom: 40px; }
   .pwd_toolset_wrap .cpt_delete_section {
     min-height: 0; }
+  .pwd_toolset_wrap .maintenance .pwd_admin-card {
+    padding-bottom: 90px; }
+  .pwd_toolset_wrap .maintenance textarea {
+    width: 70%;
+    height: 300px; }
+  .pwd_toolset_wrap .maintenance img {
+    max-width: 50%;
+    max-height: 300px; }
+  .pwd_toolset_wrap .maintenance .image-uploader-div {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: auto; }
   .pwd_toolset_wrap .checkbox_label {
     display: inline; }
   .pwd_toolset_wrap .cpt_input {
