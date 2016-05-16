@@ -168,8 +168,9 @@ if (!wp_verify_nonce($retrieved_nonce)){
     wp_delete_post(get_option('maintenance_mode'), true);
     update_option('maintenance-mode', '');
   } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
-    update_option('maintenance-mode-message', $_POST['message']);
   }
+    update_option('maintenance-mode-message', $_POST['message']);
+    update_option('maintenance-mode-image', $_POST['maintenance']);
 }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
  exit;
