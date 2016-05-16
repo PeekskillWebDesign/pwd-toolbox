@@ -5,6 +5,7 @@
   add_option('pwd-custom-css', '');
   add_option('maintenance-mode', '');
   add_option('maintenance-mode-message', 'Maintenance Mode Message'); 
+  add_option('maintenance-mode-page');
   //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;

@@ -43,6 +43,11 @@ include( plugin_dir_path( __FILE__ ) . 'modules/image-size-helpers.php');
 
 include( plugin_dir_path( __FILE__ ) . 'modules/cpt-support.php');
 
+
+// ********************** MAINTENANCE MODE ********************** //
+
+include( plugin_dir_path( __FILE__ ) . 'modules/maintenance-support.php');
+
 // ********************** PLUGIN UPDATER ********************** //
 
 

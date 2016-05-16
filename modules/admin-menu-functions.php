@@ -137,7 +137,43 @@ function pwd_cpt_admin_action() {
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
  exit;
 }
+function pwd_maintenance_admin_action(){
+    if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+if (!wp_verify_nonce($retrieved_nonce)){
 
+  if(get_option('maintenance-mode') == '' && $_POST['switch'] == 'on'){
+    $new_page = array(
+    'post_title' => 'Coming Soon',
+    'post_name' => 'coming-soon',
+    'post_status' => 'publish',
+    'post_type' => 'page',
+    'post_author' => $user_ID,
+    'post_parent' => 0,
+    'menu_order' => 0,
+    'page_template' => 'page-maintenance-mode.php'
+    );
+
+    $maintenance_page = wp_insert_post( $new_page );
+    //if we have created any new pages, then flush...
+    if ( $newpages ) {
+      wp_cache_delete( 'all_page_ids', 'pages' );
+      $wp_rewrite->flush_rules();
+    }
+    update_option('maintenance-mode', 'on');
+    update_option('maintenance-mode-page', $maintenance_page);
+  } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == '') {
+    wp_delete_post(get_option('maintenance_mode'), true);
+    update_option('maintenance-mode', '');
+  } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
+    update_option('maintenance-mode-message', $_POST['message']);
+  }
+}
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
+ exit;
+}
 
 //printed html
 
