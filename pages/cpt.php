@@ -32,7 +32,8 @@
 			<?php if($index % 4 == 0) :?>
 		    	<div class="row">
 		    <?php endif;?>
-		    	<div class="three columns pwd_admin-card">
+		    <div class="four columns pwd_admin-card">
+		    	<div class="six columns">
 				    		<div class="cpt_input">
 					    		<label for="name<?php echo $index ?>">Slug</label>
 					    		<input type="text" name="name<?php echo $index ?>" value="<?php the_title(); ?>" />
@@ -51,8 +52,10 @@
 					    		<label for="dashicon<?php echo $index ?>">Dashicon</label>
 					    		<input type="text" name="dashicon<?php echo $index ?>" value="<?php echo $dashicon_cpt ?>" />
 				    		</div>
-
+				    </div>		
+				   <div class="six columns">
 				    		<div>
+				    			<label>&nbsp;</label>
 					    		<input type="checkbox" name="public<?php echo $index ?>" value="yes" <?php echo $public_cpt ?> />
 					    		<label for="public<?php echo $index ?>"  class="checkbox_label" >Public?</label>
 				    		</div>
@@ -81,10 +84,11 @@
 					    		<input type="checkbox" name="comments<?php echo $index ?>" value="yes" <?php echo $comments_cpt ?>/>
 					    		<label for="comments<?php echo $index ?>" class="checkbox_label">Comments</label><br>
 				    		</div>
-				    		<div class="text-center" >
+		    		</div>
+				    		<div class="text-center submit">
 					          <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
 					        </div>
-		    		</div>
+		    	</div>
 		    	<?php if($index % 4 == 4) :?>
 		    	</div>
 		    <?php endif;?>
@@ -101,7 +105,7 @@
 
  <div class="container">
 	  <div class="row">
-	  	<div class="twelve columns pwd_admin-card cpt_delete_section">
+	  	<div class="twelve columns">
 	  		<form name="cpt-delete-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 			  <input type="hidden" name="action" value="cpt_delete_button" />
 			  <?php wp_nonce_field()?>
