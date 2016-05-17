@@ -679,7 +679,7 @@
   .pwd_toolset_wrap .pwd_admin-card, .pwd_toolset_wrap .video-wrapper {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 2px;
     padding: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -694,10 +694,12 @@
       bottom: 60px;
       right: 0;
       width: 100%; }
+  .pwd_toolset_wrap .pwd_admin-card {
+    padding-bottom: 70px; }
   .pwd_toolset_wrap .login-logo-card img {
     max-height: 200px;
     width: auto; }
-  .pwd_toolset_wrap .pwd_admin-card {
+  .pwd_toolset_wrap .image-size-card {
     min-height: 500px; }
   .pwd_toolset_wrap #favicon-image {
     margin-top: 50px; }
@@ -707,6 +709,8 @@
     /* 16:9 */
     padding-top: 25px;
     height: 0; }
+    .pwd_toolset_wrap .video-sizing iframe {
+      border: 1px solid #ddd; }
   .pwd_toolset_wrap .video-sizing iframe {
     position: absolute;
     top: 0;
@@ -714,26 +718,44 @@
     width: 100%;
     height: 100%; }
   .pwd_toolset_wrap .image-size-card {
-    height: 400px; }
+    height: auto;
+    min-height: auto;
+    padding-bottom: 70px; }
+  .pwd_toolset_wrap .settings-card {
+    height: 500px; }
   .pwd_toolset_wrap #custom-css-field {
     height: 400px;
     width: 100%;
     margin-bottom: 40px; }
   .pwd_toolset_wrap .cpt_delete_section {
     min-height: 0; }
+  .pwd_toolset_wrap .maintenance .pwd_admin-card {
+    padding-bottom: 90px; }
+  .pwd_toolset_wrap .maintenance textarea {
+    width: 70%;
+    height: 100px; }
+  .pwd_toolset_wrap .maintenance .inline {
+    display: inline; }
+  .pwd_toolset_wrap .maintenance img {
+    max-width: 50%;
+    max-height: 300px; }
+  .pwd_toolset_wrap .maintenance .image-uploader-div {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: auto; }
   .pwd_toolset_wrap .checkbox_label {
     display: inline; }
   .pwd_toolset_wrap .cpt_input {
     margin-bottom: 20px; }
   .pwd_toolset_wrap .cpt_supports {
     margin-bottom: 60px; }
+  .pwd_toolset_wrap #cpt .pwd_admin-card input[type='text'] {
+    width: 100%; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {
       font-size: 15px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
       padding: 10px;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -741,9 +763,10 @@
       margin-right: 10px;
       margin-left: 10px; }
       .pwd_toolset_wrap .pwd_toolset_navbar a.is-active {
-        background-color: #1379be;
-        color: #fff;
-        border: none; }
+        background-color: #133c64;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        color: #fff; }
       .pwd_toolset_wrap .pwd_toolset_navbar a:hover {
         cursor: pointer !important; }
       .pwd_toolset_wrap .pwd_toolset_navbar a:focus {
