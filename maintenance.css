@@ -1,0 +1,71 @@
+
+.pwd-maintenance {
+	height:100vh;
+	width:100%;
+  display: table;
+  position: relative;
+}
+
+.pwd-maintenance  .maintenance-content {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+//footer ------------------
+.pwd-maintenance .footer{
+	height: 5rem;
+}
+.maintenance_message{
+  width:100%;
+  text-align:center;
+  display:inline-block;
+  padding:20px;
+  box-sizing: border-box;
+}
+
+@media(min-width:750px){
+  .maintenance_message{
+    width:600px;
+    text-align:center;
+    display:inline-block;
+  }
+
+}
+.pwd-maintenance .sub-footer {
+	height:5rem;
+	background:#aaa;
+}
+.footer-coming-soon{
+		position:absolute;
+	width:100%;
+	bottom:0;
+  left: 0;
+}
+.field-wrap:not(:last-child){
+  display: inline-block;
+}
+.field-wrap:not(:last-child) input{
+  height: 35px;
+}
+.field-wrap:not(:last-child) input:focus {
+  outline: none;
+  border: 1px solid $accent;
+}
+
+#ninja_forms_field_6_div_wrap {
+  margin-right: 1rem;
+}
+#ninja_forms_field_7_div_wrap {
+  margin-left: 1rem;
+}
+
+.ninja-forms-required-items {
+  display: none;
+}
+
+.ninja-forms-req-symbol {
+  color: #ddd;
+}
+.text-center{
+  text-align:center;
+}

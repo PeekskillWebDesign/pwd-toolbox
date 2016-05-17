@@ -1,7 +1,7 @@
 .pwd_admin-card, .video-wrapper{
 	background-color: #fff;
 	border: 1px solid #ddd;
-	border-radius: 10px;
+	border-radius: 2px;
 	padding:30px;
 	margin-top:10px;
 	margin-bottom:10px;
@@ -19,11 +19,14 @@
 		width:100%;
 	}
 }
+.pwd_admin-card{
+	padding-bottom:70px;
+}
 .login-logo-card img{
 	max-height:200px;
 	width:auto;
 }
-.pwd_admin-card{
+.image-size-card{
 min-height: 500px;
 }
 #favicon-image{
@@ -34,6 +37,9 @@ min-height: 500px;
 	padding-bottom: 56.25%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
+	iframe{
+		border:1px solid #ddd;
+	}
 }
 .video-sizing iframe {
 	position: absolute;
@@ -43,7 +49,12 @@ min-height: 500px;
 	height: 100%;
 }
 .image-size-card{
-	height: 400px;
+	height: auto;
+	min-height:auto;
+	padding-bottom:70px;
+}
+.settings-card{
+	height:500px;
 }
 #custom-css-field{
 	height:400px;
@@ -52,4 +63,26 @@ min-height: 500px;
 }
 .cpt_delete_section{
 	min-height:0;
+}
+.maintenance .pwd_admin-card{
+	padding-bottom: 90px;
+}
+.maintenance {
+textarea{
+	width: 70%;
+	height:100px;
+}
+.inline{
+	display:inline;
+}
+img{
+	max-width: 50%;
+	max-height:300px;
+}
+	.image-uploader-div{
+		position:relative;
+		bottom:auto;
+		right:auto;
+		width:auto;
+	}
 }

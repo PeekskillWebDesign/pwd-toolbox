@@ -3,11 +3,24 @@
   add_option('favicon', '#');
   add_option('login', 'images/wordpress-logo.svg?ver=20131107');
   add_option('pwd-custom-css', '');
+  add_option('maintenance-mode', '');
+  add_option('maintenance-mode-message', 'COMPANY NAME is currently under construction! If your have any questions, please feel free to contact us via phone at (xxx)xxx-xxxx. Also, be sure to sign up for our mailing list.'); 
+  add_option('maintenance-mode-page', '');
+  add_option('maintenance', '');
+  add_option('maintenance-mode-font', '#222');
+  add_option('maintenance-mode-accent', '#007acc');
+  add_option('maintenance-mode-background', '#fff');
+  add_option('maintenance-mode-form', '');
+  add_option('maintenance-mode-button', '#007acc');
+  add_option('maintenance-mode-button-hover', '#007acc');
+  add_option('maintenance-mode-sizing', '35vw');
+
   //Loop through custom post types
     $types = get_post_types();
     $type_i = 0;
-    foreach( $types as $type ) {
-      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf' && $type != 'pwd_cpt') {
+    $dont_show=['attachment', 'revision', 'nav_menu_item', 'acf', 'pwd_cpt', 'newcpt', 'nf_sub'];
+      foreach( $types as $type ) {
+      if(!in_array($type, $dont_show)) {
         add_option('pwd-'.$type.'-image-size');
       }
     }
@@ -43,6 +56,7 @@
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/image-sizes.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/custom-css.php');
     include( plugin_dir_path(dirname(__FILE__)) . 'pages/cpt.php');
+    include( plugin_dir_path(dirname(__FILE__)) . 'pages/maintenance-mode.php');
 
     //FOOTER
 
@@ -51,10 +65,11 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns pwd_toolset_admin_nav">
-        <p>For developer use only:
+        <p>For developer use only: &nbsp;
         <a href="#" class="menu-link" name="image-sizes">Image Sizes</a>
         <a href="#" class="menu-link" name="custom-css">Custom CSS</a>
         <a href="#" class="menu-link" name="cpt">Custom Post Types</a>
+        <a href="#" class="menu-link" name="maintenance">Maintenance Mode</a>
       </div>
     </div>
   </div>
