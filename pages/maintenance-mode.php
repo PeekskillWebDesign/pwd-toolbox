@@ -22,6 +22,8 @@
                 'image-size' => "full"
                 ); ?>
           	<?php pwd_media_uploader($settings); ?>	<br><br>
+          	<label for="image-size">Image Size</label>
+						<input type="text" name="image-size" value="<?php echo get_option('maintenance-mode-sizing') ?>">
 							<label for="message">Maintenance Mode Message</label>
 							<textarea name="message"><?php echo get_option('maintenance-mode-message'); ?></textarea><br><br>
 						<div class="row">

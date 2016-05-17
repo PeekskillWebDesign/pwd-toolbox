@@ -13,6 +13,7 @@
   add_option('maintenance-mode-form', '');
   add_option('maintenance-mode-button', '#007acc');
   add_option('maintenance-mode-button-hover', '#007acc');
+  add_option('maintenance-mode-sizing', '35vw');
 
   //Loop through custom post types
     $types = get_post_types();

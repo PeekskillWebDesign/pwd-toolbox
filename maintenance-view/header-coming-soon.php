@@ -9,6 +9,6 @@
   <?php wp_head(); ?>
 </head>
 <body>
-  <div class="landing pwd-maintenance"><!--closed in footer-landing.php-->
+  <div class="pwd-maintenance"><!--closed in footer-landing.php-->
 
 <!--Header container-->

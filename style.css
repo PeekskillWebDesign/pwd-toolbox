@@ -750,6 +750,8 @@
     margin-bottom: 20px; }
   .pwd_toolset_wrap .cpt_supports {
     margin-bottom: 60px; }
+  .pwd_toolset_wrap #cpt .pwd_admin-card input[type='text'] {
+    width: 100%; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {

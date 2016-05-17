@@ -177,6 +177,7 @@ if (!wp_verify_nonce($retrieved_nonce)){
     update_option('maintenance-mode-form', $_POST['form']);
     update_option('maintenance-mode-button', $_POST['button']);
     update_option('maintenance-mode-button-hover', $_POST['button-hover']);
+    update_option('maintenance-mode-sizing', $_POST['image-size']);
   }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
  exit;
