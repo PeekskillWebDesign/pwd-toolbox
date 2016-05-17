@@ -106,13 +106,13 @@
 			  <input type="hidden" name="action" value="cpt_delete_button" />
 			  <?php wp_nonce_field()?>
 			    <div class="text-center" style="margin-top:30px;">
-			    	<h6 style="display:inline;">Delete the</h6>
+			    	<h6 style="display:inline;">Delete the </h6>
 			    <select name="the-id" >
 						<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 						<option value="<?php echo get_the_id() ?>"><?php echo get_the_title(); ?></option>
 						<?php $index++; endwhile; ?> 
 			    </select>
-			    <h6 style="display:inline;">custom post type</h6><br><br>
+			    <h6 style="display:inline;"> custom post type</h6><br><br>
 		          <input type="submit" name="Submit" class="button-warn" value="Delete" />
 		        </div>
 			  </form>

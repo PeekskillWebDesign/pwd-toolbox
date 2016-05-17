@@ -5,8 +5,9 @@
   <div class="container">
     <?php $types = get_post_types();
     $type_i = 0;
+    $dont_show=['attachment', 'revision', 'nav_menu_item', 'acf', 'pwd_cpt', 'newcpt', 'nf_sub'];
       foreach( $types as $type ) :
-      if($type != 'attachment' && $type != 'revision' && $type != 'nav_menu_item' && $type != 'acf' && $type != 'pwd_cpt') :
+      if(!in_array($type, $dont_show)) :
      ?>
      <?php if($type_i % 3 == 0) : ?>
       <div class="row">

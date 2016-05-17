@@ -9,6 +9,9 @@
 						<?php
 						if(get_option('maintenance-mode') == 'on') {
 							$checked = 'checked';
+							echo '<div class="text-center">
+		    				<a href="/coming-soon" target="_blank">Go To Page</a>
+		    			</div>';
 						} else {
 							$checked = '';
 						} ?>
@@ -16,14 +19,39 @@
 						<input type="checkbox" name="switch" <?php echo $checked ?>> <label style="display:inline;">Enable Maintenance Mode</label><br><br>
 						<?php $settings = array (
                 'id' => 'maintenance',
-                'image-size' => "large"
+                'image-size' => "full"
                 ); ?>
           	<?php pwd_media_uploader($settings); ?>	<br><br>
-						<label for="message">Maintenance Mode Message</label>
-						<textarea name="message"><?php echo get_option('maintenance-mode-message'); ?></textarea>
-						<label for="ninja-form">Ninja Form ID</label>
-						<input type="ninja-form">
-
+							<label for="message">Maintenance Mode Message</label>
+							<textarea name="message"><?php echo get_option('maintenance-mode-message'); ?></textarea><br><br>
+						<div class="row">
+							<div class="four columns">
+								<label for="form">Ninja Form ID</label>
+								<input type="text" name="form" value="<?php echo get_option('maintenance-mode-form') ?>">
+							</div>
+							<div class="four columns">
+								<label for="background">Background Color</label>
+								<input type="text" name="background" value="<?php echo get_option('maintenance-mode-background') ?>">
+							</div>
+							<div class="four columns">
+								<label for="font">Font Color</label>
+								<input type="text" name="font" value="<?php echo get_option('maintenance-mode-font') ?>">
+							</div>
+						</div><br><br>
+						<div class="row">
+							<div class="four columns">
+								<label for="button">Button Color</label>
+								<input type="text" name="button" value="<?php echo get_option('maintenance-mode-button') ?>">
+							</div>
+							<div class="four columns">
+								<label for="button-hover">Button Hover Color</label>
+								<input type="text" name="button-hover" value="<?php echo get_option('maintenance-mode-button-hover') ?>">
+							</div>
+							<div class="four columns">
+								<label for="accent">Accent Color</label>
+								<input type="text" name="accent" value="<?php echo get_option('maintenance-mode-accent') ?>">
+							</div>
+						</div>
 					</div>
 					<div class="submit text-center">
 		    			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />

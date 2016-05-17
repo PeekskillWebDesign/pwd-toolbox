@@ -1,7 +1,7 @@
 .pwd_admin-card, .video-wrapper{
 	background-color: #fff;
 	border: 1px solid #ddd;
-	border-radius: 10px;
+	border-radius: 2px;
 	padding:30px;
 	margin-top:10px;
 	margin-bottom:10px;
@@ -59,7 +59,10 @@ min-height: 500px;
 .maintenance {
 textarea{
 	width: 70%;
-	height:300px;
+	height:100px;
+}
+.inline{
+	display:inline;
 }
 img{
 	max-width: 50%;

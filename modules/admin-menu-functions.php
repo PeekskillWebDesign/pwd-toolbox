@@ -165,13 +165,19 @@ if (!wp_verify_nonce($retrieved_nonce)){
     update_option('maintenance-mode', 'on');
     update_option('maintenance-mode-page', $maintenance_page);
   } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == '') {
-    wp_delete_post(get_option('maintenance_mode'), true);
+    wp_delete_post(get_option('maintenance-mode-page'), true);
     update_option('maintenance-mode', '');
   } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
   }
     update_option('maintenance-mode-message', $_POST['message']);
-    update_option('maintenance-mode-image', $_POST['maintenance']);
-}
+    update_option('maintenance', $_POST['maintenance']);
+    update_option('maintenance-mode-background', $_POST['background']);
+    update_option('maintenance-mode-font', $_POST['font']);
+    update_option('maintenance-mode-accent', $_POST['accent']);
+    update_option('maintenance-mode-form', $_POST['form']);
+    update_option('maintenance-mode-button', $_POST['button']);
+    update_option('maintenance-mode-button-hover', $_POST['button-hover']);
+  }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
  exit;
 }
