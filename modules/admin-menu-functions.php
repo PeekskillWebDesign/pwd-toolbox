@@ -186,7 +186,7 @@ if (!wp_verify_nonce($retrieved_nonce)){
 
 function pwd_custom_css() {
   if(get_option('pwd-custom-css') !== '') {
-    echo '<style type="text/css">'.get_option('pwd-custom-css').'</style>';
+    echo '<style type="text/css">/*pwd-toolbox*/'.get_option('pwd-custom-css').'</style>';
   }
 }
 add_action('wp_head', 'pwd_custom_css');
