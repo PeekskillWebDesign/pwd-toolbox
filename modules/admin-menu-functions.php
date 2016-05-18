@@ -67,6 +67,7 @@ function cpt_add_button_admin_action() {
       'post_title'    => 'new-cpt',
       'post_content' => ' ',
       'post_type'=>'pwd_cpt',
+      'post_status' => 'publish',
     );
    $pwd_new_post = wp_insert_post($args);
 
@@ -268,10 +269,8 @@ function pwd_cpt_init() {
       'labels'             => $labels,
       'public'             => $public_cpt,
       'rewrite'            => array( 'slug' => get_the_title() ),
-      'capability_type'    => 'post',
       'has_archive'        => $archive_cpt,
       'hierarchical'       => $hierarchial_cpt,
-      'menu_position'      => null,
       'menu_icon'          => $dashicon_cpt,
       'supports'           => array( $title_cpt, $editor_cpt, $author_cpt, $thumbnail_cpt, $excerpt_cpt, $comments_cpt )
     );
