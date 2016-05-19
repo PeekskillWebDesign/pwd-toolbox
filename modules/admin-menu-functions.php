@@ -116,7 +116,7 @@ function pwd_cpt_admin_action() {
       while ( $loop->have_posts() ) : $loop->the_post(); 
 
       if(isset($_POST['name'.$index])) {
-          wp_update_post(array('ID' => get_the_id(), 'post_title' => $_POST['name'.$index]));
+          wp_update_post(array('ID' => get_the_id(), 'post_title' => strtolower($_POST['name'.$index])));
         }
 
       pwd_cpt_action_text_field('plural', $index);
