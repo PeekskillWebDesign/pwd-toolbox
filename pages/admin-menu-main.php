@@ -84,7 +84,7 @@ function pwd_enqueue_admin_scripts($hook) {
         return;
     }
 
-  wp_enqueue_script( 'admin_menu_scripts', plugin_dir_url(dirname(__FILE__)) . '/scripts/admin-menu.js');
+  wp_enqueue_script( 'admin_menu_scripts', plugin_dir_url(dirname(__FILE__)) . '/js/admin-menu.js');
 }
 add_action( 'admin_enqueue_scripts', 'pwd_enqueue_admin_scripts' );
 

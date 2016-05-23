@@ -29,7 +29,7 @@
 					$excerpt_cpt = get_post_meta( get_the_id(), '_excerpt', true );
 					$comments_cpt = get_post_meta( get_the_id(), '_comments', true );
 					?>
-			<?php if($index % 4 == 0) :?>
+			<?php if($index % 3 == 0) :?>
 		    	<div class="row">
 		    <?php endif;?>
 		    <div class="four columns pwd_admin-card">
@@ -89,7 +89,7 @@
 					          <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
 					        </div>
 		    	</div>
-		    	<?php if($index % 4 == 4) :?>
+		    	<?php if($index % 3 == 3) :?>
 		    	</div>
 		    <?php endif;?>
 	  <?php $index++; endwhile; ?> 

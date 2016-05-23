@@ -17,9 +17,9 @@ include( plugin_dir_path( __FILE__ ) . 'modules/admin-menu-setup.php');
 
 // ********************** ADMIN MENU ********************** //
 
-include( plugin_dir_path( __FILE__ ) . 'modules/admin-menu-view.php');
+include( plugin_dir_path( __FILE__ ) . 'pages/admin-menu-main.php');
 
-include( plugin_dir_path( __FILE__ ) . 'modules/admin-menu-functions.php');
+include( plugin_dir_path( __FILE__ ) . 'pages/functions/functions-main.php');
 
 include( plugin_dir_path( __FILE__ ) . 'modules/admin-menu-image-uploader.php');
 
@@ -38,10 +38,6 @@ include( plugin_dir_path( __FILE__ ) . 'modules/login-page.php');
 // ********************** IMAGE SIZE HELPERS ********************** //
 
 include( plugin_dir_path( __FILE__ ) . 'modules/image-size-helpers.php');
-
-// ********************** CUSTOM POST TYPES ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/cpt-support.php');
 
 
 // ********************** MAINTENANCE MODE ********************** //
