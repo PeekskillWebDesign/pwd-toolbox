@@ -54,6 +54,31 @@ function link_shortcode($atts,$content,$tags) {
 }
 add_shortcode('link','link_shortcode'); 
 
+//-------------Accordian-------------//
+function pwd_acc_container_shortcode($atts,$content,$tags) {
+	$value = shortcode_atts(array(
+		'class' => ''
+		), $atts);
+	return '<div class="pwd-accordian-container '.$value['class'].'">'.do_shortcode($content).'</div>'; 
+}
+add_shortcode('acc-container','pwd_acc_container_shortcode'); 
+
+function pwd_acc_title_shortcode($atts,$content,$tags) {
+	$value = shortcode_atts(array(
+		'class' => ''
+		), $atts);
+	return '<a href="#" class="pwd-list-div '.$value['class'].'">'.do_shortcode($content).'</a>'; 
+}
+add_shortcode('acc-title','pwd_acc_title_shortcode'); 
+
+function pwd_acc_content_shortcode($atts,$content,$tags) {
+	$value = shortcode_atts(array(
+		'class' => ''
+		), $atts);
+	return '<div class="pwd-drop-list '.$value['class'].'">'.do_shortcode($content).'</div>'; 
+}
+add_shortcode('acc-content','pwd_acc_content_shortcode'); 
+
 //ignore whitespace inside shortcode
 	add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
 /**
@@ -88,7 +113,7 @@ add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
 function pwd_register_buttons_editor($buttons)
 {
     //add each button here and on js page
-    array_push($buttons, "section_button", "container_button", "row_button", "column_button", "link_button" );
+    array_push($buttons, "section_button", "container_button", "row_button", "column_button", "link_button", "acc_contain_button", "acc_contain_button", "acc_content_button" );
     return $buttons;
 }
 

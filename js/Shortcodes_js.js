@@ -76,6 +76,47 @@
                 ed.execCommand("mceInsertContent", 0, return_text);
             });
 
+
+             //-----------------------------------Accordian Contain button   
+            ed.addButton("acc_contain_button", {
+                title : "Accordian",
+                cmd : "accordian_content_command",
+                text : 'Accordian'
+            });
+
+            //-----------------------------------Accordian Contain functionality
+            ed.addCommand("accordian_content_command", function() {
+                var selected_text = ed.selection.getContent();
+                var return_text = '[acc-container class=""]' + selected_text + "[/acc-container]";
+                ed.execCommand("mceInsertContent", 0, return_text);
+            });
+            //-----------------------------------Accordian Title button   
+            ed.addButton("acc_contain_button", {
+                title : "Accordian_Title",
+                cmd : "accordian_content_command",
+                text : 'Accordian Title'
+            });
+
+            //-----------------------------------Accordian Title functionality
+            ed.addCommand("accordian_title_command", function() {
+                var selected_text = ed.selection.getContent();
+                var return_text = '[acc-title class=""]' + selected_text + "[/acc-title]";
+                ed.execCommand("mceInsertContent", 0, return_text);
+            });
+            //-----------------------------------Accordian Title button   
+            ed.addButton("acc_content_button", {
+                title : "Accordian_Content",
+                cmd : "accordian_content_command",
+                text : 'Accordian Content'
+            });
+
+            //-----------------------------------Accordian Title functionality
+            ed.addCommand("accordian_content_command", function() {
+                var selected_text = ed.selection.getContent();
+                var return_text = '[acc-content class=""]' + selected_text + "[/acc-content]";
+                ed.execCommand("mceInsertContent", 0, return_text);
+            });
+
         },
 
         createControl : function(n, cm) {
