@@ -106,12 +106,12 @@ function pwd_register_buttons_editor($buttons)
     return $buttons;
 }
 add_filter("mce_buttons_3", "pwd_register_buttons_editor");
-function pwd_accordian_buttons_editor($buttons)
+function pwd_accordion_buttons_editor($buttons)
 {
     //add each button here and on js page
     array_push($buttons, "acc_contain_button", "acc_title_button", "acc_content_button" );
     return $buttons;
 }
 
-add_filter("mce_buttons_4", "pwd_accordian_buttons_editor");
+add_filter("mce_buttons_4", "pwd_accordion_buttons_editor");
 ?>
