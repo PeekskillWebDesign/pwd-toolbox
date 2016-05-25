@@ -12,7 +12,7 @@
                 text : 'Columns',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Columns',
                     body: [
                         {type: 'listbox', //COLUMNS
                         values: [
@@ -60,7 +60,7 @@
                 text : 'Row',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Row',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
@@ -80,7 +80,7 @@
                 text : 'Container',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Container',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
@@ -101,7 +101,7 @@
                 text : 'Section',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Section',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
@@ -119,10 +119,10 @@
              //-----------------------------------Accordion Contain button   
             ed.addButton("acc_contain_button", {
                 title : "the_Accordion",
-                text : 'Accordion',
+                text : 'Accordion Container',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Accordion Container',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
@@ -141,7 +141,7 @@
                 text : 'Accordion Title',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Accordion Title',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
@@ -161,7 +161,7 @@
                 text : 'Accordion Content',
                 onclick : function() {
                 ed.windowManager.open({
-                    title: 'columns',
+                    title: 'Accordion Content',
                     body: [
                         {type: 'textbox', name: 'class', label: 'Class'}
                     ],
