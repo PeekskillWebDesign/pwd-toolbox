@@ -3,7 +3,7 @@
   add_option('favicon', '#');
   add_option('login', 'images/wordpress-logo.svg?ver=20131107');
   add_option('pwd-custom-css', '');
-  add_option('maintenance-mode', 'off');
+  add_option('maintenance-mode', '');
   add_option('maintenance-mode-message', 'COMPANY NAME is currently under construction! If your have any questions, please feel free to contact us via phone at (xxx)xxx-xxxx. Also, be sure to sign up for our mailing list.'); 
   add_option('maintenance-mode-page', '');
   add_option('maintenance', '');
