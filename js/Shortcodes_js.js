@@ -79,21 +79,21 @@
 
              //-----------------------------------Accordian Contain button   
             ed.addButton("acc_contain_button", {
-                title : "Accordian",
-                cmd : "accordian_content_command",
+                title : "the_Accordian",
+                cmd : "accordian_contain_command",
                 text : 'Accordian'
             });
 
             //-----------------------------------Accordian Contain functionality
-            ed.addCommand("accordian_content_command", function() {
+            ed.addCommand("accordian_contain_command", function() {
                 var selected_text = ed.selection.getContent();
                 var return_text = '[acc-container class=""]' + selected_text + "[/acc-container]";
                 ed.execCommand("mceInsertContent", 0, return_text);
             });
             //-----------------------------------Accordian Title button   
-            ed.addButton("acc_contain_button", {
+            ed.addButton("acc_title_button", {
                 title : "Accordian_Title",
-                cmd : "accordian_content_command",
+                cmd : "accordian_title_command",
                 text : 'Accordian Title'
             });
 
