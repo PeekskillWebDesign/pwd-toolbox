@@ -9,113 +9,187 @@
             //-----------------------------------columns button
             ed.addButton("column_button", {
                 title : "Columns",
-                cmd : "col_command",
-                text : 'Columns'
+                text : 'Columns',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'listbox', //COLUMNS
+                        values: [
+                            { text: 'One', value: 'one' },
+                            { text: 'Two', value: 'two' },
+                            { text: 'Three', value: 'three' },
+                            { text: 'Four', value: 'four' },
+                            { text: 'Five', value: 'five' },
+                            { text: 'Six', value: 'six' },
+                            { text: 'Seven', value: 'seven' },
+                            { text: 'Eight', value: 'eight' },
+                            { text: 'Nine', value: 'nine' },
+                            { text: 'Ten', value: 'ten' },
+                            { text: 'Eleven', value: 'eleven' },
+                            { text: 'Twelve', value: 'twelve' },
+                        ], name: 'columns', label: 'Columns'},
+                        {type: 'listbox',  //OFFSET
+                        values: [
+                            { text: 'One', value: 'one' },
+                            { text: 'Two', value: 'two' },
+                            { text: 'Three', value: 'three' },
+                            { text: 'Four', value: 'four' },
+                            { text: 'Five', value: 'five' },
+                            { text: 'Six', value: 'six' },
+                            { text: 'Seven', value: 'seven' },
+                            { text: 'Eight', value: 'eight' },
+                            { text: 'Nine', value: 'nine' },
+                            { text: 'Ten', value: 'ten' },
+                            { text: 'Eleven', value: 'eleven' },
+                            { text: 'Twelve', value: 'twelve' },
+                        ], name: 'offset', label: 'Offset by'},
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[col columns="'+e.data.columns+'" offset="'+e.data.offset+'" class="'+e.data.class+'"]' + selected_text + "[/col]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
-
-            //-----------------------------------columns button functionality
-            ed.addCommand("col_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[col columns="" offset="" class=""]' + selected_text + "[/col]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
-
             //-----------------------------------row button   
             ed.addButton("row_button", {
                 title : "Row",
-                cmd : "row_command",
-                text : 'Row'
+                text : 'Row',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[row class="'+e.data.class+'"]' + selected_text + "[/row]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
-
-            //-----------------------------------row button functionality
-            ed.addCommand("row_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[row class=""]' + selected_text + "[/row]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
-
+    
              //-----------------------------------container button   
             ed.addButton("container_button", {
                 title : "Container",
-                cmd : "container_command",
-                text : 'Container'
+                text : 'Container',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[container class="'+e.data.class+'"]' + selected_text + "[/container]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
 
-            //-----------------------------------container button functionality
-            ed.addCommand("container_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[container class=""]' + selected_text + "[/container]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
 
-            //-----------------------------------container button   
+            //-----------------------------------section button   
             ed.addButton("section_button", {
                 title : "Section",
-                cmd : "section_command",
-                text : 'Section'
-            });
-
-            //-----------------------------------container button functionality
-            ed.addCommand("section_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[section class=""]' + selected_text + "[/section]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
-
-             //-----------------------------------link button   
-            ed.addButton("link_button", {
-                title : "Link",
-                cmd : "link_command",
-                text : 'Link'
-            });
-
-            //-----------------------------------container button functionality
-            ed.addCommand("link_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[link link-to="" class=""]' + selected_text + "[/link]";
-                ed.execCommand("mceInsertContent", 0, return_text);
+                text : 'Section',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[section class="'+e.data.class+'"]' + selected_text + "[/section]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
 
 
              //-----------------------------------Accordian Contain button   
             ed.addButton("acc_contain_button", {
                 title : "the_Accordian",
-                cmd : "accordian_contain_command",
-                text : 'Accordian'
-            });
-
-            //-----------------------------------Accordian Contain functionality
-            ed.addCommand("accordian_contain_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[acc-container class=""]' + selected_text + "[/acc-container]";
-                ed.execCommand("mceInsertContent", 0, return_text);
+                text : 'Accordian',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[acc-container class="'+e.data.class+'"]' + selected_text + "[/acc-container]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
             //-----------------------------------Accordian Title button   
             ed.addButton("acc_title_button", {
                 title : "Accordian_Title",
-                cmd : "accordian_title_command",
-                text : 'Accordian Title'
+                text : 'Accordian Title',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[acc-title class="'+e.data.class+'"]' + selected_text + "[/acc-title]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
 
-            //-----------------------------------Accordian Title functionality
-            ed.addCommand("accordian_title_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[acc-title class=""]' + selected_text + "[/acc-title]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
-            //-----------------------------------Accordian Title button   
+            //-----------------------------------Accordian Content button   
             ed.addButton("acc_content_button", {
                 title : "Accordian_Content",
-                cmd : "accordian_content_command",
-                text : 'Accordian Content'
+                text : 'Accordian Content',
+                onclick : function() {
+                ed.windowManager.open({
+                    title: 'columns',
+                    body: [
+                        {type: 'textbox', name: 'class', label: 'Class'}
+                    ],
+                    onsubmit: function(e) {    
+                        var selected_text = ed.selection.getContent();
+                        var selected_text = ed.selection.getContent();
+                        var return_text = '[acc-content class="'+e.data.class+'"]' + selected_text + "[/acc-content]";
+                        ed.execCommand("mceInsertContent", 0, return_text);
+                    }
+                });
+            }
             });
 
-            //-----------------------------------Accordian Title functionality
-            ed.addCommand("accordian_content_command", function() {
-                var selected_text = ed.selection.getContent();
-                var return_text = '[acc-content class=""]' + selected_text + "[/acc-content]";
-                ed.execCommand("mceInsertContent", 0, return_text);
-            });
+
+            // BUTTON WITHOUT POPUP
+            // //-----------------------------------Accordian Title button   
+            // ed.addButton("acc_content_button", {
+            //     title : "Accordian_Content",
+            //     cmd : "accordian_content_command",
+            //     text : 'Accordian Content'
+            // });
+
+            // //-----------------------------------Accordian Title functionality
+            // ed.addCommand("accordian_content_command", function() {
+            //     var selected_text = ed.selection.getContent();
+            //     var return_text = '[acc-content class=""]' + selected_text + "[/acc-content]";
+            //     ed.execCommand("mceInsertContent", 0, return_text);
+            // });
 
         },
 
