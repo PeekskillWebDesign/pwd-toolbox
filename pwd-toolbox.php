@@ -31,19 +31,6 @@ include( plugin_dir_path( __FILE__ ) . 'modules/social-widget.php');
 
 include( plugin_dir_path( __FILE__ ) . 'modules/custom-excerpt.php');
 
-// ********************** LOGIN PAGE EDITS ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/login-page.php');
-
-// ********************** IMAGE SIZE HELPERS ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/image-size-helpers.php');
-
-
-// ********************** MAINTENANCE MODE ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/maintenance-support.php');
-
 // ********************** PLUGIN UPDATER ********************** //
 
 
