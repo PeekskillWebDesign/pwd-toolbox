@@ -116,10 +116,10 @@
             });
 
 
-             //-----------------------------------Accordian Contain button   
+             //-----------------------------------Accordion Contain button   
             ed.addButton("acc_contain_button", {
-                title : "the_Accordian",
-                text : 'Accordian',
+                title : "the_Accordion",
+                text : 'Accordion',
                 onclick : function() {
                 ed.windowManager.open({
                     title: 'columns',
@@ -135,10 +135,10 @@
                 });
             }
             });
-            //-----------------------------------Accordian Title button   
+            //-----------------------------------Accordion Title button   
             ed.addButton("acc_title_button", {
-                title : "Accordian_Title",
-                text : 'Accordian Title',
+                title : "Accordion_Title",
+                text : 'Accordion Title',
                 onclick : function() {
                 ed.windowManager.open({
                     title: 'columns',
@@ -155,10 +155,10 @@
             }
             });
 
-            //-----------------------------------Accordian Content button   
+            //-----------------------------------Accordion Content button   
             ed.addButton("acc_content_button", {
-                title : "Accordian_Content",
-                text : 'Accordian Content',
+                title : "Accordion_Content",
+                text : 'Accordion Content',
                 onclick : function() {
                 ed.windowManager.open({
                     title: 'columns',
