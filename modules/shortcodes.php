@@ -43,17 +43,6 @@ function col_shortcode($atts,$content,$tags) {
 }
 add_shortcode('col','col_shortcode');
 
-//-------------LINK-------------//
-function link_shortcode($atts,$content,$tags) {
-	$value = shortcode_atts(array(
-		'class' => '',
-		'link-to' => '',
-		'content' => ''
-		), $atts);
-	return '<a href="'.$value['link-to'].'" class="'.$value['class'].'">'.do_shortcode($content).'</a>'; 
-}
-add_shortcode('link','link_shortcode'); 
-
 //-------------Accordian-------------//
 function pwd_acc_container_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
@@ -113,7 +102,7 @@ add_filter("mce_external_plugins", "pwd_enqueue_plugin_scripts");
 function pwd_register_buttons_editor($buttons)
 {
     //add each button here and on js page
-    array_push($buttons, "section_button", "container_button", "row_button", "column_button", "link_button");
+    array_push($buttons, "section_button", "container_button", "row_button", "column_button");
     return $buttons;
 }
 add_filter("mce_buttons_3", "pwd_register_buttons_editor");

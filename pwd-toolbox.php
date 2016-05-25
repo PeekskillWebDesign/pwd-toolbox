@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.5.1
+Version: 0.6.0
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
@@ -30,19 +30,6 @@ include( plugin_dir_path( __FILE__ ) . 'modules/social-widget.php');
 // ********************** CUSTOM POST EXCERPTS ********************** //
 
 include( plugin_dir_path( __FILE__ ) . 'modules/custom-excerpt.php');
-
-// ********************** LOGIN PAGE EDITS ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/login-page.php');
-
-// ********************** IMAGE SIZE HELPERS ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/image-size-helpers.php');
-
-
-// ********************** MAINTENANCE MODE ********************** //
-
-include( plugin_dir_path( __FILE__ ) . 'modules/maintenance-support.php');
 
 // ********************** PLUGIN UPDATER ********************** //
 

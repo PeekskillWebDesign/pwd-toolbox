@@ -1,4 +1,20 @@
-<?php function pwd_featured_image_setup($post_type, $pwd_text) {
+<?php function pwd_images_admin_action() {
+     if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+   if (!wp_verify_nonce($retrieved_nonce)){
+     //Loop through custom post types
+      $types = get_post_types();
+      $type_i = 0;
+      foreach( $types as $type ) {
+          update_option('pwd-'.$type.'-image-size', $_POST['pwd-'.$type.'-image']);
+      }
+    }
+     wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=image-sizes') );
+ exit;
+} 
+function pwd_featured_image_setup($post_type, $pwd_text) {
   add_meta_box('postimagediv', __('Featured Image'), 'pwd_featured_meta_box', $post_type, 'side', 'default', array('text'=>$pwd_text ));
 
 }
@@ -21,6 +37,4 @@ function pwd_featured_image() {
     }
   }
 }
-add_action('do_meta_boxes', 'pwd_featured_image');
-
-?>
+add_action('do_meta_boxes', 'pwd_featured_image');?>
