@@ -31,6 +31,10 @@ include( plugin_dir_path( __FILE__ ) . 'modules/social-widget.php');
 
 include( plugin_dir_path( __FILE__ ) . 'modules/custom-excerpt.php');
 
+// ********************** CLIENT USER ROLE ********************** //
+
+include( plugin_dir_path( __FILE__ ) . 'modules/add-client-user.php');
+
 // ********************** PLUGIN UPDATER ********************** //
 
 
