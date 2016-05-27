@@ -7,7 +7,7 @@
 				<div class="twelve columns pwd_admin-card">
 					<div class="text-center">
 						<?php
-						if(get_option('maintenance-mode') == 'on') {
+						if(get_option('pwd_maintenance-mode') == 'on') {
 							$checked = 'checked';
 							echo '<div class="text-center">
 		    				<a href="/coming-soon" target="_blank">Go To Page</a>

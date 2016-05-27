@@ -5,20 +5,20 @@
    }
    if (!wp_verify_nonce($retrieved_nonce)){
     //set analytics
-     update_option('google_analytics', $_POST['google_analytics']);
+     update_option('pwd_google_analytics', $_POST['google_analytics']);
 
 
      //set favicon
-     $favicon_original = $_POST['favicon'];
+     $favicon_original = $_POST['pwd_favicon'];
      if(strpos($favicon_original, '32x32') == false) {
       $favicon = str_replace( '.png', '-32x32.png', $favicon_original);
     } else {
       $favicon = $favicon_original;
     }
-     update_option('favicon', $favicon);
+     update_option('pwd_favicon', $favicon);
 
      //login image
-     update_option('login', $_POST['login']);
+     update_option('pwd_login', $_POST['pwd_login']);
   }
 
 
@@ -28,7 +28,7 @@
 }
 
 function PWD_anaylitics_html(){
-  $google_analytics = get_option('google_analytics');
+  $google_analytics = get_option('pwd_google_analytics');
 
 
   if(isset($google_analytics)){
@@ -51,14 +51,14 @@ add_image_size('favicon-32', 32, 32, true);
 add_image_size('favicon-152', 152, 152, true);
 
 function PWD_favicon_html(){
-  $favicon_url = get_option('favicon');
+  $favicon_url = get_option('pwd_favicon');
     echo '<link rel="shortcut icon" href="'.$favicon_url.'">';
 }
 add_action('wp_head', 'PWD_favicon_html');
 add_action( 'admin_head', 'PWD_favicon_html' );
 
 function pwd_login_css() { 
-  $login_logo = get_option('login');
+  $login_logo = get_option('pwd_login');
   if( $login_logo !== '#' ) {
     $logo_size = get_string_between($login_logo, 'x', '.png');
   ?>
@@ -75,7 +75,7 @@ function pwd_login_css() {
         
 
          #login h1 a, .login h1 a {
-             background-image: url(<?php echo get_option('login'); ?>);
+             background-image: url(<?php echo get_option('pwd_login'); ?>);
             padding-bottom: 30px;
             background-size: 100% auto;
             background-position: bottom center;
