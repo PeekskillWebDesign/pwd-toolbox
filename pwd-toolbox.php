@@ -7,6 +7,9 @@ Version: 0.6.2
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
+// ********************** SET UP ********************** //
+
+include( plugin_dir_path( __FILE__ ) . 'modules/plugin-setup.php');
 // ********************** SHORTCODES ********************** //
 
 include( plugin_dir_path( __FILE__ ) . 'modules/shortcodes.php');
