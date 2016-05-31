@@ -66,6 +66,7 @@ echo '<style type="text/css">
 		.pwd-maintenance{
 			background-color:'.get_option('pwd_maintenance-mode-background').';
 			color:'.get_option('pwd_maintenance-mode-font').' !important;
+      font-size:14px;
 		}
 		.pwd-maintenance a{
 			color:'.get_option('pwd_maintenance-mode-accent').' !important;
@@ -95,6 +96,12 @@ echo '<style type="text/css">
 			    height:auto;
 			  }
 		}
+    body:before{
+      max-height:0;
+    }
+    body:after{
+      max-height:0;
+    }
 
 		</style>';
 	}
