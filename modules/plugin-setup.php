@@ -11,10 +11,10 @@ function pwd_toolbox_activate() {
  add_option('pwd_maintenance-mode-font', '#222');
  add_option('pwd_maintenance-mode-accent', '#007acc');
  add_option('pwd_maintenance-mode-background', '#fff');
- add_option('maintenance-mode-form', '');
- add_option('maintenance-mode-button', '#007acc');
- add_option('maintenance-mode-button-hover', '#007acc');
- add_option('maintenance-mode-sizing', '35vw');
+ add_option('pwd_maintenance-mode-form', '');
+ add_option('pwd_maintenance-mode-button', '#007acc');
+ add_option('pwd_maintenance-mode-button-hover', '#007acc');
+ add_option('pwd_maintenance-mode-sizing', '35vw');
 
   //Loop through custom post types
     $types = get_post_types();

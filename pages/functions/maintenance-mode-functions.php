@@ -34,11 +34,11 @@ if (!wp_verify_nonce($retrieved_nonce)){
     update_option('pwd_maintenance', $_POST['pwd_maintenance']);
     update_option('pwd_maintenance-mode-background', $_POST['background']);
     update_option('pwd_maintenance-mode-font', $_POST['font']);
-    update_option('maintenance-mode-accent', $_POST['accent']);
-    update_option('maintenance-mode-form', $_POST['form']);
-    update_option('maintenance-mode-button', $_POST['button']);
-    update_option('maintenance-mode-button-hover', $_POST['button-hover']);
-    update_option('maintenance-mode-sizing', $_POST['image-size']);
+    update_option('pwd_maintenance-mode-accent', $_POST['accent']);
+    update_option('pwd_maintenance-mode-form', $_POST['form']);
+    update_option('pwd_maintenance-mode-button', $_POST['button']);
+    update_option('pwd_maintenance-mode-button-hover', $_POST['button-hover']);
+    update_option('pwd_maintenance-mode-sizing', $_POST['image-size']);
   }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
  exit;
@@ -74,12 +74,12 @@ echo '<style type="text/css">
 		  color:'.get_option('pwd_maintenance-mode-accent').' !important;
 		}
 		.pwd-maintenance .button-primary{
-			background-color:'.get_option('maintenance-mode-button').' !important;
-			border-color:'.get_option('maintenance-mode-button').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-button').' !important;
+			border-color:'.get_option('pwd_maintenance-mode-button').' !important;
 		}
 		.pwd-maintenance .button-primary:hover{
-			background-color:'.get_option('maintenance-mode-button-hover').' !important;
-			border-color:'.get_option('maintenance-mode-button-hover').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-button-hover').' !important;
+			border-color:'.get_option('pwd_maintenance-mode-button-hover').' !important;
 		}
 		.field-wrap:not(:last-child) input:focus {
 		  outline: none;
@@ -91,7 +91,7 @@ echo '<style type="text/css">
 		}
 		@media(min-width:750px){
 			  .maintenance_image{
-			    width:'.get_option('maintenance-mode-sizing').';
+			    width:'.get_option('pwd_maintenance-mode-sizing').';
 			    height:auto;
 			  }
 		}

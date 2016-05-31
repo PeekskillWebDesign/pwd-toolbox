@@ -23,13 +23,13 @@
                 ); ?>
           	<?php pwd_media_uploader($settings); ?>	<br><br>
           	<label for="image-size">Image Size</label>
-						<input type="text" name="image-size" value="<?php echo get_option('maintenance-mode-sizing') ?>">
+						<input type="text" name="image-size" value="<?php echo get_option('pwd_maintenance-mode-sizing') ?>">
 							<label for="message">Maintenance Mode Message</label>
 							<textarea name="message"><?php echo get_option('pwd_maintenance-mode-message'); ?></textarea><br><br>
 						<div class="row">
 							<div class="four columns">
 								<label for="form">Ninja Form ID</label>
-								<input type="text" name="form" value="<?php echo get_option('maintenance-mode-form') ?>">
+								<input type="text" name="form" value="<?php echo get_option('pwd_maintenance-mode-form') ?>">
 							</div>
 							<div class="four columns">
 								<label for="background">Background Color</label>
@@ -43,11 +43,11 @@
 						<div class="row">
 							<div class="four columns">
 								<label for="button">Button Color</label>
-								<input type="text" name="button" value="<?php echo get_option('maintenance-mode-button') ?>">
+								<input type="text" name="button" value="<?php echo get_option('pwd_maintenance-mode-button') ?>">
 							</div>
 							<div class="four columns">
 								<label for="button-hover">Button Hover Color</label>
-								<input type="text" name="button-hover" value="<?php echo get_option('maintenance-mode-button-hover') ?>">
+								<input type="text" name="button-hover" value="<?php echo get_option('pwd_maintenance-mode-button-hover') ?>">
 							</div>
 							<div class="four columns">
 								<label for="accent">Accent Color</label>

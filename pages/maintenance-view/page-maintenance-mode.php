@@ -8,7 +8,7 @@ include(plugin_dir_path(dirname(__FILE__)) . 'maintenance-view/header-coming-soo
       			<div class="text-center">
  			  	<img class="maintenance_image" src="<?php echo get_option('pwd_maintenance'); ?>"><br>
       				<p class="maintenance_message"><?php echo get_option('pwd_maintenance-mode-message'); ?></p>
- 				<?php if( function_exists( 'ninja_forms_display_form' ) ){ ninja_forms_display_form(get_option('maintenance-mode-form')); } ?>
+ 				<?php if( function_exists( 'ninja_forms_display_form' ) ){ ninja_forms_display_form(get_option('pwd_maintenance-mode-form')); } ?>
  				</div>
 </div>
 
