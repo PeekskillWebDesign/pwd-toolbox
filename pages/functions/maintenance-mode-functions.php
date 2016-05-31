@@ -30,10 +30,10 @@ if (!wp_verify_nonce($retrieved_nonce)){
     update_option('pwd_maintenance-mode', '');
   } elseif(get_option('pwd_maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
   }
-    update_option('maintenance-mode-message', $_POST['message']);
-    update_option('maintenance', $_POST['maintenance']);
-    update_option('maintenance-mode-background', $_POST['background']);
-    update_option('maintenance-mode-font', $_POST['font']);
+    update_option('pwd_maintenance-mode-message', $_POST['message']);
+    update_option('pwd_maintenance', $_POST['pwd_maintenance']);
+    update_option('pwd_maintenance-mode-background', $_POST['background']);
+    update_option('pwd_maintenance-mode-font', $_POST['font']);
     update_option('maintenance-mode-accent', $_POST['accent']);
     update_option('maintenance-mode-form', $_POST['form']);
     update_option('maintenance-mode-button', $_POST['button']);
@@ -64,14 +64,14 @@ function pwd_maintenance_styling() {
 
 echo '<style type="text/css">
 		.pwd-maintenance{
-			background-color:'.get_option('maintenance-mode-background').';
-			color:'.get_option('maintenance-mode-font').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-background').';
+			color:'.get_option('pwd_maintenance-mode-font').' !important;
 		}
 		.pwd-maintenance a{
-			color:'.get_option('maintenance-mode-accent').' !important;
+			color:'.get_option('pwd_maintenance-mode-accent').' !important;
 		}
 		.pwd-maintenance .ninja-forms-req-symbol {
-		  color:'.get_option('maintenance-mode-accent').' !important;
+		  color:'.get_option('pwd_maintenance-mode-accent').' !important;
 		}
 		.pwd-maintenance .button-primary{
 			background-color:'.get_option('maintenance-mode-button').' !important;
@@ -83,7 +83,7 @@ echo '<style type="text/css">
 		}
 		.field-wrap:not(:last-child) input:focus {
 		  outline: none;
-		  border: 1px solid '.get_option('maintenance-mode-accent').';
+		  border: 1px solid '.get_option('pwd_maintenance-mode-accent').';
 		}
 		.maintenance_image{
 		  width:80vw ;
