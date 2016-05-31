@@ -5,7 +5,7 @@
    }
 if (!wp_verify_nonce($retrieved_nonce)){
 
-  if(get_option('maintenance-mode') == '' && $_POST['switch'] == 'on'){
+  if(get_option('pwd_maintenance-mode') == '' && $_POST['switch'] == 'on'){
     $new_page = array(
     'post_title' => 'Coming Soon',
     'post_name' => 'coming-soon',
@@ -23,22 +23,22 @@ if (!wp_verify_nonce($retrieved_nonce)){
       wp_cache_delete( 'all_page_ids', 'pages' );
       $wp_rewrite->flush_rules();
     }
-    update_option('maintenance-mode', 'on');
+    update_option('pwd_maintenance-mode', 'on');
     update_option('maintenance-mode-page', $maintenance_page);
-  } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == '') {
+  } elseif(get_option('pwd_maintenance-mode') == 'on' && $_POST['switch'] == '') {
     wp_delete_post(get_option('maintenance-mode-page'), true);
-    update_option('maintenance-mode', '');
-  } elseif(get_option('maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
+    update_option('pwd_maintenance-mode', '');
+  } elseif(get_option('pwd_maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
   }
-    update_option('maintenance-mode-message', $_POST['message']);
-    update_option('maintenance', $_POST['maintenance']);
-    update_option('maintenance-mode-background', $_POST['background']);
-    update_option('maintenance-mode-font', $_POST['font']);
-    update_option('maintenance-mode-accent', $_POST['accent']);
-    update_option('maintenance-mode-form', $_POST['form']);
-    update_option('maintenance-mode-button', $_POST['button']);
-    update_option('maintenance-mode-button-hover', $_POST['button-hover']);
-    update_option('maintenance-mode-sizing', $_POST['image-size']);
+    update_option('pwd_maintenance-mode-message', $_POST['message']);
+    update_option('pwd_maintenance', $_POST['pwd_maintenance']);
+    update_option('pwd_maintenance-mode-background', $_POST['background']);
+    update_option('pwd_maintenance-mode-font', $_POST['font']);
+    update_option('pwd_maintenance-mode-accent', $_POST['accent']);
+    update_option('pwd_maintenance-mode-form', $_POST['form']);
+    update_option('pwd_maintenance-mode-button', $_POST['button']);
+    update_option('pwd_maintenance-mode-button-hover', $_POST['button-hover']);
+    update_option('pwd_maintenance-mode-sizing', $_POST['image-size']);
   }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
  exit;
@@ -64,26 +64,26 @@ function pwd_maintenance_styling() {
 
 echo '<style type="text/css">
 		.pwd-maintenance{
-			background-color:'.get_option('maintenance-mode-background').';
-			color:'.get_option('maintenance-mode-font').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-background').';
+			color:'.get_option('pwd_maintenance-mode-font').' !important;
 		}
 		.pwd-maintenance a{
-			color:'.get_option('maintenance-mode-accent').' !important;
+			color:'.get_option('pwd_maintenance-mode-accent').' !important;
 		}
 		.pwd-maintenance .ninja-forms-req-symbol {
-		  color:'.get_option('maintenance-mode-accent').' !important;
+		  color:'.get_option('pwd_maintenance-mode-accent').' !important;
 		}
 		.pwd-maintenance .button-primary{
-			background-color:'.get_option('maintenance-mode-button').' !important;
-			border-color:'.get_option('maintenance-mode-button').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-button').' !important;
+			border-color:'.get_option('pwd_maintenance-mode-button').' !important;
 		}
 		.pwd-maintenance .button-primary:hover{
-			background-color:'.get_option('maintenance-mode-button-hover').' !important;
-			border-color:'.get_option('maintenance-mode-button-hover').' !important;
+			background-color:'.get_option('pwd_maintenance-mode-button-hover').' !important;
+			border-color:'.get_option('pwd_maintenance-mode-button-hover').' !important;
 		}
 		.field-wrap:not(:last-child) input:focus {
 		  outline: none;
-		  border: 1px solid '.get_option('maintenance-mode-accent').';
+		  border: 1px solid '.get_option('pwd_maintenance-mode-accent').';
 		}
 		.maintenance_image{
 		  width:80vw ;
@@ -91,7 +91,7 @@ echo '<style type="text/css">
 		}
 		@media(min-width:750px){
 			  .maintenance_image{
-			    width:'.get_option('maintenance-mode-sizing').';
+			    width:'.get_option('pwd_maintenance-mode-sizing').';
 			    height:auto;
 			  }
 		}
@@ -99,7 +99,7 @@ echo '<style type="text/css">
 		</style>';
 	}
 }
-if(get_option('maintenance-mode') == 'on'){
+if(get_option('pwd_maintenance-mode') == 'on'){
  add_action( 'template_redirect', 'pwd_redirect' );
  function pwd_redirect() {
    if ( !is_page('coming-soon') && !is_user_logged_in() && !is_page('wp_admin')) {
