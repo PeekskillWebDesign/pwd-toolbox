@@ -1,4 +1,4 @@
-~Current Version:0.7.0~
+~Current Version:0.7.1~
 
 
 PWD Toolset is a custom plugin to aid in the development of wordpress sites built by Peekskill Web Design.
