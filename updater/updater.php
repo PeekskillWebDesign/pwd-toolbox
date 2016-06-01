@@ -86,7 +86,7 @@ class WP_GitHub_Updater {
 
 		$this->set_defaults();
 
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'api_check' ) );
+		add_filter( 'site_transient_update_plugins', array( $this, 'api_check' ) );
 
 		// Hook into the plugin details screen
 		add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 10, 3 );
