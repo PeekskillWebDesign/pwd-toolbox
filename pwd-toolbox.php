@@ -77,7 +77,7 @@ include_once('updater/updater.php');
             'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
             'requires' => '4.0', // which version of WordPress does your plugin require?
             'tested' => '4.5.2', // which version of WordPress is your plugin tested up to?
-            'readme' => 'README.md', // which file to use as the readme for the version number
+            'readme' => 'ReadMe.md', // which file to use as the readme for the version number
             'access_token' => '', // Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
         );
         new WP_GitHub_Updater($config);
