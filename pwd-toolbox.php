@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.6.5
+Version: 0.6.6
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
@@ -65,12 +65,22 @@ include( plugin_dir_path( __FILE__ ) . 'modules/add-client-user.php');
 
 // ********************** PLUGIN UPDATER ********************** //
 
+include_once('updater/updater.php');
+    if (is_admin()) { // note the use of is_admin() to double check that this is happening in the admin
+        $config = array(
+            'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
+            'proper_folder_name' => 'pwd-toolbox', // this is the name of the folder your plugin lives in
+            'api_url' => 'https://api.github.com/repos/PeekskillWebDesign/pwd-toolbox', // the GitHub API url of your GitHub repo
+            'raw_url' => 'https://raw.github.com/PeekskillWebDesign/pwd-toolbox/master', // the GitHub raw url of your GitHub repo
+            'github_url' => 'https://github.com/PeekskillWebDesign/pwd-toolbox', // the GitHub url of your GitHub repo
+            'zip_url' => 'https://github.com/PeekskillWebDesign/pwd-toolbox/zipball/master', // the zip url of the GitHub repo
+            'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+            'requires' => '4.0', // which version of WordPress does your plugin require?
+            'tested' => '4.5.2', // which version of WordPress is your plugin tested up to?
+            'readme' => 'README.md', // which file to use as the readme for the version number
+            'access_token' => '', // Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
+        );
+        new WP_GitHub_Updater($config);
+    }
 
-add_action( 'admin_init', 'pwd_handle_updates' );
-function pwd_handle_updates(){
-require_once( 'modules/pwd-updater.php' );
-  if ( is_admin() ) {
-      new BFIGitHubPluginUpdater( __FILE__, 'PeekskillWebDesign', "pwd-toolbox" );
-  }
-}
 ?>
