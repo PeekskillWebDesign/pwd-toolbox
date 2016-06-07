@@ -64,6 +64,8 @@ include( plugin_dir_path( __FILE__ ) . 'modules/custom-excerpt.php');
 include( plugin_dir_path( __FILE__ ) . 'modules/add-client-user.php');
 
 // ********************** PLUGIN UPDATER ********************** //
+add_action( 'init', 'pwd_plugin_updater_init' );
+function pwd_plugin_updater_init() {
 
     include_once('updater/updater.php');
 
@@ -85,5 +87,6 @@ include( plugin_dir_path( __FILE__ ) . 'modules/add-client-user.php');
         );
         new WP_GitHub_Updater($config);
     }
+}
 
 ?>
