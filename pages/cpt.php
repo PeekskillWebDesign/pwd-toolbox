@@ -28,6 +28,7 @@
 					$thumbnail_cpt = get_post_meta( get_the_id(), '_thumbnail', true );
 					$excerpt_cpt = get_post_meta( get_the_id(), '_excerpt', true );
 					$comments_cpt = get_post_meta( get_the_id(), '_comments', true );
+					$page_attributes_cpt = get_post_meta( get_the_id(), '_page-attributes', true );
 					?>
 			<?php if($index % 3 == 0) :?>
 		    	<div class="row">
@@ -83,6 +84,8 @@
 					    		<label for="excerpt<?php echo $index ?>" class="checkbox_label">Excerpt</label><br>
 					    		<input type="checkbox" name="comments<?php echo $index ?>" value="yes" <?php echo $comments_cpt ?>/>
 					    		<label for="comments<?php echo $index ?>" class="checkbox_label">Comments</label><br>
+					    		<input type="checkbox" name="page-attributes<?php echo $index ?>" value="yes" <?php echo $page_attributes_cpt ?>/>
+					    		<label for="attributes<?php echo $index ?>" class="checkbox_label">Attributes</label><br>
 				    		</div>
 		    		</div>
 				    		<div class="text-center submit">
