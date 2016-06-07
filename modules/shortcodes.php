@@ -1,32 +1,32 @@
 <?php //----------SECTION--------------//
-function section_shortcode($atts,$content,$tags) {
+function pwd_section_shortcode($atts,$content,$tags) {
 $value = shortcode_atts(array(
     'class' => ''
     ), $atts);
   return '<section class="'.$value['class'].'">'.do_shortcode($content).'</section>'; 
 }
-add_shortcode('section','section_shortcode');
+add_shortcode('section','pwd_section_shortcode');
 
 //----------CONTAINER--------------//
-function container_shortcode($atts,$content,$tags) {
+function pwd_container_shortcode($atts,$content,$tags) {
 $value = shortcode_atts(array(
 		'class' => ''
 		), $atts);
 	return '<div class="container '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
-add_shortcode('container','container_shortcode');
+add_shortcode('container','pwd_container_shortcode');
 
 //-------------ROW-------------//
-function row_shortcode($atts,$content,$tags) {
+function pwd_row_shortcode($atts,$content,$tags) {
     $value = shortcode_atts(array(
     'class'=> '',
     ), $atts);
 	return '<div class="row '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
-add_shortcode('row','row_shortcode');
+add_shortcode('row','pwd_row_shortcode');
 
 //--------------COLUMNS-------------//
-function col_shortcode($atts,$content,$tags) {
+function pwd_col_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
 		'columns' => '',
 		'offset' => '',
@@ -41,7 +41,7 @@ function col_shortcode($atts,$content,$tags) {
 
 	return '<div class="'.$result.' '.$value['class'].' columns">'.do_shortcode($content).'</div>';
 }
-add_shortcode('col','col_shortcode');
+add_shortcode('col','pwd_col_shortcode');
 
 //-------------Accordian-------------//
 function pwd_acc_container_shortcode($atts,$content,$tags) {
@@ -69,17 +69,8 @@ function pwd_acc_content_shortcode($atts,$content,$tags) {
 add_shortcode('acc-content','pwd_acc_content_shortcode'); 
 
 //ignore whitespace inside shortcode
-	add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
-/**
- * Filters the content to remove any extra paragraph or break tags
- * caused by shortcodes.
- *
- * @since 1.0.0
- *
- * @param string $content  String of HTML content.
- * @return string $content Amended string of HTML content.
- */
-function tgm_io_shortcode_empty_paragraph_fix( $content ) {
+	add_filter( 'the_content', 'pwd_shortcode_empty_paragraph_fix' );
+function pwd_shortcode_empty_paragraph_fix( $content ) {
 
 	$array = array(
 		'<p>['    => '[',

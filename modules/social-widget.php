@@ -1,11 +1,11 @@
-<?php class Social_Widget extends WP_Widget {
+<?php class Pwd_Social_Widget extends WP_Widget {
 
   /**
    * Sets up the widgets name etc
    */
   public function __construct() {
     $widget_ops = array( 
-      'classname' => 'social_widget',
+      'classname' => 'pwd_social_widget',
       'description' => 'Social Link For Footer',
     );
     parent::__construct( 'social_widget', 'Social Widget', $widget_ops );
@@ -76,7 +76,7 @@ public function update( $new_instance, $old_instance ) {
 }
 
 function register_social_widget() {
-    register_widget( 'social_widget' );
+    register_widget( 'pwd_social_widget' );
 }
 add_action( 'widgets_init', 'register_social_widget' );
 function pwd_social_widget_option($font_awesome, $input, $display_name){

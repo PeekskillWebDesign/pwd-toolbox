@@ -214,7 +214,7 @@ class WP_GitHub_Updater {
 	public function get_new_version() {
 		$version = get_site_transient( md5($this->config['slug']).'_new_version' );
 
-		//if ( $this->overrule_transients() || ( !isset( $version ) || !$version || '' == $version ) ) {
+		if ( $this->overrule_transients() || ( !isset( $version ) || !$version || '' == $version ) ) {
 
 			$raw_response = $this->remote_get( trailingslashit( $this->config['raw_url'] ) . basename( $this->config['slug'] ) );
 
@@ -251,7 +251,7 @@ class WP_GitHub_Updater {
 			// refresh every 6 hours
 			if ( false !== $version )
 				set_site_transient( md5($this->config['slug']).'_new_version', $version, 60*60*6 );
-		//}
+		}
 		set_site_transient('update_plugins', null);
 		return $version;
 	}
