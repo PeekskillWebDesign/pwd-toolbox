@@ -9,7 +9,7 @@
       foreach( $types as $type ) :
       if(!in_array($type, $dont_show)) :
      ?>
-     <?php if($type_i % 3 == 0) : ?>
+    <?php if($type_i % 3 == 0) : ?>
       <div class="row">
     <?php endif; ?>
       <div class="four columns text-center pwd_admin-card image-size-card">

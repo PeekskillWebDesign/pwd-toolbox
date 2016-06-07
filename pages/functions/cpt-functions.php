@@ -89,6 +89,7 @@ function pwd_cpt_admin_action() {
       pwd_cpt_action_checkbox('thumbnail', $index);
       pwd_cpt_action_checkbox('excerpt', $index);
       pwd_cpt_action_checkbox('comments', $index);
+      pwd_cpt_action_checkbox('page-attributes', $index);
       $index++; endwhile;
   }
   wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=cpt') );
@@ -127,6 +128,7 @@ function pwd_cpt_init() {
   $excerpt_cpt = pwd_cpt_supports($post->ID, 'excerpt');
   $editor_cpt = pwd_cpt_supports($post->ID, 'editor');
   $comments_cpt = pwd_cpt_supports($post->ID, 'comments');
+  $page_attributes_cpt = pwd_cpt_supports($post->ID, 'page-attributes');
 
   if(get_the_title() !== 'new-cpt'){
 
@@ -143,7 +145,7 @@ function pwd_cpt_init() {
       'has_archive'        => $archive_cpt,
       'hierarchical'       => $hierarchial_cpt,
       'menu_icon'          => $dashicon_cpt,
-      'supports'           => array( $title_cpt, $editor_cpt, $author_cpt, $thumbnail_cpt, $excerpt_cpt, $comments_cpt )
+      'supports'           => array( $title_cpt, $editor_cpt, $author_cpt, $thumbnail_cpt, $excerpt_cpt, $comments_cpt, $page_attributes_cpt )
     );
 
     register_post_type( get_the_title(), $args );

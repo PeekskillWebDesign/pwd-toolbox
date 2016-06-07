@@ -1,4 +1,6 @@
-<?php function pwd_excerpt($excerpt_length = 55, $id = false, $echo = true) {
+<?php 
+
+function pwd_excerpt($excerpt_length = 55, $custom_end = " ...", $id = false, $echo = true)  {
     
     $text = '';
     
@@ -25,7 +27,7 @@
       $text = implode(' ', $words);
     }
   if($echo)
-  echo apply_filters('the_content', $text.'...');
+  echo apply_filters('the_content', $text.$custom_end);
   else
   return $text;
 }
