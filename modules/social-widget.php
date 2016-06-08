@@ -22,9 +22,8 @@
     if(strpos($instance['social_site'], 'https://') == false && strpos($instance['social_site'], 'http://') == false){
       $instance['social_site'] = 'http://' . $instance['social_site'];
     }
-    echo $args['before_widget'];
     if ( ! empty( $instance['social_site'] ) ) {
-      echo $args['before_widget'] ?><a href="<?php echo $instance['social_site'] ?>" target="_blank"><i class="fa fa-<?php echo $instance['font_awesome'] ?>"></i></a><?php $args['after_widget'];
+      echo $args['before_widget'] ?><a href="<?php echo $instance['social_site'] ?>" target="_blank"><i class="fa fa-<?php echo $instance['font_awesome'] ?>"></i></a><?php echo $args['after_widget'];
     }
   }
 
