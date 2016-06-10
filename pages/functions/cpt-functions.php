@@ -133,7 +133,7 @@ function pwd_cpt_init() {
   if(get_the_title() !== 'new-cpt'){
 
     $labels = array(
-      'name'               => ( get_the_title() ),
+      'name'               => ( $plural_cpt ),
       'singular_name'      => ( $single_cpt ),
       'menu_name'          => ( $plural_cpt ),
     );
