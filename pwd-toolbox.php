@@ -67,9 +67,9 @@ include( plugin_dir_path( __FILE__ ) . 'modules/add-client-user.php');
 add_action( 'init', 'pwd_plugin_updater_init' );
 function pwd_plugin_updater_init() {
 
+    define( 'WP_GITHUB_FORCE_UPDATE', true );
     include_once('updater/updater.php');
 
-    define( 'WP_GITHUB_FORCE_UPDATE', true );
 
     if (is_admin()) { // note the use of is_admin() to double check that this is happening in the admin
         $config = array(

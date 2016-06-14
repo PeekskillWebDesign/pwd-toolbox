@@ -10,7 +10,6 @@ jQuery(document).ready(function(){
 		e.preventDefault();
 		cptIndex = jQuery(this).attr('data-index');
 		selection = jQuery(this).attr('data-icon');
-		console.log(selection)
 		jQuery('#dashicon-selections'+cptIndex).fadeOut();
 		jQuery('.submit'+cptIndex).fadeIn();
 		jQuery('#dashicon'+cptIndex).val(selection);
