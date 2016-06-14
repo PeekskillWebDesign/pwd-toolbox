@@ -1,3 +1,5 @@
+~Current Version:0.8.5~
+
 # PWD TOOLSET
 
 This is a toolset created by the Peekskill Web Design Team to assist in the creation of wordpress site.
