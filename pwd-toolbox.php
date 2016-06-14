@@ -3,7 +3,7 @@
 Plugin Name: PWD Toolset
 Description: A toolset for websites developed by Peekskill Web Design
 Author:      Peekskill Web Design
-Version: 0.8.51
+Version: 0.8.52
 GitHub Plugin URI: https://github.com/PeekskillWebDesign/pwd-toolbox
 */
 
@@ -80,7 +80,7 @@ function pwd_plugin_updater_init() {
             'github_url' => 'https://github.com/PeekskillWebDesign/pwd-toolbox', // the GitHub url of your GitHub repo
             'zip_url' => 'https://github.com/PeekskillWebDesign/pwd-toolbox/zipball/master', // the zip url of the GitHub repo
             'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
-            'requires' => '4.0', // which version of WordPress does your plugin require?
+            'requires' => '4.0.0', // which version of WordPress does your plugin require?
             'tested' => '4.5.2', // which version of WordPress is your plugin tested up to?
             'readme' => 'ReadMe.md', // which file to use as the readme for the version number
             'access_token' => '', // Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
