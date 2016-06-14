@@ -1,4 +1,23 @@
 jQuery(document).ready(function(){
+	//cpt ---------------------------------------------
+	jQuery('.dashicon-open-btn').on('click', function(e){
+		e.preventDefault();
+		cptIndex = jQuery(this).attr('data-index');
+		jQuery('#dashicon-selections'+cptIndex).fadeIn();
+		jQuery('.submit'+cptIndex).fadeOut();
+	});
+	jQuery('.dashicon-select-btn').on('click', function(e){
+		e.preventDefault();
+		cptIndex = jQuery(this).attr('data-index');
+		selection = jQuery(this).attr('data-icon');
+		console.log(selection)
+		jQuery('#dashicon-selections'+cptIndex).fadeOut();
+		jQuery('.submit'+cptIndex).fadeIn();
+		jQuery('#dashicon'+cptIndex).val(selection);
+		jQuery('#dashicon-display'+cptIndex).attr('class' ,'dashicons '+selection)
+	});
+
+	//admin menu---------------------------------------
 	active = jQuery('.menu-link.is-active').attr('name');
 	loc = getURLParameter('loc');
 	if(getURLParameter('loc') != active && getURLParameter('loc')) {
@@ -20,10 +39,11 @@ jQuery(document).ready(function(){
 			changeUrlParam('loc' , tar);
 		}
 
-	});
-	function getURLParameter(name) {
-        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    }
+
+});
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
 
 function changeUrlParam (param, value) {
         var currentURL = window.location.href+'&';
