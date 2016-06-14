@@ -45,7 +45,7 @@
 		border-radius:5px;
 		padding:10px;
 		border:1px solid transparent;
-		&:hover{
+		&:hover, &.is-active{
 			border:1px solid #222;
 		}
 	}
