@@ -784,10 +784,13 @@
     .pwd_toolset_wrap a.dashicon-select-btn:hover, .pwd_toolset_wrap a.dashicon-select-btn.is-active {
       border: 1px solid #222; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
-    margin: 20px; }
+    margin: 20px;
+    padding: 5px;
+    background-color: #ddd;
+    border: 1px solid #ddd; }
     .pwd_toolset_wrap .pwd_toolset_navbar a {
-      font-size: 15px;
       padding: 10px;
+      font-size: 15px;
       margin-top: 10px;
       margin-bottom: 10px;
       position: relative;
@@ -795,7 +798,6 @@
       margin-left: 10px; }
       .pwd_toolset_wrap .pwd_toolset_navbar a.is-active {
         background-color: #133c64;
-        border: 1px solid #ddd;
         border-radius: 2px;
         color: #fff; }
       .pwd_toolset_wrap .pwd_toolset_navbar a:hover {
