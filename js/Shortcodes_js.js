@@ -11,12 +11,12 @@
             title:'pwd_toolbox',
             text:'PWD Toolbox',
             type:'listbox',
+            autofocus: false,
             values: [
             // COLUMNS
                 {
-                title : "Columns",
                 text : 'Columns',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Columns',
                         body: [
@@ -37,6 +37,7 @@
                             ], name: 'columns', label: 'Columns'},
                             {type: 'listbox',  //OFFSET
                             values: [
+                                { text: 'None', value: 'none' },
                                 { text: 'One', value: 'one' },
                                 { text: 'Two', value: 'two' },
                                 { text: 'Three', value: 'three' },
@@ -54,16 +55,21 @@
                         ],
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[col columns="'+e.data.columns+'" offset="'+e.data.offset+'" class="'+e.data.class+'"]' + selected_text + "[/col]";
-                            ed.execCommand("mceInsertContent", 0, return_text);
+
+                            //if offset doesn't exist don't use it
+                            e.data.offset == 'none' ? col_offset = '' : col_offset = ' offset="'+e.data.offset+'"';
+
+                             //if class doesn't exist don't use it
+                            e.data.class == '' ? col_class = '' : col_class = ' class="'+e.data.class+'"';
+
+                            var return_text = '[col columns="'+e.data.columns+'"'+col_offset+col_class+']' + selected_text + "[/col]";
                         }
                     });
-                }
+                },
             },
             {
-                title : "Row",
                 text : 'Row',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Row',
                         body: [
@@ -72,16 +78,17 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[row class="'+e.data.class+'"]' + selected_text + "[/row]";
+                            //if class doesn't exist don't use it
+                            e.data.class == '' ? row_class = '' : row_class = ' class="'+e.data.class+'"';
+                            var return_text = '[row'+row_class+']' + selected_text + "[/row]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
                 }
             },
             {
-                title : "Container",
                 text : 'Container',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Container',
                         body: [
@@ -90,16 +97,16 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[container class="'+e.data.class+'"]' + selected_text + "[/container]";
+                            e.data.class == '' ? container_class = '' : container_class = ' class="'+e.data.class+'"';
+                            var return_text = '[container'+container_class+']' + selected_text + "[/container]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
                 }
             },
             {
-                title : "Section",
                 text : 'Section',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Section',
                         body: [
@@ -108,7 +115,8 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[section class="'+e.data.class+'"]' + selected_text + "[/section]";
+                            e.data.class == '' ? section_class = '' : section_class = ' class="'+e.data.class+'"';
+                            var return_text = '[section'+section_class+']' + selected_text + "[/section]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
@@ -116,9 +124,8 @@
             },
 
             {
-                title : "the_Accordion",
                 text : 'Accordion Container',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Accordion Container',
                         body: [
@@ -127,16 +134,16 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[acc-container class="'+e.data.class+'"]' + selected_text + "[/acc-container]";
+                            e.data.class == '' ? acc_container_class = '' : acc_container_class = ' class="'+e.data.class+'"';
+                            var return_text = '[acc-container'+acc_container_class+']' + selected_text + "[/acc-container]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
                 }
             },
             {
-                title : "Accordion_Title",
                 text : 'Accordion Title',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Accordion Title',
                         body: [
@@ -145,16 +152,16 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[acc-title class="'+e.data.class+'"]' + selected_text + "[/acc-title]";
+                            e.data.class == '' ? acc_title_class = '' : acc_title_class = ' class="'+e.data.class+'"';
+                            var return_text = '[acc-title'+acc_title_class+']' + selected_text + "[/acc-title]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
                 }
             },
             {
-                title : "Accordion_Content",
                 text : 'Accordion Content',
-                onclick : function() {
+                onselect : function() {
                     ed.windowManager.open({
                         title: 'Accordion Content',
                         body: [
@@ -163,7 +170,8 @@
                         onsubmit: function(e) {    
                             var selected_text = ed.selection.getContent();
                             var selected_text = ed.selection.getContent();
-                            var return_text = '[acc-content class="'+e.data.class+'"]' + selected_text + "[/acc-content]";
+                            e.data.class == '' ? acc_content_class = '' : acc_content_class = ' class="'+e.data.class+'"';
+                            var return_text = '[acc-content'+acc_content_class+']' + selected_text + "[/acc-content]";
                             ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
@@ -192,16 +200,7 @@
 
         createControl : function(n, cm) {
             return null;
-        },
-
-        getInfo : function() {
-            return {
-                longname : "Extra Buttons",
-                author : "Narayan Prusty",
-                version : "1"
-            };
         }
     });
-
     tinymce.PluginManager.add("shortcode_plugin", tinymce.plugins.shortcode_plugin);
 })();
