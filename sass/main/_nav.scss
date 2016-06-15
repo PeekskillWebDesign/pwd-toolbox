@@ -1,9 +1,11 @@
 .pwd_toolset_navbar{
 	margin:20px;
+	padding:5px;
+	background-color:#ddd;
+	border: 1px solid #ddd;
 	a{
-
+		padding:10px;
 		font-size:15px;
-	padding:10px;
 	margin-top:10px;
 	margin-bottom:10px;
 	position:relative;
@@ -11,7 +13,6 @@
 	margin-left:10px;
 	&.is-active{
 	background-color:$pwddark;
-	border: 1px solid #ddd;
 	border-radius: 2px;
 	color:#fff;
 	}

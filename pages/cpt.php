@@ -44,10 +44,13 @@
 					$comments_cpt = get_post_meta( get_the_id(), '_comments', true );
 					$page_attributes_cpt = get_post_meta( get_the_id(), '_page-attributes', true );
 					?>
-			<?php if($index % 3 == 0) :?>
+			<?php if($index % 2 == 0) :?>
 		    	<div class="row">
 		    <?php endif;?>
-		    <div class="four columns pwd_admin-card cpt_card">
+		    <div class="six columns pwd_admin-card cpt_card">
+		    	<h6 class="text-center" style="margin-bottom:0;"><?php echo $plural_cpt ?></h6>
+		    	<hr style="margin-top:5px;">
+		    	<div>
 		    	<div class="six columns">
 				    		<div class="cpt_input">
 					    		<label for="name<?php echo $index ?>">Slug</label>
@@ -105,11 +108,12 @@
 					    		<label for="attributes<?php echo $index ?>" class="checkbox_label">Attributes</label><br>
 				    		</div>
 		    		</div>
+		    		</div>
 				    		<div class="text-center submit submit<?php echo $index ?>">
 					          <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
 					        </div>
 		    	</div>
-		    	<?php if($index % 3 == 3) :?>
+		    	<?php if($index % 2 == 1) :?>
 		    	</div>
 		    <?php endif;?>
 	  <?php $index++; endwhile; ?> 
