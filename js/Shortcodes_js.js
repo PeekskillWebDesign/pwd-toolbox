@@ -10,9 +10,9 @@
         ed.addButton("pwd_button", {
             title:'pwd_toolbox',
             text:'PWD Toolbox',
-            type:'listbox',
+            type:'menubutton',
             autofocus: false,
-            values: [
+            menu: [
             // COLUMNS
                 {
                 text : 'Columns',
