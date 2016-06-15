@@ -781,7 +781,7 @@
     border-radius: 5px;
     padding: 10px;
     border: 1px solid transparent; }
-    .pwd_toolset_wrap a.dashicon-select-btn:hover {
+    .pwd_toolset_wrap a.dashicon-select-btn:hover, .pwd_toolset_wrap a.dashicon-select-btn.is-active {
       border: 1px solid #222; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px; }
