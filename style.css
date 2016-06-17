@@ -762,6 +762,10 @@
     position: relative; }
   .pwd_toolset_wrap #cpt .pwd_admin-card input[type='text'] {
     width: 100%; }
+  .pwd_toolset_wrap .cpt_delete {
+    margin: 20px;
+    background: #ddd;
+    padding-bottom: 20px; }
   .pwd_toolset_wrap .dashicon-selections {
     display: none;
     position: absolute;
