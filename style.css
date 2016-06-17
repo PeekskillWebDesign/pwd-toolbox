@@ -787,6 +787,11 @@
     border: 1px solid transparent; }
     .pwd_toolset_wrap a.dashicon-select-btn:hover, .pwd_toolset_wrap a.dashicon-select-btn.is-active {
       border: 1px solid #222; }
+  .pwd_toolset_wrap .title {
+    display: inline;
+    font-size: 30px;
+    padding-right: 20px;
+    line-height: 0; }
   .pwd_toolset_wrap .pwd_toolset_navbar {
     margin: 20px;
     padding: 5px;

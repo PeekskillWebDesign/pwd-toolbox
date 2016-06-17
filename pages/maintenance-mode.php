@@ -1,22 +1,35 @@
 <section class="maintenance" id="maintenance" style="display:none;">
-	<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-		<input type="hidden" name="action" value="pwd_maintenance" />
-		<?php wp_nonce_field()?>
 		<div class="container">
 			<div class="row">
 				<div class="twelve columns pwd_admin-card">
 					<div class="text-center">
-						<?php
-						if(get_option('pwd_maintenance-mode') == 'on') {
-							$checked = 'checked';
-							echo '<div class="text-center">
-		    				<a href="/coming-soon" target="_blank">Go To Page</a>
-		    			</div>';
-						} else {
-							$checked = '';
-						} ?>
-          	
-						<input type="checkbox" name="switch" <?php echo $checked ?>> <label style="display:inline;">Enable Maintenance Mode</label><br><br>
+          	<?php if(get_option('pwd_maintenance-mode')) : ?>
+	          	<div class="text-center">
+	          		<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+								<input type="hidden" name="action" value="pwd_maintenance_off" />
+								<?php wp_nonce_field()?>
+	          			<h6 class="title">Maintenance Mode is <b>ON</b></h6><br><br>
+	          			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Turn Off'); ?>" /> 
+	          		</form>
+	          	</div><br>
+	          	<div class="text-center">
+		    				<a href="/coming-soon" target="_blank">View Maintenance Page</a>
+		    			</div>
+          	<?php else : ?>
+	          	<div class="text-center">
+	          		<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+								<input type="hidden" name="action" value="pwd_maintenance_on" />
+								<?php wp_nonce_field()?>
+	          			<h6 class="title">Maintenance Mode is <b>OFF</b></h6><br><br>
+	          			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Turn On'); ?>" /> 
+	          		</form>
+	          	</div>
+          	<?php endif ?>
+          	<hr>
+						<!-- <input type="checkbox" name="switch" <?php echo $checked ?>> <label style="display:inline;">Enable Maintenance Mode</label><br><br> -->
+	<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+		<input type="hidden" name="action" value="pwd_maintenance" />
+		<?php wp_nonce_field()?>
 						<?php $settings = array (
                 'id' => 'pwd_maintenance',
                 'image-size' => "full"

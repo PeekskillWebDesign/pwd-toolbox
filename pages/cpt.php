@@ -2,14 +2,16 @@
 	  <form name="cpt-add-button" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 	  <input type="hidden" name="action" value="cpt_add_button" />
 	  <?php wp_nonce_field()?>
-	    <div class="submit text-center">
-          <input type="submit" name="Submit" class="button-primary" value="Add Custom Post Type" />
-        </div>
+		  <div class="container">
+		    <div class="submit">
+		        <h5 class="title">Custom Post Types</h5><input type="submit" name="Submit" class="button-primary" value="Add New" />
+		    </div>
+		  </div>
 	  </form>
 	
-		    		<form name="cpt_form_<?php echo $index ?>" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
-	  					<input type="hidden" name="action" value="pwd_cpt" />
-	  						<?php wp_nonce_field()?>
+	<form name="cpt_form_<?php echo $index ?>" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
+		<input type="hidden" name="action" value="pwd_cpt" />
+			<?php wp_nonce_field()?>
 		  <div class="container">
 		  <?php 
 		  	function pwd_dashicons($index){
