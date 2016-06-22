@@ -48,7 +48,7 @@ function pwd_acc_container_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
 		'class' => ''
 		), $atts);
-	return '<div class="pwd-accordian-container '.$value['class'].'">'.do_shortcode($content).'</div>'; 
+	return '<div class="_accordian '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
 add_shortcode('acc-container','pwd_acc_container_shortcode'); 
 
@@ -56,7 +56,7 @@ function pwd_acc_title_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
 		'class' => ''
 		), $atts);
-	return '<a href="#" class="pwd-list-div '.$value['class'].'">'.do_shortcode($content).'</a>'; 
+	return '<a href="#" class="_accordian-title '.$value['class'].'">'.do_shortcode($content).'</a>'; 
 }
 add_shortcode('acc-title','pwd_acc_title_shortcode'); 
 
@@ -64,7 +64,7 @@ function pwd_acc_content_shortcode($atts,$content,$tags) {
 	$value = shortcode_atts(array(
 		'class' => ''
 		), $atts);
-	return '<div class="pwd-drop-list '.$value['class'].'">'.do_shortcode($content).'</div>'; 
+	return '<div class="_accordian-content '.$value['class'].'">'.do_shortcode($content).'</div>'; 
 }
 add_shortcode('acc-content','pwd_acc_content_shortcode'); 
 

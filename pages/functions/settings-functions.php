@@ -1,4 +1,18 @@
-<?php function pwd_settings_admin_action() {
+<?php 
+
+/*
+*  pwd_settings_admin_action
+*
+*  This function updates options based on inputs from the settings form.
+*
+*  @type    function
+*  @date    06/15/12
+*  @since   0.0.0
+*
+*  @param   N/A
+*  @return  N/A
+*/
+function pwd_settings_admin_action() {
    if ( !current_user_can( 'manage_options' ) )
    {
       wp_die( 'You are not allowed to be on this page.' );
@@ -26,7 +40,18 @@
  exit;
 
 }
-
+/*
+*  PWD_anaylitics_html
+*
+*  This function prints a google analytics 
+*
+*  @type    function
+*  @date    06/15/12
+*  @since   0.0.0
+*
+*  @param   N/A
+*  @return  Google Analytics script printed to the head of every front-end page
+*/
 function PWD_anaylitics_html(){
   $google_analytics = get_option('pwd_google_analytics');
 

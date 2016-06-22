@@ -63,6 +63,8 @@
                             e.data.class == '' ? col_class = '' : col_class = ' class="'+e.data.class+'"';
 
                             var return_text = '[col columns="'+e.data.columns+'"'+col_offset+col_class+']' + selected_text + "[/col]";
+
+                            ed.execCommand("mceInsertContent", 0, return_text);
                         }
                     });
                 },
