@@ -52,5 +52,11 @@
 		border:1px solid transparent;
 		&:hover, &.is-active{
 			border:1px solid #222;
-		}
 	}
+}
+.title{
+	display:inline;
+	font-size:30px;
+	padding-right:20px;
+	line-height:0;
+}

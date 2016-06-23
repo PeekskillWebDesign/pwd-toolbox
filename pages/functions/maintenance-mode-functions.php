@@ -5,8 +5,27 @@
    }
 if (!wp_verify_nonce($retrieved_nonce)){
 
-  if(get_option('pwd_maintenance-mode') == '' && $_POST['switch'] == 'on'){
-    $new_page = array(
+    update_option('pwd_maintenance-mode-message', $_POST['message']);
+    update_option('pwd_maintenance', $_POST['pwd_maintenance']);
+    update_option('pwd_maintenance-mode-background', $_POST['background']);
+    update_option('pwd_maintenance-mode-font', $_POST['font']);
+    update_option('pwd_maintenance-mode-accent', $_POST['accent']);
+    update_option('pwd_maintenance-mode-form', $_POST['form']);
+    update_option('pwd_maintenance-mode-button', $_POST['button']);
+    update_option('pwd_maintenance-mode-button-hover', $_POST['button-hover']);
+    update_option('pwd_maintenance-mode-sizing', $_POST['image-size']);
+  }
+  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
+ exit;
+} 
+add_filter( 'template_include', 'portfolio_page_template', 99 );
+
+function pwd_maintenance_on_admin_action(){
+if ( !current_user_can( 'manage_options' ) ) {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+  if (!wp_verify_nonce($retrieved_nonce)){
+  $new_page = array(
     'post_title' => 'Coming Soon',
     'post_name' => 'coming-soon',
     'post_status' => 'publish',
@@ -23,27 +42,27 @@ if (!wp_verify_nonce($retrieved_nonce)){
       wp_cache_delete( 'all_page_ids', 'pages' );
       $wp_rewrite->flush_rules();
     }
+    if ($delete_page = get_page_by_name('coming-soon')){
+      wp_delete_post($delete_page, true);
+    }
     update_option('pwd_maintenance-mode', 'on');
     update_option('maintenance-mode-page', $maintenance_page);
-  } elseif(get_option('pwd_maintenance-mode') == 'on' && $_POST['switch'] == '') {
+    
+    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
+  }
+}
+function pwd_maintenance_off_admin_action(){
+  if ( !current_user_can( 'manage_options' ) )
+   {
+      wp_die( 'You are not allowed to be on this page.' );
+   }
+  if (!wp_verify_nonce($retrieved_nonce)){
     wp_delete_post(get_option('maintenance-mode-page'), true);
     update_option('pwd_maintenance-mode', '');
-  } elseif(get_option('pwd_maintenance-mode') == 'on' && $_POST['switch'] == 'on') {
+    wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
   }
-    update_option('pwd_maintenance-mode-message', $_POST['message']);
-    update_option('pwd_maintenance', $_POST['pwd_maintenance']);
-    update_option('pwd_maintenance-mode-background', $_POST['background']);
-    update_option('pwd_maintenance-mode-font', $_POST['font']);
-    update_option('pwd_maintenance-mode-accent', $_POST['accent']);
-    update_option('pwd_maintenance-mode-form', $_POST['form']);
-    update_option('pwd_maintenance-mode-button', $_POST['button']);
-    update_option('pwd_maintenance-mode-button-hover', $_POST['button-hover']);
-    update_option('pwd_maintenance-mode-sizing', $_POST['image-size']);
-  }
-  wp_redirect(  admin_url( 'admin.php?page=pwdtoolbox&loc=maintenance') );
- exit;
-} 
-add_filter( 'template_include', 'portfolio_page_template', 99 );
+}
+
 
 function portfolio_page_template( $template ) {
 
@@ -114,5 +133,19 @@ if(get_option('pwd_maintenance-mode') == 'on'){
     exit;
   }
  }
+}
+
+// get_id_by_slug('any-page-slug');
+
+function get_page_by_name($pagename)
+{
+$pages = get_pages();
+foreach ($pages as $page){
+ if ($page->post_name == $pagename){
+    return $page->ID;
+  } else {
+    return false;
+  }
+}
 }
 ?>
