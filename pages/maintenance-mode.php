@@ -7,7 +7,7 @@
 	          	<div class="text-center">
 	          		<form name="form1" method="post" action="<?php echo admin_url( 'admin.php' ); ?>">
 								<input type="hidden" name="action" value="pwd_maintenance_off" />
-								<?php wp_nonce_field()?>
+								<?php wp_nonce_field(); ?>
 	          			<h6 class="title">Maintenance Mode is <b>ON</b></h6><br><br>
 	          			<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Turn Off'); ?>" /> 
 	          		</form>

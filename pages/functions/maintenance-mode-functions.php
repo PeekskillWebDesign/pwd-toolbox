@@ -42,6 +42,9 @@ if ( !current_user_can( 'manage_options' ) ) {
       wp_cache_delete( 'all_page_ids', 'pages' );
       $wp_rewrite->flush_rules();
     }
+    if ($delete_page = get_page_by_name('coming-soon')){
+      wp_delete_post($delete_page, true);
+    }
     update_option('pwd_maintenance-mode', 'on');
     update_option('maintenance-mode-page', $maintenance_page);
     
@@ -130,5 +133,19 @@ if(get_option('pwd_maintenance-mode') == 'on'){
     exit;
   }
  }
+}
+
+// get_id_by_slug('any-page-slug');
+
+function get_page_by_name($pagename)
+{
+$pages = get_pages();
+foreach ($pages as $page){
+ if ($page->post_name == $pagename){
+    return $page->ID;
+  } else {
+    return false;
+  }
+}
 }
 ?>
